@@ -48,7 +48,7 @@
             this.ClientSize = new System.Drawing.Size(297, 189);
             this.Controls.Add(this.button1);
             this.Name = "IrisClient";
-            this.Text = "Form1";
+            this.Text = "Iris-Client";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.IrisClient_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);

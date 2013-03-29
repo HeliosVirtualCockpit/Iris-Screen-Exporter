@@ -29,7 +29,6 @@ namespace client
             if (File.Exists(configFile))
             {
                 loadedCfg = Helpers.LoadConfig(configFile);
-                MessageBox.Show("polling: " + loadedCfg.PollingInterval.ToString());
                 viewPorts.DataSource = (BindingList<ViewPort>)loadedCfg.ViewPorts;
 
             }
