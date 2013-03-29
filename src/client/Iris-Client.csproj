@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{4822476B-89A8-45CA-AD98-CC372125019A}</ProjectGuid>
+    <ProjectGuid>{191F679F-BEFA-41AC-AF09-3A469E4421D0}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>server</RootNamespace>
-    <AssemblyName>server</AssemblyName>
+    <RootNamespace>client</RootNamespace>
+    <AssemblyName>Iris-Client</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -28,7 +28,7 @@
     <PlatformTarget>x86</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\..\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -36,7 +36,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Net" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,16 +49,25 @@
     <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="IrisServer.cs">
+    <Compile Include="IrisClient.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="IrisServer.Designer.cs">
-      <DependentUpon>IrisServer.cs</DependentUpon>
+    <Compile Include="IrisClient.Designer.cs">
+      <DependentUpon>IrisClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewPortForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewPortForm.Designer.cs">
+      <DependentUpon>ViewPortForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="IrisServer.resx">
-      <DependentUpon>IrisServer.cs</DependentUpon>
+    <EmbeddedResource Include="IrisClient.resx">
+      <DependentUpon>IrisClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewPortForm.resx">
+      <DependentUpon>ViewPortForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
