@@ -23,13 +23,59 @@ namespace client
             InitializeComponent();
 
         }
-        
+
         public bool Listening { get; set; }
 
         private void Form2_Load(object sender, EventArgs e)
         {
             pictureBox1.DataBindings.Add("Image", viewPort, "Image");
             StartListening();
+        }
+
+        private void toggleBorderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.FormBorderStyle != System.Windows.Forms.FormBorderStyle.None)
+            {
+                this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                this.Size = new Size(viewPort.SizeX, viewPort.SizeY);
+            }
+            else this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+        }
+
+        private void setWindowPositionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            viewPort.ScreenPositionX = this.Location.X;
+            viewPort.ScreenPositionY = this.Location.Y;
+
+
+        }
+
+        private void moveWindowUPToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Location = new Point(this.Location.X, this.Location.Y - 1);
+        }
+
+        private void moveWindowDownToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Location = new Point(this.Location.X, this.Location.Y + 1);
+        }
+
+        private void moveWindowRightToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Location = new Point(this.Location.X + 1, this.Location.Y);
+        }
+
+        private void moveWindowLeftToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Location = new Point(this.Location.X - 1, this.Location.Y);
+        }
+
+        private void ViewPortForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (this.Listening == true)
+            {
+                StopListening();
+            }
         }
 
         public void StartListening()
@@ -77,31 +123,6 @@ namespace client
             else
             {
                 this.viewPort.Image = (Bitmap)aPicture;
-            }
-        }
-
-        private void toggleBorderToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (this.FormBorderStyle != System.Windows.Forms.FormBorderStyle.None)
-            {
-                this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            }
-            else this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-        }
-
-        private void setWindowPositionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            viewPort.ScreenPositionX = this.Location.X;
-            viewPort.ScreenPositionY = this.Location.Y;
-
-
-        }
-
-        private void ViewPortForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (this.Listening == true)
-            {
-                StopListening();
             }
         }
 

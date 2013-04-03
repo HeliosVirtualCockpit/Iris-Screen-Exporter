@@ -42,8 +42,8 @@ namespace client
             foreach (ViewPort vp in viewPorts)
             {
                 ViewPortForm vpWindow = new ViewPortForm(vp);
-                vpWindow.Size = new Size(vp.SizeX, vp.SizeY);
                 vpWindow.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                vpWindow.Size = new Size(vp.SizeX, vp.SizeY);
                 vpWindow.Text = vp.Name;
                 vpWindow.Show();
                 vpWindow.DesktopLocation = new Point(vp.ScreenPositionX, vp.ScreenPositionY);

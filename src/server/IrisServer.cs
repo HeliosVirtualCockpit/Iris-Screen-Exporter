@@ -5,6 +5,7 @@ using System.IO;
 using System.Net.Sockets;
 using System.Windows.Forms;
 using common;
+using System.Reflection;
 
 namespace server
 {
@@ -28,17 +29,48 @@ namespace server
             {
                 LoadConfig(configFile);
                 //generateTestData();
-                textBox1.Text = trackBar1.Value.ToString();
                 generateViewPorts();
             }
             else
             {
-                MessageBox.Show(configFile+" not found! Please create a config File", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Stop, MessageBoxDefaultButton.Button1
+                MessageBox.Show(configFile + " not found! Please create a config File", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Stop, MessageBoxDefaultButton.Button1
                     , MessageBoxOptions.ServiceNotification);
                 this.Close();
             }
 
 
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            captureViewPorts();
+        }
+
+        private void startCapturingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            enableCapturing(true);
+        }
+
+        private void stopCapturingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            enableCapturing(false);
+        }
+
+        private void captureOnceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            captureViewPorts();
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Assembly assembly = Assembly.GetEntryAssembly();
+            System.Diagnostics.FileVersionInfo fileVersion = System.Diagnostics.FileVersionInfo.GetVersionInfo(assembly.Location);
+            MessageBox.Show("Iris Version:\n" + fileVersion.ProductVersion, "About Iris");
+        }
+
+        private void IrisServer_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            enableCapturing(false);
         }
 
         private void generateViewPorts()
@@ -55,6 +87,44 @@ namespace server
                 tPage.Controls.Add(pBox);
                 tabControl1.TabPages.Add(tPage);
             }
+        }
+       
+        private void captureViewPorts()
+        {
+            foreach (ViewPort vp in viewPorts)
+            {
+                Byte[] imageByteArray;
+                vp.capture();
+                imageByteArray = vp.Image.ToByteArray(System.Drawing.Imaging.ImageFormat.Jpeg);
+                conn.Send(imageByteArray, imageByteArray.Length, vp.Host, vp.Port);
+            }
+        }
+
+        private void LoadConfig(string fileName)
+        {
+            IrisConfig loader = Helpers.LoadConfig(fileName);
+            timer1.Interval = loader.PollingInterval;
+            viewPorts.DataSource = (BindingList<ViewPort>)loader.ViewPorts;
+
+        }
+
+        //private void SaveConfig(string fileName)
+        //{
+        //    IrisConfig saver = new IrisConfig();
+        //    saver.PollingInterval = timer1.Interval;
+        //    saver.ViewPorts = (BindingList<ViewPort>)viewPorts.List;
+        //    MessageBox.Show("Items Saved");
+        //}
+
+        private void enableCapturing(bool enabled)
+        {
+            captureOnceToolStripMenuItem.Enabled = !enabled;
+            startCapturingToolStripMenuItem.Enabled = !enabled;
+            stopCapturingToolStripMenuItem.Enabled = enabled;
+            timer1.Enabled = enabled;
+            if (enabled) this.Text = "Iris - Server (CAPTURING)";
+            else this.Text = "Iris - Server";
+           
         }
 
         private void generateTestData()
@@ -80,81 +150,5 @@ namespace server
             viewPorts.Add(testView1);
         }
 
-        private void trackBar1_Scroll(object sender, EventArgs e)
-        {
-            timer1.Interval = 1000 / trackBar1.Value;
-            textBox1.Text = trackBar1.Value.ToString();
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            foreach (ViewPort vp in viewPorts)
-            {
-                Byte[] imageByteArray;
-                vp.capture();
-                imageByteArray = vp.Image.ToByteArray(System.Drawing.Imaging.ImageFormat.Jpeg);
-                conn.Send(imageByteArray, imageByteArray.Length, vp.Host, vp.Port);
-            }
-        }
-
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            toggleTimer();
-        }
-
-        private void toggleTimer()
-        {
-            if (timer1.Enabled)
-            {
-                disableTimer();
-            }
-            else
-            {
-                enableTimer();
-            }
-            return;
-        }
-
-        private void disableTimer()
-        {
-            timer1.Enabled = false;
-            button1.Text = "Enable Capture";
-            //toolStripStatusPolling.Text = "Polling:Off";
-        }
-
-        private void enableTimer()
-        {
-            timer1.Enabled = true;
-            button1.Text = "Disable Capture";
-            //toolStripStatusPolling.Text = "Polling:On";
-        }
-
-        private void LoadConfig(string fileName)
-        {
-            IrisConfig loader = Helpers.LoadConfig(fileName);
-            timer1.Interval = loader.PollingInterval;
-            viewPorts.DataSource = (BindingList<ViewPort>)loader.ViewPorts;
-
-        }
-
-        private void SaveConfig(string fileName)
-        {
-            IrisConfig saver = new IrisConfig();
-            saver.PollingInterval = timer1.Interval;
-            saver.ViewPorts = (BindingList<ViewPort>)viewPorts.List;
-            MessageBox.Show("Items Saved");
-        }
-
-        private void IrisServer_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            disableTimer();
-        }
-
-        private void toolStripStatusPolling_DoubleClick(object sender, EventArgs e)
-        {
-            toggleTimer();
-        }
-
-       
     }
 }

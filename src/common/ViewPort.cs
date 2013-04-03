@@ -125,6 +125,16 @@ namespace common
             }
         }
 
+        public Bitmap capture()
+        {
+            using (Graphics g = Graphics.FromImage(image))
+            {
+                g.CopyFromScreen(screenX, screenY, 0, 0, new Size(sizeX, sizeY));
+            }
+            NotifyPropertyChanged("Image");
+            return image;
+        }
+
         private void changeBitmapSize()
         {
             if ((sizeX > 0) & (sizeY > 0))
@@ -140,16 +150,6 @@ namespace common
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(name));
             }
-        }
-
-        public Bitmap capture()
-        {
-            using (Graphics g = Graphics.FromImage(image))
-            {
-                g.CopyFromScreen(screenX, screenY, 0, 0, new Size(sizeX, sizeY));
-            }
-            NotifyPropertyChanged("Image");
-            return image;
         }
 
     }
