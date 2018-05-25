@@ -45,16 +45,22 @@ namespace server
         {
             foreach (ViewPort vp in viewPorts)
             {
-                // create a new tab page and add it to the tabcontroller
-                vp.capture();
-                PictureBox pBox = new PictureBox();
-                pBox.MaximumSize = new Size(600, 600);
-                pBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-                pBox.DataBindings.Add("Image", vp, "Image");
-                TabPage tPage = new TabPage(vp.Name);
-                tPage.Controls.Add(pBox);
-                tabControl1.TabPages.Add(tPage);
+                if (vp.Name != "Background")
+                {
+                    // create a new tab page and add it to the tabcontroller
+                    vp.capture();
+                    PictureBox pBox = new PictureBox();
+                    pBox.MaximumSize = new Size(600, 600);
+                    pBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+                    pBox.DataBindings.Add("Image", vp, "Image");
+                    TabPage tPage = new TabPage(vp.Name);
+                    tPage.Controls.Add(pBox);
+                    tabControl1.TabPages.Add(tPage);
+                }
             }
+            // Make sure that we start up and send data as the default
+            timer1.Enabled = false;
+            toggleTimer();
         }
 
         private void generateTestData()
@@ -90,10 +96,13 @@ namespace server
         {
             foreach (ViewPort vp in viewPorts)
             {
-                Byte[] imageByteArray;
-                vp.capture();
-                imageByteArray = vp.Image.ToByteArray(System.Drawing.Imaging.ImageFormat.Jpeg);
-                conn.Send(imageByteArray, imageByteArray.Length, vp.Host, vp.Port);
+                if (vp.Name != "Background")
+                {
+                    Byte[] imageByteArray;
+                    vp.capture();
+                    imageByteArray = vp.Image.ToByteArray(System.Drawing.Imaging.ImageFormat.Jpeg);
+                    conn.Send(imageByteArray, imageByteArray.Length, vp.Host, vp.Port);
+                }
             }
         }
 
