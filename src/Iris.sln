@@ -9,6 +9,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Iris-common", "common\Iris-
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Iris-Server", "server\Iris-Server.csproj", "{4822476B-89A8-45CA-AD98-CC372125019A}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Iris Setup", "..\Installer\Iris Setup\Iris Setup.vdproj", "{C3DF55B5-151D-40EA-99A0-2C3E05797346}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{D3D32899-03E9-4B2B-958B-FF95E22D2AC5}"
+	ProjectSection(SolutionItems) = preProject
+		Docs\Iris Screen Exporter.doc = Docs\Iris Screen Exporter.doc
+		Docs\Iris Screen Exporter.pdf = Docs\Iris Screen Exporter.pdf
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Config", "Config", "{E36E0B0E-993F-4DFC-B7E1-7F77A8CA5F25}"
+	ProjectSection(SolutionItems) = preProject
+		config\iris.xml.example = config\iris.xml.example
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,6 +63,12 @@ Global
 		{4822476B-89A8-45CA-AD98-CC372125019A}.Release|Mixed Platforms.Build.0 = Release|x86
 		{4822476B-89A8-45CA-AD98-CC372125019A}.Release|x86.ActiveCfg = Release|x86
 		{4822476B-89A8-45CA-AD98-CC372125019A}.Release|x86.Build.0 = Release|x86
+		{C3DF55B5-151D-40EA-99A0-2C3E05797346}.Debug|Any CPU.ActiveCfg = Debug
+		{C3DF55B5-151D-40EA-99A0-2C3E05797346}.Debug|Mixed Platforms.ActiveCfg = Debug
+		{C3DF55B5-151D-40EA-99A0-2C3E05797346}.Debug|x86.ActiveCfg = Debug
+		{C3DF55B5-151D-40EA-99A0-2C3E05797346}.Release|Any CPU.ActiveCfg = Release
+		{C3DF55B5-151D-40EA-99A0-2C3E05797346}.Release|Mixed Platforms.ActiveCfg = Release
+		{C3DF55B5-151D-40EA-99A0-2C3E05797346}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
