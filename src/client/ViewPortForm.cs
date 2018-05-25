@@ -39,8 +39,8 @@ namespace client
                 client = new UdpClient(viewPort.Port);
                 endPoint = new IPEndPoint(IPAddress.Any, 0);
                 thread = new Thread(Poll);
-                thread.Start();
                 Listening = true;
+                thread.Start();
             }
             else throw (new InvalidOperationException(viewPort.Name + " Is already listening"));
         }

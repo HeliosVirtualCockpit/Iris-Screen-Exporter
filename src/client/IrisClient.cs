@@ -47,6 +47,13 @@ namespace client
                 vpWindow.Text = vp.Name;
                 vpWindow.Show();
                 vpWindow.DesktopLocation = new Point(vp.ScreenPositionX, vp.ScreenPositionY);
+                if (vp.Name == "Background")
+                {
+                    // This is the special case viewport used for the background to avoid us 
+                    // having to set a desktop background and remove all of the icons
+                    vpWindow.SendToBack();
+                    vpWindow.BackColor = System.Drawing.Color.FromArgb(0x38, 0x38, 0x58);
+                }
                 windows.Add(vpWindow);
             }
 
