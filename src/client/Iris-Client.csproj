@@ -89,9 +89,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\common\common.csproj">
+    <ProjectReference Include="..\common\Iris-common.csproj">
       <Project>{C921C6D8-0CF2-48BB-915E-5E6BF4D0898F}</Project>
-      <Name>common</Name>
+      <Name>Iris-common</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

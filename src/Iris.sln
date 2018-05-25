@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Iris-Client", "client\Iris-Client.csproj", "{191F679F-BEFA-41AC-AF09-3A469E4421D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "common", "common\common.csproj", "{C921C6D8-0CF2-48BB-915E-5E6BF4D0898F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Iris-common", "common\Iris-common.csproj", "{C921C6D8-0CF2-48BB-915E-5E6BF4D0898F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Iris-Server", "server\Iris-Server.csproj", "{4822476B-89A8-45CA-AD98-CC372125019A}"
 EndProject
