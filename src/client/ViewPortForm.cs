@@ -93,8 +93,6 @@ namespace client
         {
             viewPort.ScreenPositionX = this.Location.X;
             viewPort.ScreenPositionY = this.Location.Y;
-
-
         }
 
         private void ViewPortForm_FormClosing(object sender, FormClosingEventArgs e)

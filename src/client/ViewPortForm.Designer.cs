@@ -77,7 +77,7 @@
             this.ClientSize = new System.Drawing.Size(284, 262);
             this.ContextMenuStrip = this.contextMenuStrip1;
             this.Controls.Add(this.pictureBox1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ViewPortForm";
             this.Text = "Form2";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ViewPortForm_FormClosing);
