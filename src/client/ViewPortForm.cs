@@ -39,8 +39,8 @@ namespace client
                 client = new UdpClient(viewPort.Port);
                 endPoint = new IPEndPoint(IPAddress.Any, 0);
                 thread = new Thread(Poll);
-                thread.Start();
                 Listening = true;
+                thread.Start();
             }
             else throw (new InvalidOperationException(viewPort.Name + " Is already listening"));
         }
@@ -105,5 +105,14 @@ namespace client
             }
         }
 
+        private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (this.viewPort.Name == "Background")
+            {
+                // We want to keep the background in the background ;-)
+                this.SendToBack();
+            }
+
+        }
     }
 }

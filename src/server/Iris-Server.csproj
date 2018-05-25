@@ -48,9 +48,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\GlobalAssemblyInfo.cs">
-      <Link>Properties\GlobalAssemblyInfo.cs</Link>
-    </Compile>
     <Compile Include="IrisServer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,10 +84,6 @@
     <ProjectReference Include="..\common\common.csproj">
       <Project>{C921C6D8-0CF2-48BB-915E-5E6BF4D0898F}</Project>
       <Name>common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Version\Version.csproj">
-      <Project>{B69CAC60-1D4D-464B-97F4-56FFAD8E05CC}</Project>
-      <Name>Version</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -46,6 +46,7 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseClick);
             // 
             // contextMenuStrip1
             // 
@@ -53,7 +54,7 @@
             this.toggleBorderToolStripMenuItem,
             this.setWindowPositionToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(184, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(184, 48);
             // 
             // toggleBorderToolStripMenuItem
             // 
