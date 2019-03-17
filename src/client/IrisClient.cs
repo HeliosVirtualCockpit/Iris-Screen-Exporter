@@ -14,8 +14,9 @@ namespace client
         private IrisConfig loadedCfg;
         private string configFile = "iris.xml";
 
-        public IrisClient()
+        public IrisClient(string[] args)
         {
+            if (args.Length > 0) configFile = args[0];
             InitializeComponent();
         }
 
@@ -42,6 +43,7 @@ namespace client
             foreach (ViewPort vp in viewPorts)
             {
                 ViewPortForm vpWindow = new ViewPortForm(vp);
+                vpWindow.MinimumSize = new Size(16, 16);
                 vpWindow.Size = new Size(vp.SizeX, vp.SizeY);
                 vpWindow.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
                 vpWindow.Text = vp.Name;
@@ -56,7 +58,8 @@ namespace client
                 }
                 windows.Add(vpWindow);
             }
-
+            // Minimize the parent form.
+            this.WindowState = FormWindowState.Minimized;
         }
 
         private void button1_Click(object sender, EventArgs e)

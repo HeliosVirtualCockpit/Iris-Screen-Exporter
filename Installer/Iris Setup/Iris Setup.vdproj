@@ -21,18 +21,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_3A6B22D12B4DA1B219C83BE4A1AB7D3E"
-        "OwnerKey" = "8:_D4EE82E180164468AE3DC366655E1C37"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_3A6B22D12B4DA1B219C83BE4A1AB7D3E"
-        "OwnerKey" = "8:_77CB810A4E5B443DA58A03F31207E51C"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_77CB810A4E5B443DA58A03F31207E51C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -45,6 +33,18 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_C7C4EAFBBBE521AB9E4A1911B42BC396"
+        "OwnerKey" = "8:_77CB810A4E5B443DA58A03F31207E51C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_C7C4EAFBBBE521AB9E4A1911B42BC396"
+        "OwnerKey" = "8:_D4EE82E180164468AE3DC366655E1C37"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_D4EE82E180164468AE3DC366655E1C37"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -52,7 +52,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_3A6B22D12B4DA1B219C83BE4A1AB7D3E"
+        "OwnerKey" = "8:_D4EE82E180164468AE3DC366655E1C37"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -64,7 +64,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_D4EE82E180164468AE3DC366655E1C37"
+        "OwnerKey" = "8:_C7C4EAFBBBE521AB9E4A1911B42BC396"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -85,6 +85,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
@@ -101,6 +109,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.5"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.5 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.5"
+                    }
+                }
+            }
         }
     }
     "Deployable"
@@ -150,14 +174,34 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_3A6B22D12B4DA1B219C83BE4A1AB7D3E"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B4630BFF157E4CB8BF8A813CF07DA775"
+            {
+            "SourcePath" = "8:..\\..\\src\\Docs\\Iris Screen Exporter.pdf"
+            "TargetName" = "8:Iris Screen Exporter.pdf"
+            "Tag" = "8:"
+            "Folder" = "8:_584B8118B674433CBA7E5484A4563859"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C7C4EAFBBBE521AB9E4A1911B42BC396"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:Iris-common, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_3A6B22D12B4DA1B219C83BE4A1AB7D3E"
+                    "_C7C4EAFBBBE521AB9E4A1911B42BC396"
                     {
                     "Name" = "8:Iris-common.dll"
                     "Attributes" = "3:512"
@@ -179,26 +223,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B4630BFF157E4CB8BF8A813CF07DA775"
-            {
-            "SourcePath" = "8:..\\..\\src\\Docs\\Iris Screen Exporter.pdf"
-            "TargetName" = "8:Iris Screen Exporter.pdf"
-            "Tag" = "8:"
-            "Folder" = "8:_584B8118B674433CBA7E5484A4563859"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
         }
@@ -268,15 +292,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Iris"
-        "ProductCode" = "8:{CC5BB9D9-7E55-4ED4-9905-243AC7A331EE}"
-        "PackageCode" = "8:{DC726BAB-A8E2-4EF8-BCF7-9B7D58AF699A}"
+        "ProductCode" = "8:{4D455C80-DF4E-422E-9F76-23A842E7BBA1}"
+        "PackageCode" = "8:{BABECAEA-A571-41F0-81DE-D96DC759A600}"
         "UpgradeCode" = "8:{BB0CC9B8-5D95-4308-B06E-1D6CE5297700}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.0.011"
+        "ProductVersion" = "8:1.0.012"
         "Manufacturer" = "8:Will Hartsell"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
