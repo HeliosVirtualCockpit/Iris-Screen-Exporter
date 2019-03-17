@@ -21,6 +21,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_6ED564F699F14EDEB5E5C73D75C9C09E"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_77CB810A4E5B443DA58A03F31207E51C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -52,6 +58,12 @@
         "Entry"
         {
         "MsmKey" = "8:_C550B20A8A7AD08595FB336705F10BC0"
+        "OwnerKey" = "8:_6ED564F699F14EDEB5E5C73D75C9C09E"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_C550B20A8A7AD08595FB336705F10BC0"
         "OwnerKey" = "8:_D4EE82E180164468AE3DC366655E1C37"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -65,6 +77,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_D4EE82E180164468AE3DC366655E1C37"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_6ED564F699F14EDEB5E5C73D75C9C09E"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -291,6 +309,28 @@
         }
         "Folder"
         {
+            "{1525181F-901A-416C-8A58-119130FE478E}:_26D5AA615CC34943987F20585EBE7F90"
+            {
+            "Name" = "8:#1919"
+            "AlwaysCreate" = "11:FALSE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Property" = "8:ProgramMenuFolder"
+                "Folders"
+                {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_134FC8CC65644114B753B50267C71B74"
+                    {
+                    "Name" = "8:Iris Screen Exporter"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_D91CBB3BB563493C9949E23F47A9D530"
+                        "Folders"
+                        {
+                        }
+                    }
+                }
+            }
             "{1525181F-901A-416C-8A58-119130FE478E}:_C2F264EC067F46FC97D58D20828259B7"
             {
             "Name" = "8:#1912"
@@ -326,7 +366,7 @@
             }
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_EC753408B7B74787B000C45447753F2D"
             {
-            "DefaultLocation" = "8:[ProgramFilesFolder][Manufacturer]\\[ProductName]"
+            "DefaultLocation" = "8:[ProgramFilesFolder]\\[ProductName]"
             "Name" = "8:#1925"
             "AlwaysCreate" = "11:FALSE"
             "Condition" = "8:"
@@ -353,7 +393,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Iris Screen Exporter"
         "ProductCode" = "8:{65EC99B1-7342-44B5-9A46-37AFCC8699E7}"
-        "PackageCode" = "8:{DD77B43C-B4FA-4314-9A6A-05668998F04D}"
+        "PackageCode" = "8:{A11747E6-F0B3-455F-A2D2-898F5E771786}"
         "UpgradeCode" = "8:{BB0CC9B8-5D95-4308-B06E-1D6CE5297700}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -473,6 +513,34 @@
         }
         "Shortcut"
         {
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_52189056D07F47788C5B1CF87771D777"
+            {
+            "Name" = "8:Iris Client"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_D4EE82E180164468AE3DC366655E1C37"
+            "Folder" = "8:_134FC8CC65644114B753B50267C71B74"
+            "WorkingFolder" = "8:_ADF455FA9BB44974A9D92F41DC020398"
+            "Icon" = "8:_897176BC70224705B9495F962307386A"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_A8D173A86EF34E979406E84C45B7E6B0"
+            {
+            "Name" = "8:Iris Server"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_6ED564F699F14EDEB5E5C73D75C9C09E"
+            "Folder" = "8:_134FC8CC65644114B753B50267C71B74"
+            "WorkingFolder" = "8:_ADF455FA9BB44974A9D92F41DC020398"
+            "Icon" = "8:_897176BC70224705B9495F962307386A"
+            "Feature" = "8:"
+            }
         }
         "UserInterface"
         {
@@ -882,6 +950,34 @@
         }
         "ProjectOutput"
         {
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_6ED564F699F14EDEB5E5C73D75C9C09E"
+            {
+            "SourcePath" = "8:..\\..\\src\\server\\obj\\x86\\Release\\Iris-Server.exe"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_ADF455FA9BB44974A9D92F41DC020398"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            "ProjectOutputGroupRegister" = "3:1"
+            "OutputConfiguration" = "8:"
+            "OutputGroupCanonicalName" = "8:Built"
+            "OutputProjectGuid" = "8:{4822476B-89A8-45CA-AD98-CC372125019A}"
+            "ShowKeyOutput" = "11:TRUE"
+                "ExcludeFilters"
+                {
+                }
+            }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_77CB810A4E5B443DA58A03F31207E51C"
             {
             "SourcePath" = "8:..\\..\\src\\server\\obj\\x86\\Release\\Iris-Server.exe"
