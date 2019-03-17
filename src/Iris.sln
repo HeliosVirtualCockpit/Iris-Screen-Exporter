@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.421
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Iris-Client", "client\Iris-Client.csproj", "{191F679F-BEFA-41AC-AF09-3A469E4421D0}"
 EndProject
@@ -68,9 +68,13 @@ Global
 		{C3DF55B5-151D-40EA-99A0-2C3E05797346}.Debug|x86.ActiveCfg = Debug
 		{C3DF55B5-151D-40EA-99A0-2C3E05797346}.Release|Any CPU.ActiveCfg = Release
 		{C3DF55B5-151D-40EA-99A0-2C3E05797346}.Release|Mixed Platforms.ActiveCfg = Release
+		{C3DF55B5-151D-40EA-99A0-2C3E05797346}.Release|Mixed Platforms.Build.0 = Release
 		{C3DF55B5-151D-40EA-99A0-2C3E05797346}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F207E71E-39CF-4F8C-8CB5-2518EEEE1737}
 	EndGlobalSection
 EndGlobal
