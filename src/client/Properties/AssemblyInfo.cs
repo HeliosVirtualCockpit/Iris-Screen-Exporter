@@ -17,6 +17,6 @@ using System.Runtime.InteropServices;
 [assembly: Guid("45585092-4b34-4f19-8f04-f6ec197926b0")]
 [assembly: AssemblyTitle("Iris Client")]
 [assembly: AssemblyProduct("Iris Screen Exporter")]
-[assembly: AssemblyVersion("1.0.2019.0316")]
-[assembly: AssemblyFileVersion("1.0.2019.0316")]
+[assembly: AssemblyVersion("1.0.2019.0317")]
+[assembly: AssemblyFileVersion("1.0.2019.0317")]
 
