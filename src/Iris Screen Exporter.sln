@@ -22,6 +22,7 @@ Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Iris Screen Exporter Setup"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{D3D32899-03E9-4B2B-958B-FF95E22D2AC5}"
 	ProjectSection(SolutionItems) = preProject
+		Changelog.md = Changelog.md
 		Docs\Iris Screen Exporter.doc = Docs\Iris Screen Exporter.doc
 		Docs\Iris Screen Exporter.pdf = Docs\Iris Screen Exporter.pdf
 	EndProjectSection
