@@ -159,13 +159,17 @@ namespace server
                     }
                     catch (SocketException se)
                     {
-                        if (NetworkErrorAlreadyReported)  // if there is one, there are likely to be more so only report the first
+                        if (!NetworkErrorAlreadyReported)  // if there is one, there are likely to be more so only report the first
                         {
                             SocketErrorCodes errorCode = (SocketErrorCodes)se.ErrorCode;
                             switch (errorCode)
                             {
                                 case SocketErrorCodes.HostNotFound:
                                     MessageBox.Show(se.Message + ".  The hostname \"" + vp.Host + "\" you were trying to connect to was not found.  Please review your IRIS config file.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Stop, MessageBoxDefaultButton.Button1
+            , MessageBoxOptions.ServiceNotification);
+                                    break;
+                                case SocketErrorCodes.MessgeTooLong:
+                                    MessageBox.Show("Send to hostname \"" + vp.Host + "\" for item \"" + vp.Name + "\" was too large at " + imageByteArray.Length.ToString() + " bytes.  " + se.Message + ".  Please review your IRIS config file.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Stop, MessageBoxDefaultButton.Button1
             , MessageBoxOptions.ServiceNotification);
                                     break;
                                 default:
