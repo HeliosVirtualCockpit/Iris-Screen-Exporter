@@ -16,6 +16,6 @@ using System.Runtime.InteropServices;
 [assembly: Guid("6b348ce7-763d-418c-9f47-6deff90be1a0")]
 [assembly: AssemblyTitle("Iris Server")]
 [assembly: AssemblyProduct("Iris Screen Exporter")]
-[assembly: AssemblyVersion("1.0.2020.0531")]
-[assembly: AssemblyFileVersion("1.0.2020.0531")]
-
+[assembly: AssemblyVersion("1.0.2022.0507")]
+[assembly: AssemblyFileVersion("1.0.2022.0507")]
+[assembly: AssemblyCompany("HeliosVirtualCockpit")]

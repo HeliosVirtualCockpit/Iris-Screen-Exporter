@@ -14,6 +14,7 @@ namespace server
         private UdpClient conn;
         private string configFile = "iris.xml";
         public Boolean NetworkErrorAlreadyReported = false;
+        private Icon icon;
 
         public enum SocketErrorCodes
         {
@@ -73,6 +74,8 @@ namespace server
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            icon = Properties.Resources.iris; ;
+            this.Icon = icon;
             viewPorts = new BindingSource();
             conn = new UdpClient();
             viewPorts.DataSource = typeof(ViewPort);

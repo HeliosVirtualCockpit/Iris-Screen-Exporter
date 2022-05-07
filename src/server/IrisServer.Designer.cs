@@ -71,7 +71,7 @@
             this.trackBar1.Maximum = 20;
             this.trackBar1.Minimum = 1;
             this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(104, 42);
+            this.trackBar1.Size = new System.Drawing.Size(104, 45);
             this.trackBar1.TabIndex = 2;
             this.trackBar1.TickFrequency = 2;
             this.trackBar1.Value = 10;
@@ -104,7 +104,7 @@
             this.ClientSize = new System.Drawing.Size(692, 673);
             this.Controls.Add(this.tabControl1);
             this.Name = "IrisServer";
-            this.Text = "Iris - Server";
+            this.Text = "Iris Screen Exporter - Server";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.IrisServer_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabPage1.ResumeLayout(false);

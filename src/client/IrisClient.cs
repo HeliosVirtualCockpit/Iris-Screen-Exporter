@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using System.ComponentModel;
 using System.Drawing;
 using System.IO;
@@ -26,6 +27,8 @@ namespace client
             windows = new BindingSource();
             viewPorts.DataSource = typeof(ViewPort);
             windows.DataSource = typeof(ViewPortForm);
+            Icon icon = Properties.Resources.iris; ;
+            this.Icon = icon;
 
             if (File.Exists(configFile))
             {
@@ -43,6 +46,7 @@ namespace client
             foreach (ViewPort vp in viewPorts)
             {
                 ViewPortForm vpWindow = new ViewPortForm(vp);
+                vpWindow.Icon = icon;
                 vpWindow.MinimumSize = new Size(16, 16);
                 vpWindow.Size = new Size(vp.SizeX, vp.SizeY);
                 vpWindow.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
