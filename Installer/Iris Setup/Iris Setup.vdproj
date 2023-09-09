@@ -51,18 +51,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_426B5CC825E94FF09E885B38EC70567E"
-        "OwnerKey" = "8:_180C459DB4F14FF68197649DD904B328"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_426B5CC825E94FF09E885B38EC70567E"
-        "OwnerKey" = "8:_1BA6166EA8F04E1BA5A53AA9F0A11B34"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_6FD5410BF37E4B82A91FEDEE316F9173"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -71,6 +59,18 @@
         {
         "MsmKey" = "8:_75682341A2B94B6D9C6A2BA27EE09756"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9A30621BC1630252C0E8FF932CB6289C"
+        "OwnerKey" = "8:_180C459DB4F14FF68197649DD904B328"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9A30621BC1630252C0E8FF932CB6289C"
+        "OwnerKey" = "8:_1BA6166EA8F04E1BA5A53AA9F0A11B34"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -88,6 +88,12 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_9A30621BC1630252C0E8FF932CB6289C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_75682341A2B94B6D9C6A2BA27EE09756"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -95,12 +101,6 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_1BA6166EA8F04E1BA5A53AA9F0A11B34"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_426B5CC825E94FF09E885B38EC70567E"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -143,7 +143,7 @@
         "DisplayName" = "8:Release"
         "IsDebugOnly" = "11:FALSE"
         "IsReleaseOnly" = "11:TRUE"
-        "OutputFilename" = "8:Release\\Iris Screen Exporter 1.0.2022.0507.msi"
+        "OutputFilename" = "8:Release\\Iris Screen Exporter 1.0.2023.0909.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -185,7 +185,7 @@
                 {
                 "Name" = "8:.NET Framework"
                 "Message" = "8:[VSDNETMSG]"
-                "FrameworkVersion" = "8:v4.0    "
+                "FrameworkVersion" = "8:v4.0     "
                 "AllowLaterVersions" = "11:FALSE"
                 "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=395269"
                 }
@@ -273,14 +273,34 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_426B5CC825E94FF09E885B38EC70567E"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6FD5410BF37E4B82A91FEDEE316F9173"
+            {
+            "SourcePath" = "8:..\\..\\src\\Resources\\iris.ico"
+            "TargetName" = "8:iris.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_EC753408B7B74787B000C45447753F2D"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_9A30621BC1630252C0E8FF932CB6289C"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:Iris-common, Version=1.0.2022.507, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_426B5CC825E94FF09E885B38EC70567E"
+                    "_9A30621BC1630252C0E8FF932CB6289C"
                     {
                     "Name" = "8:Iris-common.dll"
                     "Attributes" = "3:512"
@@ -302,26 +322,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6FD5410BF37E4B82A91FEDEE316F9173"
-            {
-            "SourcePath" = "8:..\\..\\src\\Resources\\iris.ico"
-            "TargetName" = "8:iris.ico"
-            "Tag" = "8:"
-            "Folder" = "8:_EC753408B7B74787B000C45447753F2D"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B4630BFF157E4CB8BF8A813CF07DA775"
@@ -434,14 +434,14 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Iris Screen Exporter"
         "ProductCode" = "8:{5AE64DBE-0227-42E9-801C-9D8871929CD3}"
-        "PackageCode" = "8:{AEECEB81-D38D-4575-B73F-95165E4A613F}"
+        "PackageCode" = "8:{42724FBE-7274-46D9-AF5F-8FA88EEFB7EF}"
         "UpgradeCode" = "8:{BB0CC9B8-5D95-4308-B06E-1D6CE5297700}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.0.2022"
+        "ProductVersion" = "8:1.0.2023"
         "Manufacturer" = "8:Helios Virtual Cockpit"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:https://github.com/HeliosVirtualCockpit/Iris-Screen-Exporter/issues"
@@ -993,7 +993,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_180C459DB4F14FF68197649DD904B328"
             {
-            "SourcePath" = "8:..\\..\\src\\client\\obj\\Release\\Iris-Client.exe"
+            "SourcePath" = "8:..\\..\\src\\client\\obj\\x64\\Release\\Iris-Client.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_EC753408B7B74787B000C45447753F2D"
@@ -1021,7 +1021,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_1BA6166EA8F04E1BA5A53AA9F0A11B34"
             {
-            "SourcePath" = "8:..\\..\\src\\server\\obj\\Release\\Iris-Server.exe"
+            "SourcePath" = "8:..\\..\\src\\server\\obj\\x64\\Release\\Iris-Server.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_EC753408B7B74787B000C45447753F2D"
@@ -1049,7 +1049,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_75682341A2B94B6D9C6A2BA27EE09756"
             {
-            "SourcePath" = "8:..\\..\\src\\Version\\obj\\Release\\Version.dll"
+            "SourcePath" = "8:..\\..\\src\\Version\\obj\\x64\\Release\\Version.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_EC753408B7B74787B000C45447753F2D"
