@@ -1,154 +1,52 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0"?>
 <IrisConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ViewPorts>
     <ViewPort>
       <Name>Left MFCD</Name>
       <Description>This is the Left MFCD</Description>
-      <Host>typhoon</Host>
+      <Host>localhost</Host>
       <Port>12001</Port>
-      <ScreenCaptureX>4240</ScreenCaptureX>
+      <ScreenCaptureX>0</ScreenCaptureX>
       <ScreenCaptureY>0</ScreenCaptureY>
-      <SizeX>334</SizeX>
-      <SizeY>310</SizeY>
-      <ScreenPositionX>199</ScreenPositionX>
-      <ScreenPositionY>402</ScreenPositionY>
+      <SizeX>350</SizeX>
+      <SizeY>350</SizeY>
+      <ScreenPositionX>0</ScreenPositionX>
+      <ScreenPositionY>400</ScreenPositionY>
+      <ImageAdjustment>
+        <Brightness>1</Brightness>
+        <RedBrightness>1</RedBrightness>
+        <GreenBrightness>1</GreenBrightness>
+        <BlueBrightness>1</BlueBrightness>
+        <AlphaBrightness>1</AlphaBrightness>
+        <Gamma>1</Gamma>
+        <Contrast>1</Contrast>
+      </ImageAdjustment>
     </ViewPort>
     <ViewPort>
       <Name>Right MFCD</Name>
       <Description>This is the Right MFCD</Description>
-      <Host>typhoon</Host>
+      <Host>localhost</Host>
       <Port>12002</Port>
-      <ScreenCaptureX>4580</ScreenCaptureX>
+      <ScreenCaptureX>350</ScreenCaptureX>
       <ScreenCaptureY>0</ScreenCaptureY>
-      <SizeX>333</SizeX>
-      <SizeY>308</SizeY>
-      <ScreenPositionX>1362</ScreenPositionX>
-      <ScreenPositionY>416</ScreenPositionY>
-    </ViewPort>
-    <ViewPort>
-      <Name>UFC</Name>
-      <Description>This is the UFC</Description>
-      <Host>typhoon</Host>
-      <Port>12003</Port>
-      <ScreenCaptureX>4328</ScreenCaptureX>
-      <ScreenCaptureY>357</ScreenCaptureY>
-      <SizeX>272</SizeX>
-      <SizeY>53</SizeY>
-      <ScreenPositionX>811</ScreenPositionX>
-      <ScreenPositionY>74</ScreenPositionY>
-    </ViewPort>
-    <ViewPort>
-      <Name>UFC Radio 1</Name>
-      <Description>This is the UFC Radio 1 indicator</Description>
-      <Host>typhoon</Host>
-      <Port>12004</Port>
-      <ScreenCaptureX>4240</ScreenCaptureX>
-      <ScreenCaptureY>645</ScreenCaptureY>
-      <SizeX>80</SizeX>
-      <SizeY>51</SizeY>
-      <ScreenPositionX>712</ScreenPositionX>
-      <ScreenPositionY>334</ScreenPositionY>
-    </ViewPort>
-    <ViewPort>
-      <Name>UFC Radio 2</Name>
-      <Description>This is the UFC Radio 2 indicator</Description>
-      <Host>typhoon</Host>
-      <Port>12005</Port>
-      <ScreenCaptureX>4616</ScreenCaptureX>
-      <ScreenCaptureY>645</ScreenCaptureY>
-      <SizeX>80</SizeX>
-      <SizeY>51</SizeY>
-      <ScreenPositionX>1101</ScreenPositionX>
-      <ScreenPositionY>334</ScreenPositionY>
-    </ViewPort>
-    <ViewPort>
-      <Name>ODU 1</Name>
-      <Description>This is the ODU Screen 1</Description>
-      <Host>typhoon</Host>
-      <Port>12006</Port>
-      <ScreenCaptureX>5084</ScreenCaptureX>
-      <ScreenCaptureY>5</ScreenCaptureY>
-      <SizeX>121</SizeX>
-      <SizeY>30</SizeY>
-      <ScreenPositionX>400</ScreenPositionX>
-      <ScreenPositionY>137</ScreenPositionY>
-    </ViewPort>
-    <ViewPort>
-      <Name>ODU 2</Name>
-      <Description>This is the ODU Screen 2</Description>
-      <Host>typhoon</Host>
-      <Port>12007</Port>
-      <ScreenCaptureX>5084</ScreenCaptureX>
-      <ScreenCaptureY>55</ScreenCaptureY>
-      <SizeX>121</SizeX>
-      <SizeY>31</SizeY>
-      <ScreenPositionX>400</ScreenPositionX>
-      <ScreenPositionY>187</ScreenPositionY>
-    </ViewPort>
-    <ViewPort>
-      <Name>ODU 3</Name>
-      <Description>This is the ODU Screen 3</Description>
-      <Host>typhoon</Host>
-      <Port>12008</Port>
-      <ScreenCaptureX>5084</ScreenCaptureX>
-      <ScreenCaptureY>105</ScreenCaptureY>
-      <SizeX>121</SizeX>
-      <SizeY>31</SizeY>
-      <ScreenPositionX>400</ScreenPositionX>
-      <ScreenPositionY>236</ScreenPositionY>
-    </ViewPort>
-    <ViewPort>
-      <Name>ODU 4</Name>
-      <Description>This is the ODU Screen 4</Description>
-      <Host>typhoon</Host>
-      <Port>12009</Port>
-      <ScreenCaptureX>4923</ScreenCaptureX>
-      <ScreenCaptureY>55</ScreenCaptureY>
-      <SizeX>121</SizeX>
-      <SizeY>31</SizeY>
-      <ScreenPositionX>237</ScreenPositionX>
-      <ScreenPositionY>187</ScreenPositionY>
-    </ViewPort>
-    <ViewPort>
-      <Name>ODU 5</Name>
-      <Description>This is the ODU Screen 5</Description>
-      <Host>typhoon</Host>
-      <Port>12010</Port>
-      <ScreenCaptureX>4923</ScreenCaptureX>
-      <ScreenCaptureY>105</ScreenCaptureY>
-      <SizeX>121</SizeX>
-      <SizeY>30</SizeY>
-      <ScreenPositionX>237</ScreenPositionX>
-      <ScreenPositionY>236</ScreenPositionY>
-    </ViewPort>
-    <ViewPort>
-      <Name>VUHF</Name>
-      <Description>This is the UHF &amp; VHF Freq</Description>
-      <Host>typhoon</Host>
-      <Port>12011</Port>
-      <ScreenCaptureX>4734</ScreenCaptureX>
-      <ScreenCaptureY>320</ScreenCaptureY>
-      <SizeX>159</SizeX>
-      <SizeY>45</SizeY>
-      <ScreenPositionX>1114</ScreenPositionX>
-      <ScreenPositionY>691</ScreenPositionY>
-    </ViewPort>
-    <ViewPort>
-      <Name>ACNIP</Name>
-      <Description>This is the ACNIP small Screen</Description>
-      <Host>typhoon</Host>
-      <Port>12012</Port>
-      <ScreenCaptureX>4705</ScreenCaptureX>
-      <ScreenCaptureY>480</ScreenCaptureY>
-      <SizeX>74</SizeX>
-      <SizeY>49</SizeY>
-      <ScreenPositionX>1079</ScreenPositionX>
-      <ScreenPositionY>833</ScreenPositionY>
+      <SizeX>350</SizeX>
+      <SizeY>350</SizeY>
+      <ScreenPositionX>350</ScreenPositionX>
+      <ScreenPositionY>400</ScreenPositionY>
+      <ImageAdjustment>
+        <Brightness>1</Brightness>
+        <RedBrightness>1</RedBrightness>
+        <GreenBrightness>0.5</GreenBrightness>
+        <BlueBrightness>1</BlueBrightness>
+        <AlphaBrightness>1</AlphaBrightness>
+        <Gamma>1</Gamma>
+        <Contrast>1</Contrast>
+      </ImageAdjustment>
     </ViewPort>
     <ViewPort>
       <Name>Background</Name>
       <Description>This is the full screen background for the back of the screen</Description>
-      <Host>typhoon</Host>
+      <Host>localhost</Host>
       <Port>12016</Port>
       <ScreenCaptureX>0</ScreenCaptureX>
       <ScreenCaptureY>0</ScreenCaptureY>
@@ -156,8 +54,16 @@
       <SizeY>1080</SizeY>
       <ScreenPositionX>0</ScreenPositionX>
       <ScreenPositionY>0</ScreenPositionY>
-    </ViewPort><!--
--->
+      <ImageAdjustment>
+        <Brightness>1</Brightness>
+        <RedBrightness>1</RedBrightness>
+        <GreenBrightness>1</GreenBrightness>
+        <BlueBrightness>1</BlueBrightness>
+        <AlphaBrightness>1</AlphaBrightness>
+        <Gamma>1</Gamma>
+        <Contrast>1</Contrast>
+      </ImageAdjustment>
+    </ViewPort>
   </ViewPorts>
   <PollingInterval>100</PollingInterval>
 </IrisConfig>

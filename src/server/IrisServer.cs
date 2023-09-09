@@ -79,18 +79,25 @@ namespace server
             viewPorts = new BindingSource();
             conn = new UdpClient();
             viewPorts.DataSource = typeof(ViewPort);
+
             if (File.Exists(configFile))
             {
                 LoadConfig(configFile);
-                //generateTestData();
+
                 textBox1.Text = trackBar1.Value.ToString();
                 generateViewPorts();
             }
             else
             {
+#if DEBUG
+                generateTestData();
+                textBox1.Text = trackBar1.Value.ToString();
+                generateViewPorts();
+#else 
                 MessageBox.Show(configFile+" not found! Please create a config File", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Stop, MessageBoxDefaultButton.Button1
                     , MessageBoxOptions.ServiceNotification);
                 this.Close();
+#endif
             }
 
 
@@ -103,10 +110,12 @@ namespace server
                 if (vp.Name != "Background")
                 {
                     // create a new tab page and add it to the tabcontroller
-                    vp.capture();
-                    PictureBox pBox = new PictureBox();
-                    pBox.MaximumSize = new Size(600, 600);
-                    pBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+                    vp.Capture();
+                    PictureBox pBox = new PictureBox()
+                    {
+                        MaximumSize = new Size(600, 600),
+                        SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize,
+                    };
                     pBox.DataBindings.Add("Image", vp, "Image");
                     TabPage tPage = new TabPage(vp.Name);
                     tPage.Controls.Add(pBox);
@@ -137,6 +146,12 @@ namespace server
             testView1.SizeY = 300;
             testView1.Host = "localhost";
             testView1.Port = 12002;
+            testView1.ImageAdjustment = new ImageAdjustment()
+            {
+                Brightness = 1.5f,
+                Gamma = 1.0f,
+                Contrast = 1.0f
+            };
             viewPorts.Add(testView);
             viewPorts.Add(testView1);
         }
@@ -154,7 +169,7 @@ namespace server
                 if (vp.Name != "Background")
                 {
                     Byte[] imageByteArray;
-                    vp.capture();
+                    vp.Capture();
                     imageByteArray = vp.Image.ToByteArray(System.Drawing.Imaging.ImageFormat.Jpeg);
                     try
                     {

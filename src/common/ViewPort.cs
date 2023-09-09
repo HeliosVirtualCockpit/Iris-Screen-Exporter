@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Xml.Serialization;
 
 namespace common
@@ -9,6 +10,7 @@ namespace common
         private Bitmap image;
         private string name, description, host;
         private int port, screenX, sizeX, screenY, sizeY, posX, posY;
+        private ImageAdjustment _imageAdjustment = null;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -78,7 +80,7 @@ namespace common
             set
             {
                 sizeX = value;
-                changeBitmapSize();
+                ChangeBitmapSize();
                 NotifyPropertyChanged("SizeX");
             }
         }
@@ -89,7 +91,7 @@ namespace common
             set
             {
                 sizeY = value;
-                changeBitmapSize();
+                ChangeBitmapSize();
                 NotifyPropertyChanged("SizeY");
             }
         }
@@ -113,6 +115,19 @@ namespace common
                 NotifyPropertyChanged("ScreenPositionY");
             }
         }
+        [XmlElement(IsNullable = true)]
+        public ImageAdjustment ImageAdjustment
+        {
+            get => _imageAdjustment;
+            set
+            {
+                if (_imageAdjustment == null)
+                {
+                    _imageAdjustment = new ImageAdjustment();
+                }
+                _imageAdjustment = value;
+            }
+        }
 
         [XmlIgnoreAttribute]
         public Bitmap Image
@@ -125,7 +140,7 @@ namespace common
             }
         }
 
-        private void changeBitmapSize()
+        private void ChangeBitmapSize()
         {
             if ((sizeX > 0) & (sizeY > 0))
             {
@@ -142,13 +157,20 @@ namespace common
             }
         }
 
-        public Bitmap capture()
+        public Bitmap Capture()
         {
             using (Graphics g = Graphics.FromImage(image))
             {
                 g.CopyFromScreen(screenX, screenY, 0, 0, new Size(sizeX, sizeY));
+                if(_imageAdjustment != null)
+                {
+                    g.DrawImage(image, new Rectangle(0, 0, image.Width, image.Height)
+                        , 0, 0, image.Width, image.Height,
+                        GraphicsUnit.Pixel, _imageAdjustment.ImageAdjustments);
+                }
             }
             NotifyPropertyChanged("Image");
+
             return image;
         }
 
