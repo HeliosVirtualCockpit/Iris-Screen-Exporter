@@ -1,4 +1,4 @@
-﻿namespace client
+﻿namespace Iris.Client
 {
     partial class IrisClient
     {

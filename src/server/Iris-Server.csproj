@@ -8,7 +8,7 @@
     <ProjectGuid>{4822476B-89A8-45CA-AD98-CC372125019A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>server</RootNamespace>
+    <RootNamespace>Iris.Server</RootNamespace>
     <AssemblyName>Iris-Server</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <TargetFrameworkProfile>
@@ -95,7 +95,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>server.Program</StartupObject>
+    <StartupObject>Iris.Server.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -119,6 +119,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SocketErrorCodes.cs" />
     <EmbeddedResource Include="IrisServer.resx">
       <DependentUpon>IrisServer.cs</DependentUpon>
     </EmbeddedResource>
@@ -161,6 +162,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="iris.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\DataSources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Xml.Serialization;
 
-namespace common
+namespace Iris.Common
 {
     public class ViewPort : INotifyPropertyChanged
     {
@@ -115,16 +115,13 @@ namespace common
                 NotifyPropertyChanged("ScreenPositionY");
             }
         }
-        [XmlElement(IsNullable = true)]
+        [XmlElement(IsNullable = false)]
         public ImageAdjustment ImageAdjustment
         {
             get => _imageAdjustment;
             set
             {
-                if (_imageAdjustment == null)
-                {
-                    _imageAdjustment = new ImageAdjustment();
-                }
+                _imageAdjustment = _imageAdjustment ?? new ImageAdjustment();
                 _imageAdjustment = value;
             }
         }
@@ -157,16 +154,18 @@ namespace common
             }
         }
 
-        public Bitmap Capture()
+        public Bitmap Capture() { return Capture(null); }
+        public Bitmap Capture(ImageAdjustment ImageAdjustmentGlobal)
         {
             using (Graphics g = Graphics.FromImage(image))
             {
                 g.CopyFromScreen(screenX, screenY, 0, 0, new Size(sizeX, sizeY));
-                if(_imageAdjustment != null)
+                ImageAdjustment iA = _imageAdjustment ?? ImageAdjustmentGlobal ?? null;
+                if (iA != null)
                 {
                     g.DrawImage(image, new Rectangle(0, 0, image.Width, image.Height)
                         , 0, 0, image.Width, image.Height,
-                        GraphicsUnit.Pixel, _imageAdjustment.ImageAdjustments);
+                        GraphicsUnit.Pixel, iA.ImageAdjustments);
                 }
             }
             NotifyPropertyChanged("Image");

@@ -4,67 +4,18 @@ using System.Drawing;
 using System.IO;
 using System.Net.Sockets;
 using System.Windows.Forms;
-using common;
+using Iris.Common;
 
-namespace server
+namespace Iris.Server
 {
     public partial class IrisServer : Form
     {
         private BindingSource viewPorts;
         private UdpClient conn;
         private string configFile = "iris.xml";
+        private ImageAdjustment _imageAdjustmentGlobal;
         public Boolean NetworkErrorAlreadyReported = false;
         private Icon icon;
-
-        public enum SocketErrorCodes
-        {
-            InterruptedFunctionCall = 10004,
-            PermissionDenied = 10013,
-            BadAddress = 10014,
-            InvalidArgument = 10022,
-            TooManyOpenFiles = 10024,
-            ResourceTemporarilyUnavailable = 10035,
-            OperationNowInProgress = 10036,
-            OperationAlreadyInProgress = 10037,
-            SocketOperationOnNonSocket = 10038,
-            DestinationAddressRequired = 10039,
-            MessgeTooLong = 10040,
-            WrongProtocolType = 10041,
-            BadProtocolOption = 10042,
-            ProtocolNotSupported = 10043,
-            SocketTypeNotSupported = 10044,
-            OperationNotSupported = 10045,
-            ProtocolFamilyNotSupported = 10046,
-            AddressFamilyNotSupported = 10047,
-            AddressInUse = 10048,
-            AddressNotAvailable = 10049,
-            NetworkIsDown = 10050,
-            NetworkIsUnreachable = 10051,
-            NetworkReset = 10052,
-            ConnectionAborted = 10053,
-            ConnectionResetByPeer = 10054,
-            NoBufferSpaceAvailable = 10055,
-            AlreadyConnected = 10056,
-            NotConnected = 10057,
-            CannotSendAfterShutdown = 10058,
-            ConnectionTimedOut = 10060,
-            ConnectionRefused = 10061,
-            HostIsDown = 10064,
-            HostUnreachable = 10065,
-            TooManyProcesses = 10067,
-            NetworkSubsystemIsUnavailable = 10091,
-            UnsupportedVersion = 10092,
-            NotInitialized = 10093,
-            ShutdownInProgress = 10101,
-            ClassTypeNotFound = 10109,
-            HostNotFound = 11001,
-            HostNotFoundTryAgain = 11002,
-            NonRecoverableError = 11003,
-            NoDataOfRequestedType = 11004
-        }
-
-
-
 
         public IrisServer(string[] args)
         {
@@ -169,7 +120,7 @@ namespace server
                 if (vp.Name != "Background")
                 {
                     Byte[] imageByteArray;
-                    vp.Capture();
+                    vp.Capture(_imageAdjustmentGlobal);
                     imageByteArray = vp.Image.ToByteArray(System.Drawing.Imaging.ImageFormat.Jpeg);
                     try
                     {
@@ -183,15 +134,15 @@ namespace server
                             switch (errorCode)
                             {
                                 case SocketErrorCodes.HostNotFound:
-                                    MessageBox.Show(se.Message + ".  The hostname \"" + vp.Host + "\" you were trying to connect to was not found.  Please review your IRIS config file.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Stop, MessageBoxDefaultButton.Button1
+                                    MessageBox.Show($"{se.Message}.  The hostname \"{vp.Host}\" you were trying to connect to was not found.  Please review your IRIS config file.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Stop, MessageBoxDefaultButton.Button1
             , MessageBoxOptions.ServiceNotification);
                                     break;
                                 case SocketErrorCodes.MessgeTooLong:
-                                    MessageBox.Show("Send to hostname \"" + vp.Host + "\" for item \"" + vp.Name + "\" was too large at " + imageByteArray.Length.ToString() + " bytes.  " + se.Message + ".  Please review your IRIS config file.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Stop, MessageBoxDefaultButton.Button1
+                                    MessageBox.Show($"Send to hostname \"{vp.Host}\" for item \"{vp.Name}\" was too large at {imageByteArray.Length} bytes.  {se.Message}.  Please review your IRIS config file.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Stop, MessageBoxDefaultButton.Button1
             , MessageBoxOptions.ServiceNotification);
                                     break;
                                 default:
-                                    MessageBox.Show(se.Message + " - A network Error has occurred when communicatiing with \"" + vp.Host + "\":" + se.SocketErrorCode, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Stop, MessageBoxDefaultButton.Button1
+                                    MessageBox.Show($"{se.Message} - A network Error has occurred when communicatiing with \"{vp.Host}\":{se.SocketErrorCode}", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Stop, MessageBoxDefaultButton.Button1
             , MessageBoxOptions.ServiceNotification);
                                     break;
                             }
@@ -221,21 +172,18 @@ namespace server
             }
             return;
         }
-
         private void disableTimer()
         {
             timer1.Enabled = false;
             button1.Text = "Enable Capture";
             //toolStripStatusPolling.Text = "Polling:Off";
         }
-
         private void enableTimer()
         {
             timer1.Enabled = true;
             button1.Text = "Disable Capture";
             //toolStripStatusPolling.Text = "Polling:On";
         }
-
         private void LoadConfig(string fileName)
         {
             IrisConfig loader = Helpers.LoadConfig(fileName);
@@ -243,13 +191,16 @@ namespace server
             viewPorts.DataSource = (BindingList<ViewPort>)loader.ViewPorts;
 
         }
-
         private void SaveConfig(string fileName)
         {
+            fileName = fileName.Equals("") ? "TestData.xml" : fileName;
             IrisConfig saver = new IrisConfig();
             saver.PollingInterval = timer1.Interval;
             saver.ViewPorts = (BindingList<ViewPort>)viewPorts.List;
-            MessageBox.Show("Items Saved");
+            saver.GlobalImageAdjustment = _imageAdjustmentGlobal;
+
+            Helpers.SaveConfig(saver, fileName);
+            MessageBox.Show($"{viewPorts.Count} viewports Saved in {fileName}");
         }
 
         private void IrisServer_FormClosing(object sender, FormClosingEventArgs e)
@@ -262,6 +213,34 @@ namespace server
             toggleTimer();
         }
 
-       
+        private void buttonSave_Click(object sender, EventArgs e)
+        {
+            SaveConfig(configFile);
+        }
+
+        private void numericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            NumericUpDown control = (NumericUpDown)sender;
+            float value = (float)Convert.ToDouble(control.Value);
+            _imageAdjustmentGlobal = _imageAdjustmentGlobal ?? new ImageAdjustment();
+            switch (control.Tag)
+            {
+                case "Brightness":
+                    _imageAdjustmentGlobal.Brightness = value;
+                    break;
+                case "Contrast":
+                    _imageAdjustmentGlobal.Contrast = value;
+                    break;
+                case "Gamma":
+                    _imageAdjustmentGlobal.Gamma = value;
+                    break;
+                default: break;
+            }
+            _imageAdjustmentGlobal = IsReset(_imageAdjustmentGlobal);
+        }
+        private ImageAdjustment IsReset(ImageAdjustment iA)
+        {
+            return (iA.Brightness != 1.0f || iA.Contrast != 1.0f || iA.Gamma != 1.0f)? iA : null;
+        }
     }
 }

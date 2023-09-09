@@ -4,9 +4,9 @@ using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-using common;
+using Iris.Common;
 
-namespace client
+namespace Iris.Client
 {
     public partial class IrisClient : Form
     {
@@ -71,6 +71,7 @@ namespace client
             IrisConfig saveConfig = new IrisConfig();
             saveConfig.ViewPorts = (BindingList<ViewPort>)viewPorts.List;
             saveConfig.PollingInterval = loadedCfg.PollingInterval;
+            saveConfig.GlobalImageAdjustment = loadedCfg.GlobalImageAdjustment;
             Helpers.SaveConfig(saveConfig, configFile);
         }
 

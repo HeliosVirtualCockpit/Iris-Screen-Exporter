@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Xml.Serialization;
 
-namespace common
+namespace Iris.Common
 {
     public class ImageAdjustment
     {

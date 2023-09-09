@@ -8,7 +8,7 @@
     <ProjectGuid>{C921C6D8-0CF2-48BB-915E-5E6BF4D0898F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>common</RootNamespace>
+    <RootNamespace>Iris.Common</RootNamespace>
     <AssemblyName>Iris-common</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
