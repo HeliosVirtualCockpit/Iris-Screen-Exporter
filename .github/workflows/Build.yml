@@ -48,12 +48,12 @@ jobs:
         run: .\DisableOutOfProcBuild.exe
         working-directory: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\CommonExtensions\Microsoft\VSI\DisableOutOfProcBuild
 
-      - name: Build Solution
+      - name: Build Solutions
         run: |
-          msbuild.exe "src/Iris Screen Exporter.sln" /p:platform="x64" /p:configuration="NoInstallers"
-          msbuild.exe "src/Iris Screen Exporter.sln" /p:platform="x86" /p:configuration="NoInstallers"
+          msbuild.exe -clp:WarningsOnly -warnAsMessage:MSB4078 -p:version=${{ steps.bump_tag.outputs.new_version }} "src/Iris Screen Exporter.sln" /p:platform="x64" /p:configuration="NoInstallers"
+          msbuild.exe -clp:WarningsOnly -warnAsMessage:MSB4078 -p:version=${{ steps.bump_tag.outputs.new_version }} "src/Iris Screen Exporter.sln" /p:platform="x86" /p:configuration="NoInstallers"
 
-      - name: Build the Installer
+      - name: Build the Installerss
         run: |
           DevEnv "src/Iris Screen Exporter.sln" /build "JustInstallers|x64"
           DevEnv "src/Iris Screen Exporter.sln" /build "JustInstallers|x86"
@@ -62,15 +62,16 @@ jobs:
         run: |
           mv "Installer/Iris Setup/JustInstallers/Iris Setup.msi" "Installer/Iris Setup/Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}.msi"
           mv "Installer/Iris Setup 32bit/JustInstallers/Iris Setup 32bit.msi" "Installer/Iris Setup/Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}_32bit.msi"
+          dir "Installer/" -r
 
       - uses: actions/upload-artifact@v3
         with:
           name: Iris Screen Exporter Installer
-          path: "Installer/Iris Setup/JustInstallers/Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}.msi"
+          path: "Installer/Iris Setup/Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}.msi"
           retention-days: 2
           
       - uses: actions/upload-artifact@v3
         with:
-          name: Iris Screen Exporter Installer (32bit)
-          path: "Installer/Iris Setup/JustInstallers/Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}_32bit.msi"
+          name: Iris Screen Exporter Installer (32bit) Untested
+          path: "Installer/Iris Setup/Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}_32bit.msi"
           retention-days: 2
