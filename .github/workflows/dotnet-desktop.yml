@@ -46,13 +46,10 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: build-result
-          path: installer/Release/dtc-setup.msi
-
-      - name: Upload binaries to release
-        uses: actions/upload-artifact@v3
+          path: "Installer/Iris Setup/Release/Iris Screen Exporter 1.0.2023.0909.msi"
+          
+      - uses: actions/upload-artifact@v3
         with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: "Installer/Iris Setup/Release/Iris Screen Exporter 1.0.2023.0909.msi"
-          asset_name: Iris-Screen-Exporter-${{ github.ref_name }}.msi
-          tag: ${{ github.ref }}
-          overwrite: true
+          name: Iris Screen Exporter Installer
+          path: "Installer/Iris Setup/Release/Iris Screen Exporter 1.0.2023.0909.msi"
+          retention-days: 2
