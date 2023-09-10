@@ -62,7 +62,14 @@ jobs:
         run: |
           mv "Installer/Iris Setup/JustInstallers/Iris Setup.msi" "Installer/Iris Setup/Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}.msi"
           mv "Installer/Iris Setup 32bit/JustInstallers/Iris Setup 32bit.msi" "Installer/Iris Setup/Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}_32bit.msi"
+          cp ".github/workflows/InstallAdjustments.vbs" "Installer/Iris Setup/.github/workflows/InstallAdjustments.vbs"
           dir "Installer/" -r
+      - name: Adjust contents of msi databases
+        run: |
+          pushd "../Installer/Iris Setup/" 
+          cscript //nologo InstallAdjustments.vbs "./Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}.msi" ${{ steps.bump_tag.outputs.new_version }}
+          cscript //nologo InstallAdjustments.vbs "./Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}_32bit.msi" ${{ steps.bump_tag.outputs.new_version }}
+          popd
 
       - uses: actions/upload-artifact@v3
         with:
