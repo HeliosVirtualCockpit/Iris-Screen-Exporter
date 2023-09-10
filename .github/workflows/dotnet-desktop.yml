@@ -4,9 +4,9 @@ name: Build
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ main, master, dev, test ]
-  pull_request:
-    branches: [ main, master, dev, test ]
+    branches: [ Brighton ]
+  #pull_request:
+  #  branches: [ main, master, dev, test ]
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
   
@@ -38,18 +38,13 @@ jobs:
 
       - name: Build Solution
         run: |
-          msbuild.exe "src/Iris Screen Exporter.sln" /p:platform="Any CPU" /p:configuration="Release"
+          msbuild.exe "src/Iris Screen Exporter.sln" /p:platform="x64" /p:configuration="NoInstallers"
 
       - name: Build the Installer
-        run: DevEnv "src/Iris Screen Exporter.sln" /build Release
+        run: DevEnv "src/Iris Screen Exporter.sln" /build "JustInstallers|x64"
 
-      - uses: actions/upload-artifact@v2
-        with:
-          name: build-result
-          path: "Installer/Iris Setup/Release/Iris Screen Exporter 1.0.2023.0909.msi"
-          
       - uses: actions/upload-artifact@v3
         with:
           name: Iris Screen Exporter Installer
-          path: "Installer/Iris Setup/Release/Iris Screen Exporter 1.0.2023.0909.msi"
+          path: "Installer/Iris Setup/Release/Iris Screen Exporter.msi"
           retention-days: 2
