@@ -1,4 +1,4 @@
-name: Build
+name: Build and Create Installation Files for Iris
 
 # Controls when the workflow will run
 on:
@@ -48,36 +48,38 @@ jobs:
         run: .\DisableOutOfProcBuild.exe
         working-directory: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\CommonExtensions\Microsoft\VSI\DisableOutOfProcBuild
 
-      - name: Build Solutions
+      - name: Build x86 and x64 Solutions
         run: |
           msbuild.exe -clp:WarningsOnly -warnAsMessage:MSB4078 -p:version=${{ steps.bump_tag.outputs.new_version }} "src/Iris Screen Exporter.sln" /p:platform="x64" /p:configuration="NoInstallers"
           msbuild.exe -clp:WarningsOnly -warnAsMessage:MSB4078 -p:version=${{ steps.bump_tag.outputs.new_version }} "src/Iris Screen Exporter.sln" /p:platform="x86" /p:configuration="NoInstallers"
 
-      - name: Build the Installerss
+      - name: Build the Installer msi files (> 8 mins)
         run: |
           DevEnv "src/Iris Screen Exporter.sln" /build "JustInstallers|x64"
           DevEnv "src/Iris Screen Exporter.sln" /build "JustInstallers|x86"
 
-      - name: Rename the Installer
+      - name: Rename the Installer msi files
         run: |
           mv "Installer/Iris Setup/JustInstallers/Iris Setup.msi" "Installer/Iris Setup/Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}.msi"
           mv "Installer/Iris Setup 32bit/JustInstallers/Iris Setup 32bit.msi" "Installer/Iris Setup/Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}_32bit.msi"
-          cp ".github/workflows/InstallAdjustments.vbs" "Installer/Iris Setup/.github/workflows/InstallAdjustments.vbs"
           dir "Installer/" -r
       - name: Adjust contents of msi databases
         run: |
+          cp "../.github/workflows/InstallAdjustments.vbs" "Installer/Iris Setup/.github/workflows/InstallAdjustments.vbs"
           pushd "../Installer/Iris Setup/" 
           cscript //nologo InstallAdjustments.vbs "./Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}.msi" ${{ steps.bump_tag.outputs.new_version }}
           cscript //nologo InstallAdjustments.vbs "./Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}_32bit.msi" ${{ steps.bump_tag.outputs.new_version }}
           popd
 
-      - uses: actions/upload-artifact@v3
+      - name: Upload x64 installer
+        uses: actions/upload-artifact@v3
         with:
           name: Iris Screen Exporter Installer
           path: "Installer/Iris Setup/Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}.msi"
           retention-days: 2
-          
-      - uses: actions/upload-artifact@v3
+
+      - name: Upload x86 installer  
+        uses: actions/upload-artifact@v3
         with:
           name: Iris Screen Exporter Installer (32bit) Untested
           path: "Installer/Iris Setup/Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}_32bit.msi"
