@@ -21,11 +21,16 @@ jobs:
         id: bump_tag
         #uses: anothrnick/github-tag-action@1.36.0
         uses: mathieudutour/github-tag-action@v6.1
-        env:
+        with:
           github_token: ${{ secrets.github_token }}
-          repo_ownerrepo_owner: heliosvirtualcockpit
-          default_bump: 'patch'
-          initial_version: '0.0.0'
+          default_bump: patch
+          default_prerelease_bump: prerelease
+          tag_prefix: v
+          release_branches: master,main,Brighton
+          create_annotated_tag: false
+          fetch_all_tags: false
+          dry_run: false
+
  
       # - name: Bump version and push tag
         # uses: laputansoft/github-tag-action@v4.6
