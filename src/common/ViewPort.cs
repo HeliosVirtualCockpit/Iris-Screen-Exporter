@@ -1,14 +1,16 @@
 ﻿using System.ComponentModel;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Xml.Serialization;
 
-namespace common
+namespace Iris.Common
 {
     public class ViewPort : INotifyPropertyChanged
     {
         private Bitmap image;
         private string name, description, host;
         private int port, screenX, sizeX, screenY, sizeY, posX, posY;
+        private ImageAdjustment _imageAdjustment = null;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -78,7 +80,7 @@ namespace common
             set
             {
                 sizeX = value;
-                changeBitmapSize();
+                ChangeBitmapSize();
                 NotifyPropertyChanged("SizeX");
             }
         }
@@ -89,7 +91,7 @@ namespace common
             set
             {
                 sizeY = value;
-                changeBitmapSize();
+                ChangeBitmapSize();
                 NotifyPropertyChanged("SizeY");
             }
         }
@@ -113,6 +115,16 @@ namespace common
                 NotifyPropertyChanged("ScreenPositionY");
             }
         }
+        [XmlElement(IsNullable = false)]
+        public ImageAdjustment ImageAdjustment
+        {
+            get => _imageAdjustment;
+            set
+            {
+                _imageAdjustment = _imageAdjustment ?? new ImageAdjustment();
+                _imageAdjustment = value;
+            }
+        }
 
         [XmlIgnoreAttribute]
         public Bitmap Image
@@ -125,7 +137,7 @@ namespace common
             }
         }
 
-        private void changeBitmapSize()
+        private void ChangeBitmapSize()
         {
             if ((sizeX > 0) & (sizeY > 0))
             {
@@ -142,13 +154,22 @@ namespace common
             }
         }
 
-        public Bitmap capture()
+        public Bitmap Capture() { return Capture(null); }
+        public Bitmap Capture(ImageAdjustment ImageAdjustmentGlobal)
         {
             using (Graphics g = Graphics.FromImage(image))
             {
                 g.CopyFromScreen(screenX, screenY, 0, 0, new Size(sizeX, sizeY));
+                ImageAdjustment iA = _imageAdjustment ?? ImageAdjustmentGlobal ?? null;
+                if (iA != null)
+                {
+                    g.DrawImage(image, new Rectangle(0, 0, image.Width, image.Height)
+                        , 0, 0, image.Width, image.Height,
+                        GraphicsUnit.Pixel, iA.ImageAdjustments);
+                }
             }
             NotifyPropertyChanged("Image");
+
             return image;
         }
 

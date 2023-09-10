@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace client
+namespace Iris.Client
 {
     static class Program
     {

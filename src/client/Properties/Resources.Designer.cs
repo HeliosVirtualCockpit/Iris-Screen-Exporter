@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace client.Properties {
+namespace Iris.Client.Properties {
     using System;
     
     

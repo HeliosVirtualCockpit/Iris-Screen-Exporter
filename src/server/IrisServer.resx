@@ -117,7 +117,61 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="toolTipAdjustment.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
+  </metadata>
+  <data name="numericUpDownBrightness.ToolTip" xml:space="preserve">
+    <value>The brightness of the viewport image is multiplied
+by this number on the Iris-Server.  This adjustment only
+applies to viewports which do not have a specific image
+adjustment of their own.
+A value of 1.0 means that the image brightness is
+unchanged. 
+
+</value>
+  </data>
+  <metadata name="toolTipBrightness.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="toolTipBrightness.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>620, 17</value>
+  </metadata>
+  <metadata name="toolTipContrast.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>200, 17</value>
+  </metadata>
+  <metadata name="toolTipGamma.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>362, 17</value>
+  </metadata>
+  <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>519, 17</value>
+  </metadata>
+  <data name="numericUpDownGamma.ToolTip" xml:space="preserve">
+    <value>The gamma setting of the viewport image is multiplied
+by this number on the Iris-Server.  This adjustment only
+applies to viewports which do not have a specific image
+adjustment of their own.
+A value of 1.0 means that the image gamma setting is
+unchanged. 
+
+
+</value>
+  </data>
+  <data name="numericUpDownContrast.ToolTip" xml:space="preserve">
+    <value>The contrast of the viewport image is multiplied
+by this number on the Iris-Server.  This adjustment only
+applies to viewports which do not have a specific image
+adjustment of their own.
+A value of 1.0 means that the image contrast is
+unchanged. 
+</value>
+  </data>
+  <metadata name="labelGamma.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="labelContrast.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="labelAdjustmentTitle.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
   </metadata>
 </root>

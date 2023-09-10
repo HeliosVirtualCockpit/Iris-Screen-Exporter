@@ -4,9 +4,9 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using System.Windows.Forms;
-using common;
+using Iris.Common;
 
-namespace client
+namespace Iris.Client
 {
 
     public partial class ViewPortForm : Form

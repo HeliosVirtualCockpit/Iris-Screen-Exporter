@@ -1,7 +1,8 @@
 ﻿
 using System.ComponentModel;
+using System.Xml.Serialization;
 
-namespace common
+namespace Iris.Common
 {
     public class IrisConfig
     {
@@ -9,5 +10,7 @@ namespace common
 
         public int PollingInterval { get; set; }
 
+        [XmlElement(IsNullable = false)]
+        public ImageAdjustment GlobalImageAdjustment { get; set;}
     }
 }
