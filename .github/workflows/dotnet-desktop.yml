@@ -29,8 +29,8 @@ jobs:
       - name: Navigate to Workspace
         run: cd $GITHUB_WORKSPACE
 
-      - name: Restore Packages
-        run: nuget restore "src/Iris Screen Exporter.sln"
+      # - name: Restore Packages
+      #   run: nuget restore "src/Iris Screen Exporter.sln"
 
       - name: Disable Out of Process Building
         run: .\DisableOutOfProcBuild.exe
