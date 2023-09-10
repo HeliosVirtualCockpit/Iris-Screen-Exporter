@@ -17,15 +17,22 @@ jobs:
     steps:      
       - uses: actions/checkout@v3
 
-      - name: Bump version and push 
+      - name: bump version and push 
         id: bump_tag
-        uses: anothrNick/github-tag-action@1.36.0
+        #uses: anothrnick/github-tag-action@1.36.0
+        uses: mathieudutour/github-tag-action@v6.1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          REPO_OWNERREPO_OWNER: HeliosVirtualCockput
-          DEFAULT_BUMP: 'patch'
-          INITIAL_VERSION: '0.0.0'
-      
+          github_token: ${{ secrets.github_token }}
+          repo_ownerrepo_owner: heliosvirtualcockpit
+          default_bump: 'patch'
+          initial_version: '0.0.0'
+ 
+      # - name: Bump version and push tag
+        # uses: laputansoft/github-tag-action@v4.6
+        # with:
+          # github_token: ${{ secrets.GITHUB_TOKEN }}
+          # tag: ${{ steps.package-version.outputs.version }}
+ 
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v1.3.1
 
@@ -54,11 +61,11 @@ jobs:
 
       - name: Rename the Installer
         run: |
-          echo "The version of this installer will be $steps.bump_tag.outputs.tag ."
-          rename "Installer\Iris Setup\JustInstallers\Iris Setup.msi" "Iris_Screen_Exporter_$steps.bump_tag.outputs.tag.msi"
+          echo "The version of this installer will be ${{ steps.tag_version.outputs.new_tag }} ."
+          rename "Installer\Iris Setup\JustInstallers\Iris Setup.msi" "Iris_Screen_Exporter_${{ steps.tag_version.outputs.new_tag }}.msi"
 
       - uses: actions/upload-artifact@v3
         with:
           name: Iris Screen Exporter Installer
-          path: "Installer/Iris Setup/JustInstallers/Iris_Screen_Exporter_$steps.bump_tag.outputs.tag.msi"
+          path: "Installer/Iris Setup/JustInstallers/Iris_Screen_Exporter_${{ steps.tag_version.outputs.new_tag }}.msi"
           retention-days: 2
