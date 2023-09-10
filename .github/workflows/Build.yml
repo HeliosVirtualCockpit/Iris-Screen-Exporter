@@ -34,12 +34,6 @@ jobs:
       - name: New Version Number
         run: |
           echo "The version of this installer will be ${{ steps.bump_tag.outputs.new_tag }} ."
-
-      # - name: Bump version and push tag
-        # uses: laputansoft/github-tag-action@v4.6
-        # with:
-          # github_token: ${{ secrets.GITHUB_TOKEN }}
-          # tag: ${{ steps.package-version.outputs.version }}
  
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v1.3.1
@@ -47,8 +41,8 @@ jobs:
       - name: Setup VS Dev Environment
         uses: seanmiddleditch/gha-setup-vsdevenv@v4
 
-      - name: Setup NuGet
-        uses: NuGet/setup-nuget@v1.0.5
+      # - name: Setup NuGet
+        # uses: NuGet/setup-nuget@v1.0.5
         
       - name: Navigate to Workspace
         run: cd $GITHUB_WORKSPACE
@@ -62,17 +56,27 @@ jobs:
 
       - name: Build Solution
         run: |
-          msbuild.exe "src/Iris Screen Exporter.sln" /p:platform="x64" /p:configuration="NoInstallers"
+          #msbuild.exe "src/Iris Screen Exporter.sln" /p:platform="x64" /p:configuration="NoInstallers"
+          msbuild.exe "src/Iris Screen Exporter.sln" /p:platform="x86" /p:configuration="NoInstallers"
 
       - name: Build the Installer
-        run: DevEnv "src/Iris Screen Exporter.sln" /build "JustInstallers|x64"
+        run: |
+          #DevEnv "src/Iris Screen Exporter.sln" /build "JustInstallers|x64"
+          DevEnv "src/Iris Screen Exporter.sln" /build "JustInstallers|x86"
 
       - name: Rename the Installer
         run: |
-          mv "Installer/Iris Setup/JustInstallers/Iris Setup.msi" "Installer/Iris Setup/JustInstallers/Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}.msi"
+          mv "Installer/Iris Setup/JustInstallers/Iris Setup.msi" "Installer/Iris Setup/Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}.msi"
+          mv "Installer/Iris Setup 32bit/Iris Setup 32bit.msi" "Installer/Iris Setup/Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}_32bit.msi"
 
       - uses: actions/upload-artifact@v3
         with:
           name: Iris Screen Exporter Installer
           path: "Installer/Iris Setup/JustInstallers/Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}.msi"
+          retention-days: 2
+          
+      - uses: actions/upload-artifact@v3
+        with:
+          name: Iris Screen Exporter Installer (32bit)
+          path: "Installer/Iris Setup/JustInstallers/Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}_32bit.msi"
           retention-days: 2

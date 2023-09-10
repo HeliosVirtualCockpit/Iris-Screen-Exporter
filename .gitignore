@@ -210,3 +210,5 @@ FakesAssemblies/
 GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
+*.msi
+/Installer/Iris Setup 32bit/JustInstallers/setup.exe

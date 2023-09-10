@@ -40,6 +40,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Resources\iris.ico = Resources\iris.ico
 	EndProjectSection
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Iris Screen Exporter Setup 32bit", "..\Installer\Iris Setup 32bit\Iris Screen Exporter Setup 32bit.vdproj", "{27E38B0C-5B7A-4540-9811-5F987DBA8793}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -94,18 +96,15 @@ Global
 		{4822476B-89A8-45CA-AD98-CC372125019A}.Release|x64.Build.0 = Release|x64
 		{4822476B-89A8-45CA-AD98-CC372125019A}.Release|x86.ActiveCfg = Release|x86
 		{4822476B-89A8-45CA-AD98-CC372125019A}.Release|x86.Build.0 = Release|x86
-		{C3DF55B5-151D-40EA-99A0-2C3E05797346}.Debug|x64.ActiveCfg = Debug
-		{C3DF55B5-151D-40EA-99A0-2C3E05797346}.Debug|x64.Build.0 = Debug
-		{C3DF55B5-151D-40EA-99A0-2C3E05797346}.Debug|x86.ActiveCfg = Debug
+		{C3DF55B5-151D-40EA-99A0-2C3E05797346}.Debug|x64.ActiveCfg = NoInstallers
+		{C3DF55B5-151D-40EA-99A0-2C3E05797346}.Debug|x86.ActiveCfg = NoInstallers
 		{C3DF55B5-151D-40EA-99A0-2C3E05797346}.JustInstallers|x64.ActiveCfg = JustInstallers
 		{C3DF55B5-151D-40EA-99A0-2C3E05797346}.JustInstallers|x64.Build.0 = JustInstallers
 		{C3DF55B5-151D-40EA-99A0-2C3E05797346}.JustInstallers|x86.ActiveCfg = JustInstallers
-		{C3DF55B5-151D-40EA-99A0-2C3E05797346}.JustInstallers|x86.Build.0 = JustInstallers
 		{C3DF55B5-151D-40EA-99A0-2C3E05797346}.NoInstallers|x64.ActiveCfg = NoInstallers
 		{C3DF55B5-151D-40EA-99A0-2C3E05797346}.NoInstallers|x86.ActiveCfg = NoInstallers
-		{C3DF55B5-151D-40EA-99A0-2C3E05797346}.Release|x64.ActiveCfg = Release
-		{C3DF55B5-151D-40EA-99A0-2C3E05797346}.Release|x64.Build.0 = Release
-		{C3DF55B5-151D-40EA-99A0-2C3E05797346}.Release|x86.ActiveCfg = Release
+		{C3DF55B5-151D-40EA-99A0-2C3E05797346}.Release|x64.ActiveCfg = NoInstallers
+		{C3DF55B5-151D-40EA-99A0-2C3E05797346}.Release|x86.ActiveCfg = NoInstallers
 		{B69CAC60-1D4D-464B-97F4-56FFAD8E05CC}.Debug|x64.ActiveCfg = Debug|x64
 		{B69CAC60-1D4D-464B-97F4-56FFAD8E05CC}.Debug|x64.Build.0 = Debug|x64
 		{B69CAC60-1D4D-464B-97F4-56FFAD8E05CC}.Debug|x86.ActiveCfg = Debug|x86
@@ -120,6 +119,15 @@ Global
 		{B69CAC60-1D4D-464B-97F4-56FFAD8E05CC}.Release|x64.Build.0 = Release|x64
 		{B69CAC60-1D4D-464B-97F4-56FFAD8E05CC}.Release|x86.ActiveCfg = Release|x86
 		{B69CAC60-1D4D-464B-97F4-56FFAD8E05CC}.Release|x86.Build.0 = Release|x86
+		{27E38B0C-5B7A-4540-9811-5F987DBA8793}.Debug|x64.ActiveCfg = NoInstallers
+		{27E38B0C-5B7A-4540-9811-5F987DBA8793}.Debug|x86.ActiveCfg = NoInstallers
+		{27E38B0C-5B7A-4540-9811-5F987DBA8793}.JustInstallers|x64.ActiveCfg = JustInstallers
+		{27E38B0C-5B7A-4540-9811-5F987DBA8793}.JustInstallers|x86.ActiveCfg = JustInstallers
+		{27E38B0C-5B7A-4540-9811-5F987DBA8793}.JustInstallers|x86.Build.0 = JustInstallers
+		{27E38B0C-5B7A-4540-9811-5F987DBA8793}.NoInstallers|x64.ActiveCfg = NoInstallers
+		{27E38B0C-5B7A-4540-9811-5F987DBA8793}.NoInstallers|x86.ActiveCfg = NoInstallers
+		{27E38B0C-5B7A-4540-9811-5F987DBA8793}.Release|x64.ActiveCfg = NoInstallers
+		{27E38B0C-5B7A-4540-9811-5F987DBA8793}.Release|x86.ActiveCfg = NoInstallers
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
