@@ -34,6 +34,10 @@ jobs:
       - name: New Version Number
         run: |
           echo "The version of this installer will be ${ steps.tag_version.outputs.new_tag }."
+          echo "The version of this installer will be ${{ steps.tag_version.outputs.new_tag }} ."
+          echo 'The version of this installer will be ${{ steps.tag_version.outputs.new_tag }} .'
+          echo 'The version of this installer will be ${ steps.tag_version.outputs.new_tag } .'
+          echo 'The version of this installer will be $ steps.tag_version.outputs.new_tag  .'
 
       # - name: Bump version and push tag
         # uses: laputansoft/github-tag-action@v4.6
