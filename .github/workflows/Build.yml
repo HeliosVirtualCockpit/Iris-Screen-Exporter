@@ -31,7 +31,10 @@ jobs:
           fetch_all_tags: false
           dry_run: false
 
- 
+      - name: New Version Number
+        run: |
+          echo "The version of this installer will be ${ steps.tag_version.outputs.new_tag }."
+
       # - name: Bump version and push tag
         # uses: laputansoft/github-tag-action@v4.6
         # with:
@@ -66,11 +69,11 @@ jobs:
 
       - name: Rename the Installer
         run: |
-          echo "The version of this installer will be ${{ steps.tag_version.outputs.new_tag }} ."
-          rename "Installer\Iris Setup\JustInstallers\Iris Setup.msi" "Iris_Screen_Exporter_${{ steps.tag_version.outputs.new_tag }}.msi"
+          echo "The version of this installer will be ${ steps.tag_version.outputs.new_tag } ."
+          mv "Installer/Iris Setup/JustInstallers/Iris Setup.msi" "Installer/Iris Setup/JustInstallers/Iris_Screen_Exporter_${ steps.tag_version.outputs.new_tag }.msi"
 
       - uses: actions/upload-artifact@v3
         with:
           name: Iris Screen Exporter Installer
-          path: "Installer/Iris Setup/JustInstallers/Iris_Screen_Exporter_${{ steps.tag_version.outputs.new_tag }}.msi"
+          path: "Installer/Iris Setup/JustInstallers/Iris_Screen_Exporter_${ steps.tag_version.outputs.new_tag }.msi"
           retention-days: 2
