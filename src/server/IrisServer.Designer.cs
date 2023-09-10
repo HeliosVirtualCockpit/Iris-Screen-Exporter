@@ -294,8 +294,6 @@
         private System.Windows.Forms.NumericUpDown numericUpDownGamma;
         private System.Windows.Forms.NumericUpDown numericUpDownContrast;
         private System.Windows.Forms.ToolTip toolTipAdjustment;
-        private System.Windows.Forms.ToolTip toolTipContrast;
-        private System.Windows.Forms.ToolTip toolTipGamma;
     }
 }
 
