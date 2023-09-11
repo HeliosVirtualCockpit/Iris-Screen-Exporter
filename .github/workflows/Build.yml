@@ -32,9 +32,9 @@ jobs:
 
       - name: New Version Number and Change the Version Project
         run: |
-          echo "The version of this installer will be ${{ steps.bump_tag.outputs.new_tag }} ."
+          echo "The version of this installer will be ${{ steps.bump_tag.outputs.new_tag }}."
           pushd "src\Version\Properties"
-          (Get-Content AssemblyInfo.cs).Replace("1.0.2022.0507","${{ steps.bump_tag.outputs.version }}")|Set-Content AssemblyInfo.cs
+          (Get-Content AssemblyInfo.cs).Replace("1.0.2022.0507","${{ steps.bump_tag.outputs.new_version }}")|Set-Content AssemblyInfo.cs
           type AssemblyInfo.cs
           popd
  
