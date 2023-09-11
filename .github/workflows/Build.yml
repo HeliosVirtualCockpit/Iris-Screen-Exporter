@@ -49,13 +49,13 @@ jobs:
 
       - name: Build x86 and x64 Solutions
         run: |
-          msbuild.exe -clp:WarningsOnly -warnAsMessage:MSB4078 -p:version=${{ steps.bump_tag.outputs.new_version }} "src/Iris Screen Exporter.sln" /p:platform="x64" /p:configuration="NoInstallers"
-          msbuild.exe -clp:WarningsOnly -warnAsMessage:MSB4078 -p:version=${{ steps.bump_tag.outputs.new_version }} "src/Iris Screen Exporter.sln" /p:platform="x86" /p:configuration="NoInstallers"
+          msbuild.exe -clp:WarningsOnly -warnAsMessage:MSB4078 -p:version=${{ steps.bump_tag.outputs.new_version }} "Iris Screen Exporter.sln" /p:platform="x64" /p:configuration="NoInstallers"
+          msbuild.exe -clp:WarningsOnly -warnAsMessage:MSB4078 -p:version=${{ steps.bump_tag.outputs.new_version }} "Iris Screen Exporter.sln" /p:platform="x86" /p:configuration="NoInstallers"
 
       - name: Build the Installer msi files (> 8 mins)
         run: |
-          DevEnv "src/Iris Screen Exporter.sln" /build "JustInstallers|x64"
-          DevEnv "src/Iris Screen Exporter.sln" /build "JustInstallers|x86"
+          DevEnv "Iris Screen Exporter.sln" /build "JustInstallers|x64"
+          DevEnv "Iris Screen Exporter.sln" /build "JustInstallers|x86"
 
       - name: Rename the Installer msi files
         run: |
