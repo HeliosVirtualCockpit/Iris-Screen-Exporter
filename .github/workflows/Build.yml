@@ -4,9 +4,9 @@ name: Build and Create Installation Files for Iris
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ Brighton ]
-  #pull_request:
-  #  branches: [ main, master, dev, test ]
+    branches: [ main, master, release ]
+  pull_request:
+   branches: [ main, master, release ]
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
   
@@ -19,7 +19,6 @@ jobs:
 
       - name: bump version and push 
         id: bump_tag
-        #uses: anothrnick/github-tag-action@1.36.0
         uses: mathieudutour/github-tag-action@v6.1
         with:
           github_token: ${{ secrets.github_token }}
