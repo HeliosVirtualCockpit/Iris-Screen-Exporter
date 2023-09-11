@@ -154,6 +154,7 @@
     <Compile Include="Helpers.cs" />
     <Compile Include="IrisConfig.cs" />
     <Compile Include="ImageAdjustment.cs" />
+    <Compile Include="SocketErrorCodes.cs" />
     <Compile Include="ViewPort.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

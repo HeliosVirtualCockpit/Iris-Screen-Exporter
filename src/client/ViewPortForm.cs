@@ -5,6 +5,7 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Windows.Forms;
 using Iris.Common;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Iris.Client
 {
@@ -15,60 +16,14 @@ namespace Iris.Client
         private UdpClient client;
         private Thread thread;
         private IPEndPoint endPoint;
+        private bool _allowMovement = false;
         private delegate void SetImageCallback(Image aPicture);
         public Boolean NetworkErrorAlreadyReported = false;
 
-        public enum SocketErrorCodes
-        {
-            InterruptedFunctionCall = 10004,
-            PermissionDenied = 10013,
-            BadAddress = 10014,
-            InvalidArgument = 10022,
-            TooManyOpenFiles = 10024,
-            ResourceTemporarilyUnavailable = 10035,
-            OperationNowInProgress = 10036,
-            OperationAlreadyInProgress = 10037,
-            SocketOperationOnNonSocket = 10038,
-            DestinationAddressRequired = 10039,
-            MessgeTooLong = 10040,
-            WrongProtocolType = 10041,
-            BadProtocolOption = 10042,
-            ProtocolNotSupported = 10043,
-            SocketTypeNotSupported = 10044,
-            OperationNotSupported = 10045,
-            ProtocolFamilyNotSupported = 10046,
-            AddressFamilyNotSupported = 10047,
-            AddressInUse = 10048,
-            AddressNotAvailable = 10049,
-            NetworkIsDown = 10050,
-            NetworkIsUnreachable = 10051,
-            NetworkReset = 10052,
-            ConnectionAborted = 10053,
-            ConnectionResetByPeer = 10054,
-            NoBufferSpaceAvailable = 10055,
-            AlreadyConnected = 10056,
-            NotConnected = 10057,
-            CannotSendAfterShutdown = 10058,
-            ConnectionTimedOut = 10060,
-            ConnectionRefused = 10061,
-            HostIsDown = 10064,
-            HostUnreachable = 10065,
-            TooManyProcesses = 10067,
-            NetworkSubsystemIsUnavailable = 10091,
-            UnsupportedVersion = 10092,
-            NotInitialized = 10093,
-            ShutdownInProgress = 10101,
-            ClassTypeNotFound = 10109,
-            HostNotFound = 11001,
-            HostNotFoundTryAgain = 11002,
-            NonRecoverableError = 11003,
-            NoDataOfRequestedType = 11004
-        }
-
-
-
+ 
         public ViewPortForm(ViewPort aViewPort)
         {
+            this.KeyPreview = true;
             viewPort = aViewPort;
             InitializeComponent();
 
@@ -185,6 +140,89 @@ namespace Iris.Client
                 this.SendToBack();
             }
 
+        }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (_allowMovement)
+            {
+                switch (keyData)
+                {
+                    case Keys.Up:
+                    case (Keys.Control | Keys.W):
+                        this.Top -= this.Top > 0 ? 1 : 0;
+                        return true;
+                        break;
+                    case Keys.Down:
+                    case (Keys.Control | Keys.S):
+                        this.Top++;
+                        return true;
+                        break;
+                    case Keys.Left:
+                    case (Keys.Control | Keys.A):
+                        this.Left -= this.Left > 0 ? 1 : 0;
+                        return true;
+                        break;
+                    case Keys.Right:
+                    case (Keys.Control | Keys.D):
+                        this.Left++;
+                        return true;
+                        break;
+                    default:
+                        break;
+                }
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+
+        }
+        private void toolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (sender is ToolStripMenuItem textBox)
+            {
+                if (_allowMovement)
+                {
+                    switch (textBox.Tag)
+                    {
+                        case "UP":
+                            this.Top -= this.Top > 0 ? 1 : 0;
+                            break;
+                        case "DOWN":
+                            this.Top++;
+                            break;
+                        case "LEFT":
+                            this.Left -= this.Left > 0 ? 1 : 0;
+                            break;
+                        case "RIGHT":
+                            this.Left++;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                if(textBox.Tag.Equals("Move"))
+                {
+                    _allowMovement = !_allowMovement;
+                    foreach(object o in textBox.Owner.Items)
+                    {
+                        if(o is ToolStripMenuItem menuItem) 
+                        {
+                            switch (menuItem.Tag)
+                            {
+                                case "Move":
+                                    menuItem.Checked = !menuItem.Checked;
+                                    break;
+                                case "":
+                                case null:
+                                    break;
+                                default:
+                                    menuItem.Enabled = _allowMovement;
+                                    break;
+                            }
+                            continue;
+                        }
+                    }
+                }
+            }
+            return;
         }
     }
 }

@@ -177,7 +177,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SocketErrorCodes.cs" />
     <EmbeddedResource Include="IrisServer.resx">
       <DependentUpon>IrisServer.cs</DependentUpon>
     </EmbeddedResource>

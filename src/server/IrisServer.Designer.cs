@@ -66,7 +66,7 @@
             0,
             0,
             65536});
-            this.numericUpDownBrightness.Location = new System.Drawing.Point(126, 370);
+            this.numericUpDownBrightness.Location = new System.Drawing.Point(126, 226);
             this.numericUpDownBrightness.Maximum = new decimal(new int[] {
             5,
             0,
@@ -92,7 +92,7 @@
             0,
             0,
             65536});
-            this.numericUpDownGamma.Location = new System.Drawing.Point(128, 450);
+            this.numericUpDownGamma.Location = new System.Drawing.Point(128, 306);
             this.numericUpDownGamma.Maximum = new decimal(new int[] {
             5,
             0,
@@ -118,7 +118,7 @@
             0,
             0,
             65536});
-            this.numericUpDownContrast.Location = new System.Drawing.Point(128, 410);
+            this.numericUpDownContrast.Location = new System.Drawing.Point(128, 266);
             this.numericUpDownContrast.Maximum = new decimal(new int[] {
             5,
             0,
@@ -165,7 +165,7 @@
             // labelGamma
             // 
             this.labelGamma.AutoSize = true;
-            this.labelGamma.Location = new System.Drawing.Point(36, 450);
+            this.labelGamma.Location = new System.Drawing.Point(36, 306);
             this.labelGamma.Name = "labelGamma";
             this.labelGamma.Size = new System.Drawing.Size(55, 16);
             this.labelGamma.TabIndex = 10;
@@ -174,7 +174,7 @@
             // labelContrast
             // 
             this.labelContrast.AutoSize = true;
-            this.labelContrast.Location = new System.Drawing.Point(36, 410);
+            this.labelContrast.Location = new System.Drawing.Point(36, 266);
             this.labelContrast.Name = "labelContrast";
             this.labelContrast.Size = new System.Drawing.Size(56, 16);
             this.labelContrast.TabIndex = 9;
@@ -183,7 +183,7 @@
             // labelBrightness
             // 
             this.labelBrightness.AutoSize = true;
-            this.labelBrightness.Location = new System.Drawing.Point(36, 370);
+            this.labelBrightness.Location = new System.Drawing.Point(36, 226);
             this.labelBrightness.Name = "labelBrightness";
             this.labelBrightness.Size = new System.Drawing.Size(70, 16);
             this.labelBrightness.TabIndex = 8;
@@ -193,11 +193,11 @@
             // 
             this.labelAdjustmentTitle.AutoSize = true;
             this.labelAdjustmentTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAdjustmentTitle.Location = new System.Drawing.Point(36, 326);
+            this.labelAdjustmentTitle.Location = new System.Drawing.Point(36, 182);
             this.labelAdjustmentTitle.Name = "labelAdjustmentTitle";
-            this.labelAdjustmentTitle.Size = new System.Drawing.Size(257, 16);
+            this.labelAdjustmentTitle.Size = new System.Drawing.Size(180, 16);
             this.labelAdjustmentTitle.TabIndex = 7;
-            this.labelAdjustmentTitle.Text = "Global Image Adjustment (Multiplier)";
+            this.labelAdjustmentTitle.Text = "Global Image Adjustment";
             // 
             // buttonSave
             // 
@@ -214,7 +214,7 @@
             // textBox1
             // 
             this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(49, 139);
+            this.textBox1.Location = new System.Drawing.Point(49, 11);
             this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(132, 22);
@@ -222,7 +222,7 @@
             // 
             // trackBar1
             // 
-            this.trackBar1.Location = new System.Drawing.Point(47, 185);
+            this.trackBar1.Location = new System.Drawing.Point(47, 57);
             this.trackBar1.Margin = new System.Windows.Forms.Padding(4);
             this.trackBar1.Maximum = 20;
             this.trackBar1.Minimum = 1;
@@ -235,7 +235,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(36, 263);
+            this.button1.Location = new System.Drawing.Point(36, 135);
             this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(161, 28);
