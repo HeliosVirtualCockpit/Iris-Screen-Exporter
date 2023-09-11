@@ -151,22 +151,18 @@ namespace Iris.Client
                     case (Keys.Control | Keys.W):
                         this.Top -= this.Top > 0 ? 1 : 0;
                         return true;
-                        break;
                     case Keys.Down:
                     case (Keys.Control | Keys.S):
                         this.Top++;
                         return true;
-                        break;
                     case Keys.Left:
                     case (Keys.Control | Keys.A):
                         this.Left -= this.Left > 0 ? 1 : 0;
                         return true;
-                        break;
                     case Keys.Right:
                     case (Keys.Control | Keys.D):
                         this.Left++;
                         return true;
-                        break;
                     default:
                         break;
                 }

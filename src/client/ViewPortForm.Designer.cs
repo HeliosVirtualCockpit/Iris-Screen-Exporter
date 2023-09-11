@@ -108,6 +108,7 @@ namespace Iris.Client
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(100, 27);
             this.toolStripMenuItem1.Tag = "UP";
+            this.toolStripMenuItem1.ShortcutKeys = Keys.Control | Keys.W;
             this.toolStripMenuItem1.Enabled = false;
             this.toolStripMenuItem1.Text = "Move Up";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem_Click);
@@ -119,6 +120,7 @@ namespace Iris.Client
             this.toolStripMenuItem2.Size = new System.Drawing.Size(100, 27);
             this.toolStripMenuItem2.Tag = "LEFT";
             this.toolStripMenuItem2.Enabled = false;
+            this.toolStripMenuItem2.ShortcutKeys = Keys.Control | Keys.A;
             this.toolStripMenuItem2.Text = "Move Left";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
@@ -128,6 +130,7 @@ namespace Iris.Client
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
             this.toolStripMenuItem3.Size = new System.Drawing.Size(100, 27);
             this.toolStripMenuItem3.Tag = "RIGHT";
+            this.toolStripMenuItem3.ShortcutKeys = Keys.Control | Keys.D;
             this.toolStripMenuItem3.Enabled = false;
             this.toolStripMenuItem3.Text = "Move Right";
             this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem_Click);
@@ -138,6 +141,7 @@ namespace Iris.Client
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
             this.toolStripMenuItem4.Size = new System.Drawing.Size(100, 27);
             this.toolStripMenuItem4.Tag = "DOWN";
+            this.toolStripMenuItem4.ShortcutKeys = Keys.Control | Keys.S;
             this.toolStripMenuItem4.Enabled = false;
             this.toolStripMenuItem4.Text = "Move Down";
             this.toolStripMenuItem4.Click += new System.EventHandler(this.toolStripMenuItem_Click);
