@@ -59,8 +59,8 @@ jobs:
 
       - name: Rename the Installer msi files
         run: |
-          mv "Installer/Iris Setup/JustInstallers/Iris Setup.msi" "Installer/Iris Setup/Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}.msi"
-          mv "Installer/Iris Setup 32bit/JustInstallers/Iris Setup 32bit.msi" "Installer/Iris Setup/Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}_32bit.msi"
+          mv "Installer/Iris Setup/Iris Setup.msi" "Installer/Iris Setup/Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}.msi"
+          mv "Installer/Iris Setup 32bit/Iris Setup 32bit.msi" "Installer/Iris Setup/Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}_32bit.msi"
           dir "Installer/" -r
           
       - name: Adjust contents of msi databases
