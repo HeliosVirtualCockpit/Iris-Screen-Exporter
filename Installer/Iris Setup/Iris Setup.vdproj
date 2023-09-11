@@ -27,7 +27,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_371F6FA345E644EBB2F05C1C8C8F9EF3"
+        "MsmKey" = "8:_16A95B3A5A8E45099410CE8BC14E908D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -51,19 +51,25 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_94BD969995134767AFB684E5035F8D37"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_B4630BFF157E4CB8BF8A813CF07DA775"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_D71AAB9B79F70E23169CDF86D8631CA1"
+        "MsmKey" = "8:_DD24880A6FA31868E3BE0C42DDD9550D"
         "OwnerKey" = "8:_7674E11100774E50B508BAE911378B1F"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_D71AAB9B79F70E23169CDF86D8631CA1"
+        "MsmKey" = "8:_DD24880A6FA31868E3BE0C42DDD9550D"
         "OwnerKey" = "8:_FA25ABA7A20B49D59BFC487D6F27ED57"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -100,7 +106,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_D71AAB9B79F70E23169CDF86D8631CA1"
+        "OwnerKey" = "8:_DD24880A6FA31868E3BE0C42DDD9550D"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -180,7 +186,7 @@
                 {
                 "Name" = "8:.NET Framework"
                 "Message" = "8:[VSDNETMSG]"
-                "FrameworkVersion" = "8:v4.0       "
+                "FrameworkVersion" = "8:v4.0        "
                 "AllowLaterVersions" = "11:FALSE"
                 "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=395269"
                 }
@@ -228,9 +234,9 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_371F6FA345E644EBB2F05C1C8C8F9EF3"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_16A95B3A5A8E45099410CE8BC14E908D"
             {
-            "SourcePath" = "8:..\\..\\src\\Changelog.md"
+            "SourcePath" = "8:..\\..\\Changelog.md"
             "TargetName" = "8:Changelog.md"
             "Tag" = "8:"
             "Folder" = "8:_DD65F3B141BF41CFA2F90903A8646CE6"
@@ -288,6 +294,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_94BD969995134767AFB684E5035F8D37"
+            {
+            "SourcePath" = "8:..\\..\\README.md"
+            "TargetName" = "8:README.md"
+            "Tag" = "8:"
+            "Folder" = "8:_DD65F3B141BF41CFA2F90903A8646CE6"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B4630BFF157E4CB8BF8A813CF07DA775"
             {
             "SourcePath" = "8:..\\..\\src\\Docs\\Iris Screen Exporter.pdf"
@@ -308,14 +334,14 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D71AAB9B79F70E23169CDF86D8631CA1"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_DD24880A6FA31868E3BE0C42DDD9550D"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Iris-common, Version=1.0.2022.507, Culture=neutral, processorArchitecture=x86"
+            "AssemblyAsmDisplayName" = "8:Iris-common, Version=1.0.2022.507, Culture=neutral, processorArchitecture=AMD64"
                 "ScatterAssemblies"
                 {
-                    "_D71AAB9B79F70E23169CDF86D8631CA1"
+                    "_DD24880A6FA31868E3BE0C42DDD9550D"
                     {
                     "Name" = "8:Iris-common.dll"
                     "Attributes" = "3:512"
