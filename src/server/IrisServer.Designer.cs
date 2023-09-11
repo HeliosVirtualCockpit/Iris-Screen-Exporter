@@ -32,10 +32,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IrisServer));
             this.toolTipAdjustment = new System.Windows.Forms.ToolTip(this.components);
             this.numericUpDownBrightness = new System.Windows.Forms.NumericUpDown();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.numericUpDownGamma = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownContrast = new System.Windows.Forms.NumericUpDown();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.labelGamma = new System.Windows.Forms.Label();
             this.labelContrast = new System.Windows.Forms.Label();
             this.labelBrightness = new System.Windows.Forms.Label();
@@ -46,9 +46,9 @@
             this.button1 = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBrightness)).BeginInit();
-            this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownGamma)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownContrast)).BeginInit();
+            this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.SuspendLayout();
@@ -68,7 +68,7 @@
             65536});
             this.numericUpDownBrightness.Location = new System.Drawing.Point(126, 370);
             this.numericUpDownBrightness.Maximum = new decimal(new int[] {
-            2,
+            5,
             0,
             0,
             0});
@@ -83,6 +83,58 @@
             0,
             65536});
             this.numericUpDownBrightness.ValueChanged += new System.EventHandler(this.numericUpDown_ValueChanged);
+            // 
+            // numericUpDownGamma
+            // 
+            this.numericUpDownGamma.DecimalPlaces = 2;
+            this.numericUpDownGamma.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.numericUpDownGamma.Location = new System.Drawing.Point(128, 450);
+            this.numericUpDownGamma.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.numericUpDownGamma.Name = "numericUpDownGamma";
+            this.numericUpDownGamma.Size = new System.Drawing.Size(72, 22);
+            this.numericUpDownGamma.TabIndex = 12;
+            this.numericUpDownGamma.Tag = "Gamma";
+            this.toolTipAdjustment.SetToolTip(this.numericUpDownGamma, resources.GetString("numericUpDownGamma.ToolTip"));
+            this.numericUpDownGamma.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            65536});
+            this.numericUpDownGamma.ValueChanged += new System.EventHandler(this.numericUpDown_ValueChanged);
+            // 
+            // numericUpDownContrast
+            // 
+            this.numericUpDownContrast.DecimalPlaces = 2;
+            this.numericUpDownContrast.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.numericUpDownContrast.Location = new System.Drawing.Point(128, 410);
+            this.numericUpDownContrast.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.numericUpDownContrast.Name = "numericUpDownContrast";
+            this.numericUpDownContrast.Size = new System.Drawing.Size(72, 22);
+            this.numericUpDownContrast.TabIndex = 11;
+            this.numericUpDownContrast.Tag = "Contrast";
+            this.toolTipAdjustment.SetToolTip(this.numericUpDownContrast, resources.GetString("numericUpDownContrast.ToolTip"));
+            this.numericUpDownContrast.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            65536});
+            this.numericUpDownContrast.ValueChanged += new System.EventHandler(this.numericUpDown_ValueChanged);
             // 
             // timer1
             // 
@@ -109,58 +161,6 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Config";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // numericUpDownGamma
-            // 
-            this.numericUpDownGamma.DecimalPlaces = 2;
-            this.numericUpDownGamma.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.numericUpDownGamma.Location = new System.Drawing.Point(128, 450);
-            this.numericUpDownGamma.Maximum = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
-            this.numericUpDownGamma.Name = "numericUpDownGamma";
-            this.numericUpDownGamma.Size = new System.Drawing.Size(72, 22);
-            this.numericUpDownGamma.TabIndex = 12;
-            this.numericUpDownGamma.Tag = "Gamma";
-            this.toolTipAdjustment.SetToolTip(this.numericUpDownGamma, resources.GetString("numericUpDownGamma.ToolTip"));
-            this.numericUpDownGamma.Value = new decimal(new int[] {
-            10,
-            0,
-            0,
-            65536});
-            this.numericUpDownGamma.ValueChanged += new System.EventHandler(this.numericUpDown_ValueChanged);
-            // 
-            // numericUpDownContrast
-            // 
-            this.numericUpDownContrast.DecimalPlaces = 2;
-            this.numericUpDownContrast.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.numericUpDownContrast.Location = new System.Drawing.Point(128, 410);
-            this.numericUpDownContrast.Maximum = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
-            this.numericUpDownContrast.Name = "numericUpDownContrast";
-            this.numericUpDownContrast.Size = new System.Drawing.Size(72, 22);
-            this.numericUpDownContrast.TabIndex = 11;
-            this.numericUpDownContrast.Tag = "Contrast";
-            this.toolTipAdjustment.SetToolTip(this.numericUpDownContrast, resources.GetString("numericUpDownContrast.ToolTip"));
-            this.numericUpDownContrast.Value = new decimal(new int[] {
-            10,
-            0,
-            0,
-            65536});
-            this.numericUpDownContrast.ValueChanged += new System.EventHandler(this.numericUpDown_ValueChanged);
             // 
             // labelGamma
             // 
@@ -267,10 +267,10 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.IrisServer_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBrightness)).EndInit();
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownGamma)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownContrast)).EndInit();
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.ResumeLayout(false);

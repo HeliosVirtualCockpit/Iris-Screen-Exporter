@@ -1,0 +1,124 @@
+name: Build and Create Installation Files for Iris
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ Brighton ]
+  #pull_request:
+  #  branches: [ main, master, dev, test ]
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+  
+jobs:  
+  build:    
+    runs-on: windows-latest
+    
+    steps:      
+      - uses: actions/checkout@v3
+
+      - name: bump version and push 
+        id: bump_tag
+        #uses: anothrnick/github-tag-action@1.36.0
+        uses: mathieudutour/github-tag-action@v6.1
+        with:
+          github_token: ${{ secrets.github_token }}
+          default_bump: patch
+          default_prerelease_bump: prerelease
+          tag_prefix: v
+          release_branches: master,main,Brighton
+          create_annotated_tag: false
+          fetch_all_tags: false
+          dry_run: false
+
+      - name: New Version Number
+        run: |
+          echo "The version of this installer will be ${{ steps.bump_tag.outputs.new_tag }} ."
+ 
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1.3.1
+
+      - name: Setup VS Dev Environment
+        uses: seanmiddleditch/gha-setup-vsdevenv@v4
+        
+      - name: Navigate to Workspace
+        run: cd $GITHUB_WORKSPACE
+
+      - name: Disable Out of Process Building
+        run: .\DisableOutOfProcBuild.exe
+        working-directory: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\CommonExtensions\Microsoft\VSI\DisableOutOfProcBuild
+
+      - name: Build x86 and x64 Solutions
+        run: |
+          msbuild.exe -clp:WarningsOnly -warnAsMessage:MSB4078 -p:version=${{ steps.bump_tag.outputs.new_version }} "src/Iris Screen Exporter.sln" /p:platform="x64" /p:configuration="NoInstallers"
+          msbuild.exe -clp:WarningsOnly -warnAsMessage:MSB4078 -p:version=${{ steps.bump_tag.outputs.new_version }} "src/Iris Screen Exporter.sln" /p:platform="x86" /p:configuration="NoInstallers"
+
+      - name: Build the Installer msi files (> 8 mins)
+        run: |
+          DevEnv "src/Iris Screen Exporter.sln" /build "JustInstallers|x64"
+          DevEnv "src/Iris Screen Exporter.sln" /build "JustInstallers|x86"
+
+      - name: Rename the Installer msi files
+        run: |
+          mv "Installer/Iris Setup/JustInstallers/Iris Setup.msi" "Installer/Iris Setup/Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}.msi"
+          mv "Installer/Iris Setup 32bit/JustInstallers/Iris Setup 32bit.msi" "Installer/Iris Setup/Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}_32bit.msi"
+          dir "Installer/" -r
+          
+      - name: Adjust contents of msi databases
+        run: |
+          cp "src/Resources/InstallAdjustments.vbs" "Installer/Iris Setup/InstallAdjustments.vbs"
+          pushd "Installer/Iris Setup/" 
+          cscript //nologo InstallAdjustments.vbs "./Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}.msi" ${{ steps.bump_tag.outputs.new_version }}
+          cscript //nologo InstallAdjustments.vbs "./Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}_32bit.msi" ${{ steps.bump_tag.outputs.new_version }}
+          popd
+
+      - name: Upload x64 installer
+        uses: actions/upload-artifact@v3
+        with:
+          name: Iris Screen Exporter Installer
+          path: "Installer/Iris Setup/Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}.msi"
+          retention-days: 2
+
+      - name: Upload x86 installer  
+        uses: actions/upload-artifact@v3
+        with:
+          name: Iris Screen Exporter Installer (32bit) Untested
+          path: "Installer/Iris Setup/Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}_32bit.msi"
+          retention-days: 2
+          
+      - name: Test If
+        if: contains('release', github.ref)
+        run: echo "The If clause returned True"
+
+      # - if: contains('release', github.ref)
+
+        # name: Read About file
+        # id: getAbout
+        # run: |
+          # echo "ABOUT<<EOF" >> $GITHUB_ENV
+          # echo "$(cat './README.md')" >> $GITHUB_ENV
+          # echo "EOF" >> $GITHUB_ENV
+
+        # name: Create a release
+        # id: create_release
+        # uses: actions/create-release@v1
+        # env:
+          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # with:
+          # tag_name: ${{ github.ref }}
+          # release_name: Iris Screen Exporter V${{ steps.bump_tag.outputs.new_version }}
+          # body: ${{ env.ABOUT }}
+          # draft: true
+          # prerelease: false
+          
+        # name: Upload Release Asset
+        # id: upload-release-asset 
+        # uses: actions/upload-release-asset@v1
+        # env:
+          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # with:
+          # upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+          # asset_path: output/${{ env.AUTHOR }}_${{ env.VEHICLE }}_V${{ steps.bump_tag.outputs.tag }}.helios16
+          # asset_name: ${{ env.AUTHOR }} ${{ env.VEHICLECOMMONNAME }} V${{ steps.bump_tag.outputs.tag }} helios16
+          # asset_content_type: application/zip
+
