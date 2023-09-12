@@ -4,14 +4,10 @@
 If you just want to install this program, go to [Releases](https://github.com/HeliosVirtualCockpit/Iris-Screen-Exporter/releases/latest) and select the windows installer package of your choice from the **Assets** section.
 ## Overview
 Iris allows you to define “viewports” on your screen that will be captured and exported over the network via UDP to be displayed on another machine.   All of the settings are stored in the iris.xml configuration file.  Both the Iris server and Iris client can share the same configuration file.  This makes it possible to install Iris on a shared drive and run the executable files on different computers.
-Iris was inspired by [Gremlin77’s Visual Basic based Screen Exporter](http://forums.eagle.ru/showpost.php?p=1696987&postcount=183).
+Iris was Originally written by Will Hartsell and was inspired by [Gremlin77’s Visual Basic based Screen Exporter](http://forums.eagle.ru/showpost.php?p=1696987&postcount=183).  Iris Screen Exporter is now enhanced and supported by Contributors to the Helios Virtual Cockpit project.
 
 
-# Iris Screen Exporter
-[![Build and Create Installation Files for Iris](https://github.com/HeliosVirtualCockpit/Iris-Screen-Exporter/actions/workflows/Build.yml/badge.svg)](https://github.com/HeliosVirtualCockpit/Iris-Screen-Exporter/actions/workflows/Build.yml)
-## Downloading
-If you just want to install this program, go to [Releases](https://github.com/HeliosVirtualCockpit/Iris-Screen-Exporter/releases/latest) and select the windows installer package of your choice from the **Assets** section.
-## What is Iris
+## What is Iris Screen Exporter?
 Iris captures sections of screen on one Windows computer and displays them on another.
 Iris allows you to define “viewports” on your screen that will be captured and exported over the
 network via UDP to be displayed on another machine. All of the settings are stored in the iris.xml
@@ -20,55 +16,44 @@ possible to install Iris on a shared drive and run the executable files on diffe
 Iris also allows some image adjustments to be made on the captured screen before it is sent.  These
 adjustments are limited to brightness, contrast and gamma.
 
-# Iris Screen Exporter
-[![Build and Create Installation Files for Iris](https://github.com/HeliosVirtualCockpit/Iris-Screen-Exporter/actions/workflows/Build.yml/badge.svg)](https://github.com/HeliosVirtualCockpit/Iris-Screen-Exporter/actions/workflows/Build.yml)
-## Downloading
-If you just want to install this program, go to [Releases](https://github.com/HeliosVirtualCockpit/Iris-Screen-Exporter/releases/latest) and select the windows installer package of your choice from the **Assets** section.
-
-# **Iris Screen Exporter**
-
-Originally Written by Will Hartsell.
-Extended and Maintained by the Helios Virtual Cockpit Contributors
-
 **12 September 2023**
 
-**Contents**
-
-[Iris Screen Exporter](#_gjdgxs)
-[Overview](#)
-[The Iris-Server](#)
-[Config Tab](#_wse0cx1uvg16)
-[Viewport Tabs](#)
-[Command Line](#_fknvkmmfsaz1)
-[Network Considerations](#_2et92p0)
-[The Iris–Client](#_3dy6vkm)
-[Viewport Windows](#)
-[Viewport Context Menu](#)
-[Usage Notes](#_j65h8os39wub)
-[The iris.xml configuration file](#_srjwu38amjpm)
-[Example Configurations](#_m3rgds1ga4k2)
-[Copying a Rectangular Area on a Single Computer](#_dyecn0ou6x3l)
-[Copying Two Rectangular Areas to a Second Computer](#_9h4hw7pezu62)
-[Copying Three Rectangular Areas to a Second & Third Computer and Adjusting the Image Brightness](#_yoiy79z0oc4p)
-[Creating a Background for the Viewports](#_rp5ff08whafl)
-[Known Issues](#_q78gvp37ng2j)
-[Change Log](#_3rh39437j399)
-[1.6.1](#_9e9w0qp85coe)
-[1.0.2022.0507](#)
-[1.0.2020.0531](#)
-[1.0.2019.0316](#)
+|**Contents**|
+|------------|
+|[Iris Screen Exporter](#_gjdgxs)|
+|[Overview](#)|
+|[The Iris-Server](#)|
+|[Config Tab](#_wse0cx1uvg16)|
+|[Viewport Tabs](#)|
+|[Command Line](#_fknvkmmfsaz1)|
+|[Network Considerations](#_2et92p0)|
+|[The Iris–Client](#_3dy6vkm)|
+|[Viewport Windows](#)|
+|[Viewport Context Menu](#)|
+|[Usage Notes](#_j65h8os39wub)|
+|[The iris.xml configuration file](#_srjwu38amjpm)|
+|[Example Configurations](#_m3rgds1ga4k2)|
+|[Copying a Rectangular Area on a Single Computer](#_dyecn0ou6x3l)|
+|[Copying Two Rectangular Areas to a Second Computer](#_9h4hw7pezu62)|
+|[Copying Three Rectangular Areas to a Second & Third Computer and Adjusting the Image Brightness](#_yoiy79z0oc4p)|
+|[Creating a Background for the Viewports](#_rp5ff08whafl)|
+|[Known Issues](#_q78gvp37ng2j)|
+|[Change Log](#_3rh39437j399)|
+|[1.6.1](#_9e9w0qp85coe)|
+|[1.0.2022.0507](#)|
+|[1.0.2020.0531](#)|
+|[1.0.2019.0316](#)|
 
 ## Overview
 
 Iris allows you to define "viewports" on your screen that will be captured and exported over the network via UDP to be displayed on another machine. All of the settings are stored in the iris.xml configuration file. Both the Iris server and Iris client can share the same configuration file. This makes it possible to install Iris on a shared drive and run the executable files on different computers.
 
-Iris was inspired [Gremlin77’s Visual Basic based Screen Exporter](http://forums.eagle.ru/showpost.php?p=1696987&postcount=183).
-
 ## The Iris-Server
 
 Iris-Server is the program responsible for capturing and sending the viewports over the network. For every viewport defined in the "iris.xml" file it will capture that viewport and send it via UDP to the corresponding host/port defined. Since host/port is defined for each viewport it is possible for a single server to send viewports to many clients running on multiple machines. Each viewport must have a unique port number which needs to be unused by another program or service.
 
-![](RackMultipart20230912-1-44qmnv_html_abbe2e1a719bfb55.png)
+![image](https://github.com/HeliosVirtualCockpit/Iris-Screen-Exporter/assets/18526232/fbedcd14-af6d-4af4-aef6-b18dbf7f9b1f)
+
 
 The Iris-Server Window contains a Configuration Tab, and a Tab named for each viewport defined in iris.xml configuration file.
 
@@ -76,14 +61,15 @@ The Iris-Server Window contains a Configuration Tab, and a Tab named for each vi
 
 The Config tab in the Server main window contains options for starting and stopping the viewport capturing process (1). Additionally there are controls to alter the frequency of capturing images (2), and also parameters to control any adjustments which are to be made to the image (3) before it is sent to the client.
 
-![](RackMultipart20230912-1-44qmnv_html_77538eb020f5f7c2.png)
+![image](https://github.com/HeliosVirtualCockpit/Iris-Screen-Exporter/assets/18526232/ebbd0a46-fdc9-429f-ac9f-8ca96ee3243d)
 
 ### Viewport Tabs
 
 For every defined viewport in the iris configuration xml document, a tab is created that displays what is being captured in the current viewport. When you turn on capture, this display will be updated each time a capture takes place. This allows you to verify the server is "seeing" what you want it to see in each viewport.
 In the example to the left you can see that the viewport named "Left MFCD" is displayed. It is currently showing the TAD view in the A-10's left MFCD. ![](RackMultipart20230912-1-44qmnv_html_9103d219e9735b9e.png)
 
-###
+![image](https://github.com/HeliosVirtualCockpit/Iris-Screen-Exporter/assets/18526232/66d4c94b-18ff-4f59-8308-9503d042a29a)
+
 
 
 ### Command Line
@@ -100,7 +86,8 @@ Firewalls on the computers running the Iris-Server and Iris-Clients will probabl
 
 ## The Iris–Client
 
-![](RackMultipart20230912-1-44qmnv_html_9e69123989998de7.png)
+![image](https://github.com/HeliosVirtualCockpit/Iris-Screen-Exporter/assets/18526232/0378d8ae-9098-4c64-ac32-fcaad7a7e11a)
+
 
 The Iris-Client program is run on the machine you want to send the viewports to. It receives the viewports sent by the Iris-Server via UDP. If you are running a firewall ensure that it is configured to allow the ports you defined in your iris.xml file. The Iris-Client has two main components. The main window and a viewport window for each viewport defined.
 
@@ -112,7 +99,8 @@ Each defined viewport will have its own window. The window has two modes. With b
 
 #### Viewport Context Menu
 
-![](RackMultipart20230912-1-44qmnv_html_30f88f6ad3b84e8f.png)
+![image](https://github.com/HeliosVirtualCockpit/Iris-Screen-Exporter/assets/18526232/bf6b1f0f-313d-4443-a94b-75609573f4dd)
+
 
 Each viewport window has a context menu that is accessed by right clicking on the window. The menu lists all actions you can take on the window.
 
