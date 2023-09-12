@@ -20,26 +20,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Iris-Server", "src\server\I
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Iris Screen Exporter Setup", "Installer\Iris Setup\Iris Setup.vdproj", "{C3DF55B5-151D-40EA-99A0-2C3E05797346}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "src\Docs", "{D3D32899-03E9-4B2B-958B-FF95E22D2AC5}"
-	ProjectSection(SolutionItems) = preProject
-		Changelog.md = Changelog.md
-		README.md = README.md
-		src\Docs\Iris Screen Exporter.doc = src\Docs\Iris Screen Exporter.doc
-		src\Docs\Iris Screen Exporter.pdf = src\Docs\Iris Screen Exporter.pdf
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Config", "src\Config", "{E36E0B0E-993F-4DFC-B7E1-7F77A8CA5F25}"
-	ProjectSection(SolutionItems) = preProject
-		src\config\iris.xml.example = src\config\iris.xml.example
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Version", "src\Version\Version.csproj", "{B69CAC60-1D4D-464B-97F4-56FFAD8E05CC}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3C36405A-6331-437B-A6E5-30EA4353D541}"
-	ProjectSection(SolutionItems) = preProject
-		src\Resources\Iris Banner.bmp = src\Resources\Iris Banner.bmp
-		src\Resources\iris.ico = src\Resources\iris.ico
-	EndProjectSection
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Iris Screen Exporter Setup 32bit", "Installer\Iris Setup 32bit\Iris Screen Exporter Setup 32bit.vdproj", "{27E38B0C-5B7A-4540-9811-5F987DBA8793}"
 EndProject

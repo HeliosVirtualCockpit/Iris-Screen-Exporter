@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<IrisConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<ViewPorts>
+		<ViewPort>
+			<Name>Viewport 1</Name>
+			<Description>
+				Example 2 configuration for ViewPort 1
+			</Description>
+			<Host>wibble.local</Host>
+			<Port>12001</Port>
+			<ScreenCaptureX>0</ScreenCaptureX>
+			<ScreenCaptureY>0</ScreenCaptureY>
+			<SizeX>200</SizeX>
+			<SizeY>400</SizeY>
+			<ScreenPositionX>200</ScreenPositionX>
+			<ScreenPositionY>0</ScreenPositionY>
+		</ViewPort>
+		<ViewPort>
+			<Name>Viewport 2</Name>
+			<Description>
+				Example 2 configuration for ViewPort 2
+			</Description>
+			<Host>192.168.0.100</Host>
+			<Port>12002</Port>
+			<ScreenCaptureX>200</ScreenCaptureX>
+			<ScreenCaptureY>0</ScreenCaptureY>
+			<SizeX>200</SizeX>
+			<SizeY>400</SizeY>
+			<ScreenPositionX>0</ScreenPositionX>
+			<ScreenPositionY>0</ScreenPositionY>
+		</ViewPort>
+	</ViewPorts>
+	<PollingInterval>100</PollingInterval>
+</IrisConfig>

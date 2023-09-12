@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<IrisConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ViewPorts>
+    <ViewPort>
+      <Name>Left MFCD</Name>
+      <Description>This is the Left MFCD</Description>
+      <Host>localhost</Host>
+      <Port>12001</Port>
+      <ScreenCaptureX>0</ScreenCaptureX>
+      <ScreenCaptureY>0</ScreenCaptureY>
+      <SizeX>300</SizeX>
+      <SizeY>300</SizeY>
+      <ScreenPositionX>10</ScreenPositionX>
+      <ScreenPositionY>300</ScreenPositionY>
+    </ViewPort>
+    <ViewPort>
+      <Name>Right MFCD</Name>
+      <Description>This is the Right MFCD</Description>
+      <Host>localhost</Host>
+      <Port>12002</Port>
+      <ScreenCaptureX>300</ScreenCaptureX>
+      <ScreenCaptureY>0</ScreenCaptureY>
+      <SizeX>300</SizeX>
+      <SizeY>300</SizeY>
+      <ScreenPositionX>320</ScreenPositionX>
+      <ScreenPositionY>300</ScreenPositionY>
+    </ViewPort>
+  </ViewPorts>
+  <PollingInterval>100</PollingInterval>
+</IrisConfig>

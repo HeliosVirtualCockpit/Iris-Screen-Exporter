@@ -39,6 +39,6 @@ using System.Runtime.InteropServices;
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("dad09178-814d-43f4-b76d-0fbe29a32544")]
 [assembly: AssemblyTitle("Iris Version")]
-[assembly: AssemblyVersion("1.0.2022.0507")]
-[assembly: AssemblyFileVersion("1.0.2022.0507")]
+[assembly: AssemblyVersion("1.6.1000")]
+[assembly: AssemblyFileVersion("1.6.1000")]
 [assembly: AssemblyCompany("HeliosVirtualCockpit")]

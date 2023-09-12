@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<IrisConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<ViewPorts>
+		<ViewPort>
+			<Name>Viewport 1a</Name>
+			<Description>
+				Example 3 configuration.  Viewport 1 Upper portion to circumvent the network size restriction
+			</Description>
+			<Host>wibble.local</Host>
+			<Port>12001</Port>
+			<ScreenCaptureX>0</ScreenCaptureX>
+			<ScreenCaptureY>0</ScreenCaptureY>
+			<SizeX>600</SizeX>
+			<SizeY>300</SizeY>
+			<ScreenPositionX>200</ScreenPositionX>
+			<ScreenPositionY>0</ScreenPositionY>
+		</ViewPort>
+		<ViewPort>
+			<Name>Viewport 1b</Name>
+			<Description>
+				Example 3 configuration.  Viewport 1 Lower portion to circumvent the network size restriction
+			</Description>
+			<Host>wibble.local</Host>
+			<Port>12002</Port>
+			<ScreenCaptureX>0</ScreenCaptureX>
+			<ScreenCaptureY>300</ScreenCaptureY>
+			<SizeX>600</SizeX>
+			<SizeY>300</SizeY>
+			<ScreenPositionX>200</ScreenPositionX>
+			<ScreenPositionY>300</ScreenPositionY>
+		</ViewPort>
+		<ViewPort>
+			<Name>Viewport 2</Name>
+			<Description>
+				Example 3 configuration for ViewPort 2
+			</Description>
+			<Host>wobble.local</Host>
+			<Port>12003</Port>
+			<ScreenCaptureX>200</ScreenCaptureX>
+			<ScreenCaptureY>0</ScreenCaptureY>
+			<SizeX>200</SizeX>
+			<SizeY>400</SizeY>
+			<ScreenPositionX>0</ScreenPositionX>
+			<ScreenPositionY>0</ScreenPositionY>
+			<ImageAdjustment>
+				<Brightness>1.2</Brightness>
+				<RedBrightness>1.2</RedBrightness>
+				<GreenBrightness>1.2</GreenBrightness>
+				<BlueBrightness>1.2</BlueBrightness>
+				<AlphaBrightness>1</AlphaBrightness>
+				<Gamma>1</Gamma>
+				<Contrast>1.1</Contrast>
+			</ImageAdjustment>
+		</ViewPort>
+	</ViewPorts>
+	<PollingInterval>100</PollingInterval>
+	<GlobalImageAdjustment>
+		<Brightness>1</Brightness>
+		<RedBrightness>1</RedBrightness>
+		<GreenBrightness>1</GreenBrightness>
+		<BlueBrightness>1</BlueBrightness>
+		<AlphaBrightness>1</AlphaBrightness>
+		<Gamma>2.0</Gamma>
+		<Contrast>2.0</Contrast>
+	</GlobalImageAdjustment>
+</IrisConfig>

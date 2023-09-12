@@ -33,10 +33,26 @@ jobs:
       - name: New Version Number and Change the Version Project
         run: |
           echo "The version of this installer will be ${{ steps.bump_tag.outputs.new_tag }}."
-          pushd "src\Version\Properties"
-          (Get-Content AssemblyInfo.cs).Replace("1.0.2022.0507","${{ steps.bump_tag.outputs.new_version }}")|Set-Content AssemblyInfo.cs
+          pushd "src\"
+          pushd "Version\Properties"
+          (Get-Content AssemblyInfo.cs).Replace("1.6.1000","${{ steps.bump_tag.outputs.new_version }}")|Set-Content AssemblyInfo.cs
           type AssemblyInfo.cs
           popd
+           pushd "common\Properties"
+          (Get-Content AssemblyInfo.cs).Replace("1.6.1000","${{ steps.bump_tag.outputs.new_version }}")|Set-Content AssemblyInfo.cs
+          type AssemblyInfo.cs
+          popd
+           pushd "server\Properties"
+          (Get-Content AssemblyInfo.cs).Replace("1.6.1000","${{ steps.bump_tag.outputs.new_version }}")|Set-Content AssemblyInfo.cs
+          type AssemblyInfo.cs
+          popd
+           pushd "client\Properties"
+          (Get-Content AssemblyInfo.cs).Replace("1.6.1000","${{ steps.bump_tag.outputs.new_version }}")|Set-Content AssemblyInfo.cs
+          type AssemblyInfo.cs
+          popd
+          popd
+          echo "Copy the Readme and Changelog over the dummy versions inside the Common project so that they can be layed down in the Docs folder"
+          copy-item ".\*.md" "src\common\docs\"          
  
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v1.3.1
@@ -69,7 +85,7 @@ jobs:
           
       - name: Adjust contents of msi databases
         run: |
-          cp "src/Resources/InstallAdjustments.vbs" "Installer/Iris Setup/InstallAdjustments.vbs"
+          cp "Installer/Resources/InstallAdjustments.vbs" "Installer/Iris Setup/InstallAdjustments.vbs"
           pushd "Installer/Iris Setup/" 
           cscript //nologo InstallAdjustments.vbs "./Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}.msi" ${{ steps.bump_tag.outputs.new_version }}
           cscript //nologo InstallAdjustments.vbs "./Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}_32bit.msi" ${{ steps.bump_tag.outputs.new_version }}

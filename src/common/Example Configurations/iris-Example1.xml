@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<IrisConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<ViewPorts>
+		<ViewPort>
+			<Name>Example 1 Viewport</Name>
+			<Host>localhost</Host>
+			<Port>12001</Port>
+			<ScreenCaptureX>0</ScreenCaptureX>
+			<ScreenCaptureY>0</ScreenCaptureY>
+			<SizeX>200</SizeX>
+			<SizeY>400</SizeY>
+			<ScreenPositionX>200</ScreenPositionX>
+			<ScreenPositionY>50</ScreenPositionY>
+		</ViewPort>
+	</ViewPorts>
+	<PollingInterval>100</PollingInterval>
+</IrisConfig>

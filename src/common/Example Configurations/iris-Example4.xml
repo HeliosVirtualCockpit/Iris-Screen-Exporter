@@ -23,27 +23,6 @@
       </ImageAdjustment>
     </ViewPort>
     <ViewPort>
-      <Name>Right MFCD</Name>
-      <Description>This is the Right MFCD</Description>
-      <Host>localhost</Host>
-      <Port>12002</Port>
-      <ScreenCaptureX>350</ScreenCaptureX>
-      <ScreenCaptureY>0</ScreenCaptureY>
-      <SizeX>350</SizeX>
-      <SizeY>350</SizeY>
-      <ScreenPositionX>350</ScreenPositionX>
-      <ScreenPositionY>400</ScreenPositionY>
-      <ImageAdjustment>
-        <Brightness>1</Brightness>
-        <RedBrightness>1</RedBrightness>
-        <GreenBrightness>0.5</GreenBrightness>
-        <BlueBrightness>1</BlueBrightness>
-        <AlphaBrightness>1</AlphaBrightness>
-        <Gamma>1</Gamma>
-        <Contrast>1</Contrast>
-      </ImageAdjustment>
-    </ViewPort>
-    <ViewPort>
       <Name>Background</Name>
       <Description>This is the full screen background for the back of the screen</Description>
       <Host>localhost</Host>
@@ -54,15 +33,6 @@
       <SizeY>1080</SizeY>
       <ScreenPositionX>0</ScreenPositionX>
       <ScreenPositionY>0</ScreenPositionY>
-      <ImageAdjustment>
-        <Brightness>1</Brightness>
-        <RedBrightness>1</RedBrightness>
-        <GreenBrightness>1</GreenBrightness>
-        <BlueBrightness>1</BlueBrightness>
-        <AlphaBrightness>1</AlphaBrightness>
-        <Gamma>1</Gamma>
-        <Contrast>1</Contrast>
-      </ImageAdjustment>
     </ViewPort>
   </ViewPorts>
   <PollingInterval>100</PollingInterval>
