@@ -27,7 +27,7 @@ namespace Iris.Client
             windows = new BindingSource();
             viewPorts.DataSource = typeof(ViewPort);
             windows.DataSource = typeof(ViewPortForm);
-            Icon icon = Properties.Resources.iris; ;
+            Icon icon = Common.Properties.Resources.iris;
             this.Icon = icon;
 
             if (File.Exists(configFile))

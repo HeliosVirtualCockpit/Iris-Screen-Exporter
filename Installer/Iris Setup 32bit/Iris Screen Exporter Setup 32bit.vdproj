@@ -21,19 +21,25 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_0777E147207741F198D7DF86021C3324"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_7884BC04C4504A53AEEE5E6EBBA087B8"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_8A6BBB6F22F4B541E82B3672CB7AD346"
+        "MsmKey" = "8:_B27FEE6D30E63E98C83967BA811A16AB"
         "OwnerKey" = "8:_02810852E5774630B4123E7104F41E71"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_8A6BBB6F22F4B541E82B3672CB7AD346"
+        "MsmKey" = "8:_B27FEE6D30E63E98C83967BA811A16AB"
         "OwnerKey" = "8:_E27BBC3A545F4CE4B0745364125F53A8"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -64,6 +70,12 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_B27FEE6D30E63E98C83967BA811A16AB"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_E27BBC3A545F4CE4B0745364125F53A8"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -71,12 +83,6 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_02810852E5774630B4123E7104F41E71"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_8A6BBB6F22F4B541E82B3672CB7AD346"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -174,14 +180,34 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_8A6BBB6F22F4B541E82B3672CB7AD346"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0777E147207741F198D7DF86021C3324"
+            {
+            "SourcePath" = "8:..\\..\\src\\common\\Resources\\iris.ico"
+            "TargetName" = "8:iris.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_F984C2676B6046339C7816AE291C4BB5"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B27FEE6D30E63E98C83967BA811A16AB"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Iris-common, Version=1.0.2022.507, Culture=neutral, processorArchitecture=AMD64"
+            "AssemblyAsmDisplayName" = "8:Iris-common, Version=1.6.1000.0, Culture=neutral, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
-                    "_8A6BBB6F22F4B541E82B3672CB7AD346"
+                    "_B27FEE6D30E63E98C83967BA811A16AB"
                     {
                     "Name" = "8:Iris-common.dll"
                     "Attributes" = "3:512"
@@ -313,7 +339,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Iris Screen Exporter"
         "ProductCode" = "8:{FE0B6C2A-BA31-40EF-AFDF-4C9767423AF1}"
-        "PackageCode" = "8:{40346A7A-E207-41B6-902A-E708A5F8F40A}"
+        "PackageCode" = "8:{A80473E3-0064-4028-B3C2-070297CF334F}"
         "UpgradeCode" = "8:{58B0C1EC-2E6E-4545-BDB9-08A9EA984801}"
         "AspNetVersion" = "8:"
         "RestartWWWService" = "11:FALSE"
@@ -330,7 +356,7 @@
         "Keywords" = "8:Iris Helios HeliosVirtualCockpit Screen Exporter export viewport"
         "ARPCOMMENTS" = "8:Iris Screen Exporter (32 bit)"
         "ARPURLINFOABOUT" = "8:https://github.com/heliosvirtualcockpit/"
-        "ARPPRODUCTICON" = "8:"
+        "ARPPRODUCTICON" = "8:_0777E147207741F198D7DF86021C3324"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
@@ -444,7 +470,7 @@
             "Target" = "8:_02810852E5774630B4123E7104F41E71"
             "Folder" = "8:_197F5A9DD96F48138C0D19C4B4A5867F"
             "WorkingFolder" = "8:_19C99406056442699300502525C0BC0B"
-            "Icon" = "8:"
+            "Icon" = "8:_0777E147207741F198D7DF86021C3324"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_9ABDB57C4B43428B9D732230FD9A4E55"
@@ -458,7 +484,7 @@
             "Target" = "8:_E27BBC3A545F4CE4B0745364125F53A8"
             "Folder" = "8:_197F5A9DD96F48138C0D19C4B4A5867F"
             "WorkingFolder" = "8:_19C99406056442699300502525C0BC0B"
-            "Icon" = "8:"
+            "Icon" = "8:_0777E147207741F198D7DF86021C3324"
             "Feature" = "8:"
             }
         }
@@ -489,7 +515,7 @@
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
                             "Setting" = "3:2"
-                            "Value" = "8:"
+                            "Value" = "8:_DC621A0F31B049C6BBB1AD0DAEF04482"
                             "UsePlugInResources" = "11:TRUE"
                             }
                         }
@@ -512,7 +538,7 @@
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
                             "Setting" = "3:2"
-                            "Value" = "8:"
+                            "Value" = "8:_DC621A0F31B049C6BBB1AD0DAEF04482"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "CopyrightWarning"
@@ -561,7 +587,7 @@
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
                             "Setting" = "3:2"
-                            "Value" = "8:"
+                            "Value" = "8:_DC621A0F31B049C6BBB1AD0DAEF04482"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "InstallAllUsersVisible"
@@ -606,7 +632,7 @@
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
                             "Setting" = "3:2"
-                            "Value" = "8:"
+                            "Value" = "8:_DC621A0F31B049C6BBB1AD0DAEF04482"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "UpdateText"
@@ -755,7 +781,7 @@
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
                             "Setting" = "3:2"
-                            "Value" = "8:"
+                            "Value" = "8:_DC621A0F31B049C6BBB1AD0DAEF04482"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "ShowProgress"
@@ -900,7 +926,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_7884BC04C4504A53AEEE5E6EBBA087B8"
             {
-            "SourcePath" = "8:..\\..\\src\\Version\\obj\\x86\\NoInstallers\\Version.dll"
+            "SourcePath" = "8:..\\..\\src\\Version\\obj\\x64\\NoInstallers\\Version.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_19C99406056442699300502525C0BC0B"

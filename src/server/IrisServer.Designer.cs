@@ -98,6 +98,11 @@
             0,
             0,
             0});
+            this.numericUpDownGamma.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
             this.numericUpDownGamma.Name = "numericUpDownGamma";
             this.numericUpDownGamma.Size = new System.Drawing.Size(72, 22);
             this.numericUpDownGamma.TabIndex = 12;

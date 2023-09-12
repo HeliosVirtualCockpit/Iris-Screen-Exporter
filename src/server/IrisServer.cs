@@ -25,7 +25,7 @@ namespace Iris.Server
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            icon = Properties.Resources.iris; ;
+            icon = Common.Properties.Resources.iris;
             this.Icon = icon;
             viewPorts = new BindingSource();
             conn = new UdpClient();

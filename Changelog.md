@@ -1,4 +1,14 @@
 # IRIS Screen Exporter Change Log
+## 1.6.1
+1. Global Image Adjustment option to allow all viewports without specific image adjustments to have their brightness, contrast, and gamma adjusted before it is sent to the Iris-Client
+2. ViewPort image Adjustment allows the brightness, contrast, and gamma for a particular viewport to be adjusted before it is sent to the Iris-Client
+3. New versioning structure
+4. CI workflow action to allow more build consistency
+5. Both a 32bit and 64bit installer is available
+6. Restored missing Client Viewport movement controls
+7. Major rewrite of the documentation
+8. New configuration examples added
+9. Solution tidy up which was long overdue.
 ## 1.0.2022.0507
 1. Moved into HeliosVirtualCockpit parent directory
 2. Added forms icons

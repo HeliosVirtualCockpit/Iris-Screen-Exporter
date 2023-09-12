@@ -24,6 +24,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Version", "src\Version\Vers
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Iris Screen Exporter Setup 32bit", "Installer\Iris Setup 32bit\Iris Screen Exporter Setup 32bit.vdproj", "{27E38B0C-5B7A-4540-9811-5F987DBA8793}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{C97292D1-2DD8-4044-A866-1FC8B7A77D27}"
+	ProjectSection(SolutionItems) = preProject
+		Changelog.md = Changelog.md
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
