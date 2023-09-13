@@ -187,9 +187,15 @@ namespace Iris.Server
         private void LoadConfig(string fileName)
         {
             IrisConfig loader = Helpers.LoadConfig(fileName);
-            timer1.Interval = loader.PollingInterval;
-            viewPorts.DataSource = (BindingList<ViewPort>)loader.ViewPorts;
-
+            if (loader != null)
+            {
+                timer1.Interval = loader.PollingInterval;
+                viewPorts.DataSource = (BindingList<ViewPort>)loader.ViewPorts;
+            }
+            else
+            {
+                this.Close();
+            }
         }
         private void SaveConfig(string fileName)
         {
@@ -199,8 +205,10 @@ namespace Iris.Server
             saver.ViewPorts = (BindingList<ViewPort>)viewPorts.List;
             saver.GlobalImageAdjustment = _imageAdjustmentGlobal;
 
-            Helpers.SaveConfig(saver, fileName);
-            MessageBox.Show($"{viewPorts.Count} viewports Saved in {fileName}");
+            if (Helpers.SaveConfig(saver, fileName))
+            {
+                MessageBox.Show($"{viewPorts.Count} viewports Saved in {fileName}");
+            }
         }
 
         private void IrisServer_FormClosing(object sender, FormClosingEventArgs e)

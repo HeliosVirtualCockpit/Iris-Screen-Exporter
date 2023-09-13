@@ -27,20 +27,38 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_0F592C427C32039BB87B405B6C2773C8"
+        "OwnerKey" = "8:_02810852E5774630B4123E7104F41E71"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_0F592C427C32039BB87B405B6C2773C8"
+        "OwnerKey" = "8:_E27BBC3A545F4CE4B0745364125F53A8"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_645AD9C5C0044D779AD42BC80FAE5E70"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_7884BC04C4504A53AEEE5E6EBBA087B8"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_B27FEE6D30E63E98C83967BA811A16AB"
-        "OwnerKey" = "8:_02810852E5774630B4123E7104F41E71"
+        "MsmKey" = "8:_7C40898CE6E44FCEAAF9E2EBAD402A78"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_B27FEE6D30E63E98C83967BA811A16AB"
-        "OwnerKey" = "8:_E27BBC3A545F4CE4B0745364125F53A8"
+        "MsmKey" = "8:_8986FBCC36B9433389BC0082F2F51ABC"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -63,14 +81,20 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_7884BC04C4504A53AEEE5E6EBBA087B8"
+        "MsmKey" = "8:_F99D49FDB391447EA32E17B8E4C8E582"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_FD0714A0EF3E4CEFBFE07AB2235AB364"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_B27FEE6D30E63E98C83967BA811A16AB"
+        "OwnerKey" = "8:_7884BC04C4504A53AEEE5E6EBBA087B8"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -83,6 +107,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_02810852E5774630B4123E7104F41E71"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_0F592C427C32039BB87B405B6C2773C8"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -200,14 +230,14 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B27FEE6D30E63E98C83967BA811A16AB"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_0F592C427C32039BB87B405B6C2773C8"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Iris-common, Version=1.6.1000.0, Culture=neutral, processorArchitecture=x86"
+            "AssemblyAsmDisplayName" = "8:Iris-common, Version=1.6.1000.0, Culture=neutral, processorArchitecture=AMD64"
                 "ScatterAssemblies"
                 {
-                    "_B27FEE6D30E63E98C83967BA811A16AB"
+                    "_0F592C427C32039BB87B405B6C2773C8"
                     {
                     "Name" = "8:Iris-common.dll"
                     "Attributes" = "3:512"
@@ -229,6 +259,66 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_645AD9C5C0044D779AD42BC80FAE5E70"
+            {
+            "SourcePath" = "8:..\\..\\src\\common\\Example Configurations\\iris-Example3.xml"
+            "TargetName" = "8:iris-Example3.xml"
+            "Tag" = "8:"
+            "Folder" = "8:_FCB7D2951E0843B1A2C4C123F29556F0"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7C40898CE6E44FCEAAF9E2EBAD402A78"
+            {
+            "SourcePath" = "8:..\\..\\src\\common\\Example Configurations\\iris-Example1.xml"
+            "TargetName" = "8:iris-Example1.xml"
+            "Tag" = "8:"
+            "Folder" = "8:_FCB7D2951E0843B1A2C4C123F29556F0"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8986FBCC36B9433389BC0082F2F51ABC"
+            {
+            "SourcePath" = "8:..\\..\\src\\common\\Example Configurations\\iris-Example2.xml"
+            "TargetName" = "8:iris-Example2.xml"
+            "Tag" = "8:"
+            "Folder" = "8:_FCB7D2951E0843B1A2C4C123F29556F0"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BB7CADD33B0241CE93781DEF78D08EBE"
@@ -257,6 +347,46 @@
             "TargetName" = "8:Iris Banner.bmp"
             "Tag" = "8:"
             "Folder" = "8:_F984C2676B6046339C7816AE291C4BB5"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F99D49FDB391447EA32E17B8E4C8E582"
+            {
+            "SourcePath" = "8:..\\..\\src\\common\\Example Configurations\\iris-Example4.xml"
+            "TargetName" = "8:iris-Example4.xml"
+            "Tag" = "8:"
+            "Folder" = "8:_FCB7D2951E0843B1A2C4C123F29556F0"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FD0714A0EF3E4CEFBFE07AB2235AB364"
+            {
+            "SourcePath" = "8:..\\..\\src\\common\\Example Configurations\\iris.xml"
+            "TargetName" = "8:iris.xml"
+            "Tag" = "8:"
+            "Folder" = "8:_FCB7D2951E0843B1A2C4C123F29556F0"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -316,6 +446,28 @@
                     "Condition" = "8:"
                     "Transitive" = "11:FALSE"
                     "Property" = "8:_3773A8221C4C4871B0A9AF99658F8F4B"
+                        "Folders"
+                        {
+                        }
+                    }
+                }
+            }
+            "{1525181F-901A-416C-8A58-119130FE478E}:_5A16FCAC0B7044EDA4A26350A72C1AD2"
+            {
+            "Name" = "8:#1918"
+            "AlwaysCreate" = "11:FALSE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Property" = "8:PersonalFolder"
+                "Folders"
+                {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_FCB7D2951E0843B1A2C4C123F29556F0"
+                    {
+                    "Name" = "8:Iris_Screen_Exporter"
+                    "AlwaysCreate" = "11:TRUE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_E8E8B7F96867446A9C82DE00D4F709F5"
                         "Folders"
                         {
                         }
@@ -462,7 +614,7 @@
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_712EA745274749329453F901170BB3C7"
             {
             "Name" = "8:Iris Screen Exporter - Server"
-            "Arguments" = "8:"
+            "Arguments" = "8:\"%userprofile%\\Documents\\Iris_Screen_Exporter\\Iris.xml\""
             "Description" = "8:"
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
@@ -476,7 +628,7 @@
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_9ABDB57C4B43428B9D732230FD9A4E55"
             {
             "Name" = "8:Iris Screen Exporter - Client"
-            "Arguments" = "8:"
+            "Arguments" = "8:\"%userprofile%\\Documents\\Iris_Screen_Exporter\\Iris.xml\""
             "Description" = "8:"
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"

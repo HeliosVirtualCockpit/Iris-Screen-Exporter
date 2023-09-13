@@ -9,6 +9,10 @@
 7. Major rewrite of the documentation
 8. New configuration examples added
 9. Solution tidy up which was long overdue.
+10. Added error checking to the file operations
+11. Created a folder in the %userprofile% of the user installing the software to contain the example configurations files
+12. Changed the default icons.
+13. Made the shortcuts for the server and client load the configurations from the new folder in the user's documents file to avoid not authorized exceptions when saving to the Program Files location
 ## 1.0.2022.0507
 1. Moved into HeliosVirtualCockpit parent directory
 2. Added forms icons
