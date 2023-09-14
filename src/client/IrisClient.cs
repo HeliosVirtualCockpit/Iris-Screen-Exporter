@@ -30,16 +30,13 @@ namespace Iris.Client
             Icon icon = Common.Properties.Resources.iris;
             this.Icon = icon;
 
-            if (File.Exists(configFile))
+            loadedCfg = Helpers.LoadConfig(configFile);
+            if(loadedCfg != null)
             {
-                loadedCfg = Helpers.LoadConfig(configFile);
                 viewPorts.DataSource = (BindingList<ViewPort>)loadedCfg.ViewPorts;
-
             }
             else
-            {// should move this to helper
-                MessageBox.Show(configFile + " not found! Please create a config File", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Stop, MessageBoxDefaultButton.Button1
-                   , MessageBoxOptions.ServiceNotification);
+            {
                 this.Close();
             }
 
@@ -72,7 +69,10 @@ namespace Iris.Client
             saveConfig.ViewPorts = (BindingList<ViewPort>)viewPorts.List;
             saveConfig.PollingInterval = loadedCfg.PollingInterval;
             saveConfig.GlobalImageAdjustment = loadedCfg.GlobalImageAdjustment;
-            Helpers.SaveConfig(saveConfig, configFile);
+            if (Helpers.SaveConfig(saveConfig, configFile))
+            {
+                MessageBox.Show($"{viewPorts.Count} viewports Saved in {configFile}");
+            }
         }
 
         private void IrisClient_FormClosing(object sender, FormClosingEventArgs e)

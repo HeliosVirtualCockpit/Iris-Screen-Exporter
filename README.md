@@ -76,7 +76,13 @@ In the example to the left you can see that the viewport named "Left MFCD" is di
 
 ### Command Line
 
-Both the Iris-Client and the Iris-Server can be started from the command line, and in this mode, they can take a single argument which is the name of the configuration xml file. If the filename of the configuration file contains spaces, then the configuration filename should be enclosed in double quotes.
+Both the Iris-Client and the Iris-Server can be (and probably should be) started from the command line, and in this mode, they can take a single argument which is the name of the configuration xml file. If the filename of the configuration file contains spaces, then the configuration filename should be enclosed in double quotes.
+It is recommended that the configuration file always resides in a folder which the Iris-Client and/or Iris-Server program has read/write access to, otherwise the Save Configuration button is likely to give an error.
+A typical way to run Iris programs from the command line is as follows:
+`"%programfiles%\Helios Virtual Cockpit\Iris Screen exporter\iris-server.exe" "%userprofile%\documents\Iris_Screen_Exporter\iris.xml"`
+and
+`"%programfiles%\Helios Virtual Cockpit\Iris Screen exporter\iris-client.exe" "%userprofile%\documents\Iris_Screen_Exporter\iris.xml"`
+Note:  All sets of double quotes are required since there are portions of the command which contains space characters.
 
 ### Network Considerations
 

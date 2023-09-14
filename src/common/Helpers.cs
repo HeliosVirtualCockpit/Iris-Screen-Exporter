@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Windows.Forms;
 using System.Xml.Serialization;
 
 namespace Iris.Common
@@ -32,21 +33,47 @@ namespace Iris.Common
         {
             IrisConfig loader;
             XmlSerializer ser = new XmlSerializer(typeof(IrisConfig), new Type[] { typeof(ViewPort) });
-            using (var stream = File.OpenRead(fileName))
+            try
             {
-                loader = (IrisConfig)ser.Deserialize(stream);
+                using (var stream = File.OpenRead(fileName))
+                {
+                    loader = (IrisConfig)ser.Deserialize(stream);
+                }
+            } catch (Exception ex)
+            {
+                MessageBox.Show($"Iris configuration could not be loaded from the file: {fileName}.{Environment.NewLine}{ex.Message}", 
+                    "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Stop, 
+                    MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                loader = null;
             }
             return loader;
         }
 
-        public static void SaveConfig(IrisConfig config, string fileName)
+        public static bool SaveConfig(IrisConfig config, string fileName)
         {
             XmlSerializer ser = new XmlSerializer(typeof(IrisConfig), new Type[] { typeof(ViewPort) });
-
-            using (var stream = File.Create(fileName))
+            try
             {
-                ser.Serialize(stream, config);
+                using (var stream = File.Create(fileName))
+                {
+                    ser.Serialize(stream, config);
+                    return true;
+                }
+
             }
+            catch (UnauthorizedAccessException ex) {
+                Exception _ = ex;
+                MessageBox.Show($"Iris configuration could not save to the file: {fileName} because there was insufficient access. {Environment.NewLine}It is recommended that you store Iris configurations in directories where you have access, such as your user profile.{Environment.NewLine}{ex.Message}",
+                 "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Stop,
+                    MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Iris configuration could not save to the file: {fileName}.{Environment.NewLine}{ex.Message}",
+                    "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Stop,
+                    MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+            }
+            return false;
         }
 
     }
