@@ -30,17 +30,9 @@ jobs:
           fetch_all_tags: false
           dry_run: false
           
-      - name: Echo Branch
-        run: |
-          echo "current Branch:  ${{github.ref}}"
-          
-      - name: Check release Branch, then create echo it
-        if: contains(github.ref , 'release')
-        run: |
-          echo "release Branch:  ${{github.ref}}"
-          
       - name: New Version Number and Change the Version Project
         run: |
+          echo "current Branch:  ${{github.ref}}"
           echo "The version of this installer will be ${{ steps.bump_tag.outputs.new_tag }}."
           pushd "src\"
           pushd "Version\Properties"
@@ -124,8 +116,8 @@ jobs:
         id: getAbout
         run: |
           echo "ABOUT<<EOF" >> $GITHUB_ENV
-          echo "$(cat './README.md')" >> $GITHUB_ENV
-          echo "$(cat './Changelog.md')" >> $GITHUB_ENV
+          echo "$(cat 'README.md')" >> $GITHUB_ENV
+          echo "$(cat 'Changelog.md')" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
 
       - name: Create a release
