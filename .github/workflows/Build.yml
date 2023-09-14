@@ -3,10 +3,10 @@ name: Build and Create Installation Files for Iris
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
-  push:
-    branches: [ main, master, release ]
+  # push:
+    # branches: [ main, master ]
   pull_request:
-   branches: [ main, master, release ]
+   branches: [ release ]
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
   
@@ -102,42 +102,57 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: Iris Screen Exporter Installer (32bit) Untested
-          path: "Installer/Iris Setup/Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}_32bit.msi"
+          path: "Installer/Iris Setup/Iris_Screen_Exporter__32bit.msi"
           retention-days: 2
           
-      - name: Test If
+      - name: If Release Branch, then create draft release notes
         if: contains('release', github.ref)
-        run: echo "The If clause returned True"
+        run: |
+          echo "Release Branch:  Creating Draft Release"
+ 
+      - name: Read About file
+        if: contains('release', github.ref)
+        id: getAbout
+        run: |
+          echo "ABOUT<<EOF" >> $GITHUB_ENV
+          echo "$(cat './README.md')" >> $GITHUB_ENV
+          echo "$(cat './Changelog.md')" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
 
-      # - if: contains('release', github.ref)
-
-        # name: Read About file
-        # id: getAbout
-        # run: |
-          # echo "ABOUT<<EOF" >> $GITHUB_ENV
-          # echo "$(cat './README.md')" >> $GITHUB_ENV
-          # echo "EOF" >> $GITHUB_ENV
-
-        # name: Create a release
-        # id: create_release
-        # uses: actions/create-release@v1
-        # env:
-          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        # with:
-          # tag_name: ${{ github.ref }}
-          # release_name: Iris Screen Exporter V${{ steps.bump_tag.outputs.new_version }}
-          # body: ${{ env.ABOUT }}
-          # draft: true
-          # prerelease: false
+      - name: Create a release
+        if: contains('release', github.ref)
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Iris Screen Exporter V${{ steps.bump_tag.outputs.new_version }}
+          body: ${{ env.ABOUT }}
+          draft: true
+          prerelease: false
           
-        # name: Upload Release Asset
-        # id: upload-release-asset 
-        # uses: actions/upload-release-asset@v1
-        # env:
-          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        # with:
-          # upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-          # asset_path: output/${{ env.AUTHOR }}_${{ env.VEHICLE }}_V${{ steps.bump_tag.outputs.tag }}.helios16
-          # asset_name: ${{ env.AUTHOR }} ${{ env.VEHICLECOMMONNAME }} V${{ steps.bump_tag.outputs.tag }} helios16
-          # asset_content_type: application/zip
+      - name: Upload Release Asset 1
+        if: contains('release', github.ref)
+        id: upload-release-asset 
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+          asset_path: "Installer/Iris Setup/Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}.msi"
+          asset_name: Iris_Screen_Exporter V${{ steps.bump_tag.outputs.new_version }} Windows 64 Bit
+          asset_content_type: application/octet-stream
+
+      - name: Upload Release Asset 2
+        if: contains('release', github.ref)
+        id: upload-release-asset 
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+          asset_path: "Installer/Iris Setup/Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}_32bit.msi"
+          asset_name: Iris_Screen_Exporter V${{ steps.bump_tag.outputs.new_version }} Windows 32 Bit
+          asset_content_type: application/octet-stream
 
