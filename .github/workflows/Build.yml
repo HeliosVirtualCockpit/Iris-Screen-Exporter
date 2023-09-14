@@ -25,7 +25,7 @@ jobs:
           default_bump: patch
           default_prerelease_bump: prerelease
           tag_prefix: v
-          release_branches: master,main,Brighton
+          release_branches: master,main,release
           create_annotated_tag: false
           fetch_all_tags: false
           dry_run: false
