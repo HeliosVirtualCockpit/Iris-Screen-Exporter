@@ -29,7 +29,16 @@ jobs:
           create_annotated_tag: false
           fetch_all_tags: false
           dry_run: false
-
+          
+      - name: Echo Branch
+        run: |
+          echo "current Branch:  ${{github.ref}}"
+          
+      - name: Check release Branch, then create echo it
+        if: contains(github.ref , 'release')
+        run: |
+          echo "release Branch:  ${{github.ref}}"
+          
       - name: New Version Number and Change the Version Project
         run: |
           echo "The version of this installer will be ${{ steps.bump_tag.outputs.new_tag }}."
