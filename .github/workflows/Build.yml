@@ -134,7 +134,7 @@ jobs:
           
       - name: Upload Release Asset 1
         if: contains('release', github.ref)
-        id: upload-release-asset 
+        id: upload-release-asset-1
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -146,7 +146,7 @@ jobs:
 
       - name: Upload Release Asset 2
         if: contains('release', github.ref)
-        id: upload-release-asset 
+        id: upload-release-asset-2
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
