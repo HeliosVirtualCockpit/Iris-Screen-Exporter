@@ -35,7 +35,7 @@ jobs:
           echo "current Branch:  ${{github.ref}}"
           
       - name: Check release Branch, then create echo it
-        if: contains('release', github.ref)
+        if: contains(github.ref , 'release')
         run: |
           echo "release Branch:  ${{github.ref}}"
           
@@ -115,12 +115,12 @@ jobs:
           retention-days: 2
           
       - name: If Release Branch, then create draft release notes
-        if: contains('release', github.ref)
+        if: contains(github.ref , 'release')
         run: |
           echo "Release Branch:  Creating Draft Release"
  
       - name: Read About file
-        if: contains('release', github.ref)
+        if: contains(github.ref , 'release')
         id: getAbout
         run: |
           echo "ABOUT<<EOF" >> $GITHUB_ENV
@@ -129,7 +129,7 @@ jobs:
           echo "EOF" >> $GITHUB_ENV
 
       - name: Create a release
-        if: contains('release', github.ref)
+        if: contains(github.ref , 'release')
         id: create_release
         uses: actions/create-release@v1
         env:
@@ -142,7 +142,7 @@ jobs:
           prerelease: false
           
       - name: Upload Release Asset 1
-        if: contains('release', github.ref)
+        if: contains(github.ref , 'release')
         id: upload-release-asset-1
         uses: actions/upload-release-asset@v1
         env:
@@ -154,7 +154,7 @@ jobs:
           asset_content_type: application/octet-stream
 
       - name: Upload Release Asset 2
-        if: contains('release', github.ref)
+        if: contains(github.ref , 'release')
         id: upload-release-asset-2
         uses: actions/upload-release-asset@v1
         env:
