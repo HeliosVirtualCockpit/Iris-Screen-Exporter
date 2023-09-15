@@ -18,6 +18,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: bump version and push 
+        if: contains(github.ref , 'release')
         id: bump_tag
         uses: mathieudutour/github-tag-action@v6.1
         with:
@@ -29,6 +30,20 @@ jobs:
           create_annotated_tag: false
           fetch_all_tags: false
           dry_run: false
+          
+      - name: bump version and push
+        if: (contains(github.ref , 'release') != true)
+        id: bump_tag
+        uses: mathieudutour/github-tag-action@v6.1
+        with:
+          github_token: ${{ secrets.github_token }}
+          default_bump: patch
+          default_prerelease_bump: prerelease
+          tag_prefix: v
+          release_branches: master,main,release
+          create_annotated_tag: false
+          fetch_all_tags: false
+          dry_run: true
           
       - name: New Version Number and Change the Version Project
         run: |
