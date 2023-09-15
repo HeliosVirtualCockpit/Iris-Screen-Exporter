@@ -33,7 +33,7 @@ jobs:
           
       - name: bump version and push
         if: (contains(github.ref , 'release') != true)
-        id: bump_tag
+        id: bump_tag_dry_run
         uses: mathieudutour/github-tag-action@v6.1
         with:
           github_token: ${{ secrets.github_token }}
