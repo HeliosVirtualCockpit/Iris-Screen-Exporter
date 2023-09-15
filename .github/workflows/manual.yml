@@ -35,10 +35,7 @@ jobs:
         id: getAbout
         run: |
           chcp 65001
-          echo @"
-          ABOUT=
-          $(Get-Content README.md)
-          "@ | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf8 -Append
+          echo "ABOUT=$(Get-Content README.md)" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf8 -Append
           echo "${{ env.ABOUT }}"
           echo $env:ABOUT
       - name: Create a release
