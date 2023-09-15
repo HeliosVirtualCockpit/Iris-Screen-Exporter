@@ -35,8 +35,9 @@ jobs:
         id: getAbout
         run: |
           chcp 65001
-          echo "ABOUT=$(cat 'README.md')$(cat 'Changelog.md')" >> $GITHUB_ENV
+          echo "ABOUT=$(cat 'README.md')$(cat 'Changelog.md')" >> $env:GITHUB_ENV
           echo "${{ env.ABOUT }}"
+          echo $env:ABOUT
 
       - name: Create a release
         if: contains(github.ref , 'release')
