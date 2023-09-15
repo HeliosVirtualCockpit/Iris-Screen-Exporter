@@ -115,10 +115,11 @@ jobs:
         if: contains(github.ref , 'release')
         id: getAbout
         run: |
-          echo "ABOUT<<EOF" >> $GITHUB_ENV
-          echo "$(cat 'README.md')" >> $GITHUB_ENV
-          echo "$(cat 'Changelog.md')" >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
+          echo @"
+          ABOUT<<EOF
+          $($(gc readme.md | out-string))
+          EOF
+          "@ | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
 
       - name: Create a release
         if: contains(github.ref , 'release')
