@@ -34,10 +34,8 @@ jobs:
         if: contains(github.ref , 'release')
         id: getAbout
         run: |
-          echo "ABOUT<<EOF" >> $GITHUB_ENV
-          echo "$(cat 'README.md')" >> $GITHUB_ENV
-          echo "$(cat 'Changelog.md')" >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
+          chcp 65001
+          echo "AABOUT=$(cat 'README.md')$(cat 'Changelog.md')" >> $GITHUB_ENV
           echo "${{ env.ABOUT }}"
 
       - name: Create a release
