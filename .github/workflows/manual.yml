@@ -36,7 +36,7 @@ jobs:
         run: |
           chcp 65001
           echo "ABOUT=" | Out-File -FilePath t.txt
-          get-content t.txt, README.md | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf8 -Append
+          get-content t.txt, README.md | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
           echo "${{ env.ABOUT }}"
           echo $env:ABOUT
       - name: Create a release
