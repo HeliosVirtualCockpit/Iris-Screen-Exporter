@@ -36,9 +36,7 @@ jobs:
         run: |
           chcp 65001
           gc readme.md -outvariable a
-          echo @"
-          ABOUT=$($a | out-string)"
-          "@ | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf8 -Append
+          Write-Output "ABOUT=$($a | output-string)" >> $Env:GITHUB_ENV
           echo "${{ env.ABOUT }}"
           echo $env:ABOUT
       - name: Create a release
