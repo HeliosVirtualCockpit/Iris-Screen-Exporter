@@ -35,7 +35,12 @@ jobs:
         id: getAbout
         run: |
           chcp 65001
-          echo "ABOUT=$(cat 'README.md')$(cat 'Changelog.md')" >> $env:GITHUB_ENV
+          $txt = Get-Content README.md
+          $a = @"
+          ABOUT=
+          $txt
+          "@
+          echo "$a" >> $env:GITHUB_ENV
           echo "${{ env.ABOUT }}"
           echo $env:ABOUT
 
