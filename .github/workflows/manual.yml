@@ -28,7 +28,7 @@ jobs:
           release_branches: master,main,release
           create_annotated_tag: false
           fetch_all_tags: false
-          dry_run: true
+          dry_run: false
           
       - name: Read About file
         if: contains(github.ref , 'release')
