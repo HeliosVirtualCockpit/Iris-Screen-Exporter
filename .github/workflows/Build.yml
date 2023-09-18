@@ -84,13 +84,15 @@ jobs:
           mv "Installer/Iris Setup 32bit/Iris Setup 32bit.msi" "Installer/Iris Setup/Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}_32bit.msi"
           dir "Installer/" -r
           
-      - name: Adjust contents of msi databases
+      - name: Adjust contents of msi databases and zip
         run: |
           cp "Installer/Resources/InstallAdjustments.vbs" "Installer/Iris Setup/InstallAdjustments.vbs"
           pushd "Installer/Iris Setup/" 
           cscript //nologo InstallAdjustments.vbs "./Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}.msi" ${{ steps.bump_tag.outputs.new_version }}
           cscript //nologo InstallAdjustments.vbs "./Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}_32bit.msi" ${{ steps.bump_tag.outputs.new_version }}
           popd
+          compress-archive -Path "./Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}.msi" "./Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}.zip"
+          compress-archive -Path "./Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}_32bit.msi" "./Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}_32bit.zip"
 
       - name: Upload x64 installer
         uses: actions/upload-artifact@v3
@@ -137,21 +139,23 @@ jobs:
       - name: Upload Release Asset 
         if: contains(github.ref , 'release')
         id: upload-release-asset-1
-        uses: sekwah41/upload-release-assets@v1.1.0
+        uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-          asset_path: "Installer/Iris Setup/Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}.msi"
-          asset_name: Iris_Screen_Exporter V${{ steps.bump_tag.outputs.new_version }} Windows 64 Bit
+          asset_path: "Installer/Iris Setup/Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}.zip"
+          asset_name: Iris_Screen_Exporter V${{ steps.bump_tag.outputs.new_version }} Windows 64 Bit Zip
+          asset_content_type: application/zip
 
       - name: Upload Release Asset 2
         if: contains(github.ref , 'release')
         id: upload-release-asset-2
-        uses: sekwah41/upload-release-assets@v1.1.0
+        uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-          asset_path: "Installer/Iris Setup/Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}_32bit.msi"
-          asset_name: Iris_Screen_Exporter V${{ steps.bump_tag.outputs.new_version }} Windows 32 Bit
+          asset_path: "Installer/Iris Setup/Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}_32bit.zip"
+          asset_name: Iris_Screen_Exporter V${{ steps.bump_tag.outputs.new_version }} Windows 32 Bit Zip
+          asset_content_type: application/zip
