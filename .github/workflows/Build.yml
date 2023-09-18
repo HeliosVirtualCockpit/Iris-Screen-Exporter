@@ -90,10 +90,9 @@ jobs:
           pushd "Installer/Iris Setup/" 
           cscript //nologo InstallAdjustments.vbs "./Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}.msi" ${{ steps.bump_tag.outputs.new_version }}
           cscript //nologo InstallAdjustments.vbs "./Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}_32bit.msi" ${{ steps.bump_tag.outputs.new_version }}
-          popd
           compress-archive -Path "./Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}.msi" "./Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}.zip"
           compress-archive -Path "./Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}_32bit.msi" "./Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}_32bit.zip"
-
+          popd
       - name: Upload x64 installer
         uses: actions/upload-artifact@v3
         with:
