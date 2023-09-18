@@ -144,7 +144,6 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
           asset_path: "Installer/Iris Setup/Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}.msi"
           asset_name: Iris_Screen_Exporter V${{ steps.bump_tag.outputs.new_version }} Windows 64 Bit
-          asset_content_type: application/octet-stream
 
       - name: Upload Release Asset 2
         if: contains(github.ref , 'release')
@@ -156,5 +155,3 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
           asset_path: "Installer/Iris Setup/Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}_32bit.msi"
           asset_name: Iris_Screen_Exporter V${{ steps.bump_tag.outputs.new_version }} Windows 32 Bit
-          asset_content_type: application/octet-stream
-
