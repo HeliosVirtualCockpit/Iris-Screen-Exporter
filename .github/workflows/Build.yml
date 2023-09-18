@@ -120,15 +120,34 @@ jobs:
       - name: Create a release
         if: contains(github.ref , 'release')
         id: create_release
-        run: |
-          echo "Release Branch:  Creating Draft Release"
-          ls -lR "Installer/Iris Setup/"
-          gh release create V${{ steps.bump_tag.outputs.new_version }} --draft --target ${{ github.ref }} \
-          --title "Iris Screen Exporter V${{ steps.bump_tag.outputs.new_version }}" \
-          -F readme.md \
-          "Installer/Iris Setup/Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}.zip#Iris_Screen_Exporter V${{ steps.bump_tag.outputs.new_version }} Windows 64 Bit Zip" \
-          "Installer/Iris Setup/Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}_32bit.zip#Iris Screen Exporter V${{ steps.bump_tag.outputs.new_version }} Installer (32bit) Untested Zip" 
+        uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        shell: bash
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Iris Screen Exporter V${{ steps.bump_tag.outputs.new_version }}
+          body: ${{ env.ABOUT }}
+          draft: true
+          prerelease: false
+          
+      - name: Upload Release Asset 1
+        if: contains(github.ref , 'release')
+        id: upload-release-asset-1
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+          asset_path: "Installer/Iris Setup/Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}.msi"
+          asset_name: Iris_Screen_Exporter V${{ steps.bump_tag.outputs.new_version }} Windows 64 Bit
 
+      - name: Upload Release Asset 2
+        if: contains(github.ref , 'release')
+        id: upload-release-asset-2
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+          asset_path: "Installer/Iris Setup/Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}_32bit.msi"
+          asset_name: Iris_Screen_Exporter V${{ steps.bump_tag.outputs.new_version }} Windows 32 Bit
