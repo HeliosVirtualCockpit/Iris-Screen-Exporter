@@ -14,9 +14,9 @@ namespace Iris.Server
         private UdpClient conn;
         private string configFile = "iris.xml";
         private ImageAdjustment _imageAdjustmentGlobal;
-        public Boolean NetworkErrorAlreadyReported = false;
+        private Boolean _networkErrorAlreadyReported = false;
         private Icon icon;
-
+        private double _smallestFailingSendSize = 69000;
         public IrisServer(string[] args)
         {
             if(args.Length > 0) configFile = args[0];
@@ -119,16 +119,20 @@ namespace Iris.Server
             {
                 if (vp.Name != "Background")
                 {
+                    bool NetworkError = false;
                     Byte[] imageByteArray;
                     vp.Capture(_imageAdjustmentGlobal);
                     imageByteArray = vp.Image.ToByteArray(System.Drawing.Imaging.ImageFormat.Jpeg);
                     try
                     {
-                        conn.Send(imageByteArray, imageByteArray.Length, vp.Host, vp.Port);
+                        if(imageByteArray.Length < _smallestFailingSendSize)
+                        {
+                            conn.Send(imageByteArray, imageByteArray.Length, vp.Host, vp.Port);
+                        }
                     }
                     catch (SocketException se)
                     {
-                        if (!NetworkErrorAlreadyReported)  // if there is one, there are likely to be more so only report the first
+                        if (!_networkErrorAlreadyReported)  // if there is one, there are likely to be more so only report the first
                         {
                             SocketErrorCodes errorCode = (SocketErrorCodes)se.ErrorCode;
                             switch (errorCode)
@@ -136,18 +140,24 @@ namespace Iris.Server
                                 case SocketErrorCodes.HostNotFound:
                                     MessageBox.Show($"{se.Message}.  The hostname \"{vp.Host}\" you were trying to connect to was not found.  Please review your IRIS config file.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Stop, MessageBoxDefaultButton.Button1
             , MessageBoxOptions.ServiceNotification);
+                                    NetworkError = true;
                                     break;
                                 case SocketErrorCodes.MessgeTooLong:
-                                    MessageBox.Show($"Send to hostname \"{vp.Host}\" for item \"{vp.Name}\" was too large at {imageByteArray.Length} bytes.  {se.Message}.  Please review your IRIS config file.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Stop, MessageBoxDefaultButton.Button1
-            , MessageBoxOptions.ServiceNotification);
+                                    _smallestFailingSendSize = imageByteArray.Length;
+                                    ///TODO log the fact that a send has failed because it was too large.
+                                    //MessageBox.Show($"Send to hostname \"{vp.Host}\" for item \"{vp.Name}\" was too large at {imageByteArray.Length} bytes.  {se.Message}.  Please review your IRIS config file.", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1
+            //, MessageBoxOptions.ServiceNotification);
                                     break;
                                 default:
                                     MessageBox.Show($"{se.Message} - A network Error has occurred when communicatiing with \"{vp.Host}\":{se.SocketErrorCode}", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Stop, MessageBoxDefaultButton.Button1
             , MessageBoxOptions.ServiceNotification);
+                                    NetworkError = true;
                                     break;
                             }
                         }
-                        NetworkErrorAlreadyReported = true;
+                    }
+                    if (NetworkError) {
+                        _networkErrorAlreadyReported = true;
                         disableTimer();
                         this.Close();
                     }
@@ -189,6 +199,10 @@ namespace Iris.Server
             IrisConfig loader = Helpers.LoadConfig(fileName);
             if (loader != null)
             {
+                _imageAdjustmentGlobal = loader.GlobalImageAdjustment;
+                numericUpDownBrightness.Value = Convert.ToDecimal(_imageAdjustmentGlobal.Brightness);
+                numericUpDownContrast.Value = Convert.ToDecimal(_imageAdjustmentGlobal.Contrast);
+                numericUpDownGamma.Value = Convert.ToDecimal(_imageAdjustmentGlobal.Gamma);
                 timer1.Interval = loader.PollingInterval;
                 viewPorts.DataSource = (BindingList<ViewPort>)loader.ViewPorts;
             }
