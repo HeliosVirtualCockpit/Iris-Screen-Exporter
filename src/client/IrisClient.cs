@@ -17,7 +17,7 @@ namespace Iris.Client
 
         public IrisClient(string[] args)
         {
-            if (args.Length > 0) configFile = args[0];
+            if (args.Length > 0 && args[0] != null) configFile = args[0];
             InitializeComponent();
         }
 
