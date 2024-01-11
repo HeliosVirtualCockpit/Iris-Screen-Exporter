@@ -1,4 +1,13 @@
 # IRIS Screen Exporter Change Log
+## 1.6.3
+1. Mulitple changes to the server and client to allow loading of configuration files from the user interface.
+1. Fix for exception thrown in the server when the server is started by double clicking without a configuration file being specified. #13
+1. Default configuration folder changed to "My Documents" `\Helios\IRIS` and this will be created if it does not already exist.
+1. `iris.xml` is loaded when no configuration file is specified on startup. 
+## 1.6.2
+This corrects the following problems with 1.6.1
+1. If a send fails because the viewport data was too large for the network, Iris-Server will not close. Instead future large sends will not be attempted with the result that the viewport will appear to freeze, or in some situations the image will become sporadic if the image size is typically very close to the maximum value.
+1. The Global Image Adjustment values were not properly restored to the Iris-Server panel when the configuration was loaded.
 ## 1.6.1
 1. Global Image Adjustment option to allow all viewports without specific image adjustments to have their brightness, contrast, and gamma adjusted before it is sent to the Iris-Client
 2. ViewPort image Adjustment allows the brightness, contrast, and gamma for a particular viewport to be adjusted before it is sent to the Iris-Client
