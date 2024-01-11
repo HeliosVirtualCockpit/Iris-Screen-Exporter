@@ -5,6 +5,7 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using Iris.Common;
+using System.Collections.Generic;
 
 namespace Iris.Client
 {
@@ -89,10 +90,18 @@ namespace Iris.Client
         }
         private void OpenConfig()
         {
+            List<ViewPortForm> vpRemoval = new List<ViewPortForm>();
             foreach (ViewPortForm vpf in windows)
             {
                 vpf.StopListening();
+                vpRemoval.Add(vpf);
             }
+            foreach(ViewPortForm vpf in vpRemoval)
+            {
+                vpf.Dispose();
+                windows.Remove(vpf);
+            }
+            vpRemoval.Clear();  
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
                 Filter = "Iris XML files (*.xml)|*.xml|Iris files (*.iris)|*.iris",
