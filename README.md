@@ -131,6 +131,7 @@ Typically when Iris is being used, the screen areas being captured by the Iris-S
 ## The iris.xml configuration file
 
 Before starting Iris you need to create an "iris.xml" configuration file. An example is included in the install directory. All coordinates are in pixels with (0,0) being the top left corner of the Windows primary display. This is a different coordinate system to the one used by DCS.
+The default location for Iris configuration files is "My Documents", subfolder `Helios\IRIS\`.
 <details markdown="1">
 <summary markdown="span">List of the XML Elements used in the Iris Configuration</summary>
   

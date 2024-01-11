@@ -47,12 +47,10 @@ namespace Iris.Server
 
                 textBox1.Text = trackBar1.Value.ToString();
                 generateViewPorts();
-                //buttonOpen.Enabled = false;
-                //buttonOpen.Visible = false;
             }
             else
             {
-#if !DEBUG
+#if DEBUG
                 generateTestData();
                 textBox1.Text = trackBar1.Value.ToString();
                 generateViewPorts();

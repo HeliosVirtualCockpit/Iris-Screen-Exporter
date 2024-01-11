@@ -22,15 +22,6 @@
       <SizeY>300</SizeY>
       <ScreenPositionX>1</ScreenPositionX>
       <ScreenPositionY>400</ScreenPositionY>
-      <ImageAdjustment>
-        <Brightness>1.5</Brightness>
-        <RedBrightness>1.5</RedBrightness>
-        <GreenBrightness>1.5</GreenBrightness>
-        <BlueBrightness>1.5</BlueBrightness>
-        <AlphaBrightness>1</AlphaBrightness>
-        <Gamma>1</Gamma>
-        <Contrast>1</Contrast>
-      </ImageAdjustment>
     </ViewPort>
   </ViewPorts>
   <PollingInterval>100</PollingInterval>
