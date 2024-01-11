@@ -77,7 +77,7 @@ namespace Iris.Client
         public void StopListening()
         {
             Listening = false;
-            client.Close();
+            if(client != null) client.Close();
         }
 
         private void Poll()
