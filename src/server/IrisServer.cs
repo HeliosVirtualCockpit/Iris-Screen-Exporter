@@ -199,7 +199,13 @@ namespace Iris.Server
             IrisConfig loader = Helpers.LoadConfig(fileName);
             if (loader != null)
             {
-                _imageAdjustmentGlobal = loader.GlobalImageAdjustment;
+                try
+                {
+                    _imageAdjustmentGlobal = loader.GlobalImageAdjustment;
+                } catch(Exception e)
+                {
+                    _imageAdjustmentGlobal = new ImageAdjustment();
+                } 
                 numericUpDownBrightness.Value = Convert.ToDecimal(_imageAdjustmentGlobal.Brightness);
                 numericUpDownContrast.Value = Convert.ToDecimal(_imageAdjustmentGlobal.Contrast);
                 numericUpDownGamma.Value = Convert.ToDecimal(_imageAdjustmentGlobal.Gamma);
