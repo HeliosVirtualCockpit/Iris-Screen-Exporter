@@ -13,16 +13,26 @@ namespace Iris.Server
         private BindingSource viewPorts;
         private UdpClient conn;
         private string configFile = "iris.xml";
+        private static readonly string heliosPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Helios");
+        private static readonly string irisPath = Path.Combine(heliosPath, "IRIS");
         private ImageAdjustment _imageAdjustmentGlobal;
         private Boolean _networkErrorAlreadyReported = false;
+        private string _defaultFormTitle = "Iris Screen Exporter - Server";
         private Icon icon;
         private double _smallestFailingSendSize = 69000;
         public IrisServer(string[] args)
         {
-            if(args.Length > 0) configFile = args[0];
+            if (!Directory.Exists(heliosPath)) { Directory.CreateDirectory(heliosPath); }
+            if (!Directory.Exists(irisPath)) { Directory.CreateDirectory(irisPath); }
+            if (!File.Exists(Path.Combine(irisPath, configFile)))
+            {
+                File.Copy("iris.xml", Path.Combine(irisPath, configFile),false);
+            }
+            configFile = Path.Combine(irisPath, configFile);
+
+            if (args.Length > 0 && args[0] != null) configFile = args[0];
             InitializeComponent();
         }
-
         private void Form1_Load(object sender, EventArgs e)
         {
             icon = Common.Properties.Resources.iris;
@@ -31,7 +41,7 @@ namespace Iris.Server
             conn = new UdpClient();
             viewPorts.DataSource = typeof(ViewPort);
 
-            if (File.Exists(configFile))
+            if (!string.IsNullOrEmpty(configFile) && File.Exists(configFile))
             {
                 LoadConfig(configFile);
 
@@ -44,14 +54,12 @@ namespace Iris.Server
                 generateTestData();
                 textBox1.Text = trackBar1.Value.ToString();
                 generateViewPorts();
-#else 
-                MessageBox.Show(configFile+" not found! Please create a config File", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Stop, MessageBoxDefaultButton.Button1
-                    , MessageBoxOptions.ServiceNotification);
-                this.Close();
+#else
+                MessageBox.Show($"{configFile} not found.  Please create a config File", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1
+                , MessageBoxOptions.ServiceNotification);
+                textBox1.Text = "New Config";                    
 #endif
             }
-
-
         }
 
         private void generateViewPorts()
@@ -196,6 +204,18 @@ namespace Iris.Server
         }
         private void LoadConfig(string fileName)
         {
+            if (string.IsNullOrEmpty(fileName))
+            {
+                OpenFileDialog openFileDialog = new OpenFileDialog {
+                    Filter = "Iris XML files (*.xml)|*.xml|Iris files (*.iris)|*.iris",
+                    InitialDirectory = irisPath
+                };
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    configFile = fileName = openFileDialog.FileName;
+                }
+            }
+
             IrisConfig loader = Helpers.LoadConfig(fileName);
             if (loader != null)
             {
@@ -219,16 +239,32 @@ namespace Iris.Server
         }
         private void SaveConfig(string fileName)
         {
-            fileName = fileName.Equals("") ? "TestData.xml" : fileName;
-            IrisConfig saver = new IrisConfig();
-            saver.PollingInterval = timer1.Interval;
-            saver.ViewPorts = (BindingList<ViewPort>)viewPorts.List;
-            saver.GlobalImageAdjustment = _imageAdjustmentGlobal;
-
-            if (Helpers.SaveConfig(saver, fileName))
+            SaveFileDialog saveFileDialog = new SaveFileDialog {
+                Filter = "Iris XML files (*.xml)|*.xml|Iris files (*.iris)|*.iris",
+                InitialDirectory = irisPath,
+                FileName = fileName 
+            };
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                MessageBox.Show($"{viewPorts.Count} viewports Saved in {fileName}");
+                configFile = fileName = saveFileDialog.FileName;
+                IrisConfig saver = new IrisConfig();
+                saver.PollingInterval = timer1.Interval;
+                saver.ViewPorts = (BindingList<ViewPort>)viewPorts.List;
+                saver.GlobalImageAdjustment = _imageAdjustmentGlobal;
+
+                if (Helpers.SaveConfig(saver, fileName))
+                {
+                    MessageBox.Show($"{viewPorts.Count} viewports Saved in {fileName}");
+                    this.Text = $"{_defaultFormTitle} - {Path.GetFileNameWithoutExtension(fileName)}";
+
+                }
+
+            } else
+            {
+                MessageBox.Show($"no viewports Saved to file: {fileName}");
             }
+
+
         }
 
         private void IrisServer_FormClosing(object sender, FormClosingEventArgs e)
@@ -269,6 +305,34 @@ namespace Iris.Server
         private ImageAdjustment IsReset(ImageAdjustment iA)
         {
             return (iA.Brightness != 1.0f || iA.Contrast != 1.0f || iA.Gamma != 1.0f)? iA : null;
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void buttonOpen_Click(object sender, EventArgs e)
+        {
+            LoadConfig(null);
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LoadConfig(null);
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveConfig(configFile);
+        }
+
+        private void addViewportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

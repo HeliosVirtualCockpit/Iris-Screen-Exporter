@@ -35,9 +35,15 @@ namespace Iris.Common
             XmlSerializer ser = new XmlSerializer(typeof(IrisConfig), new Type[] { typeof(ViewPort) });
             try
             {
-                using (var stream = File.OpenRead(fileName))
+                if (File.Exists(fileName))
                 {
-                    loader = (IrisConfig)ser.Deserialize(stream);
+                    using (var stream = File.OpenRead(fileName))
+                    {
+                        loader = (IrisConfig)ser.Deserialize(stream);
+                    }
+                } else
+                {
+                    throw new Exception("Configuration file not found.");
                 }
             } catch (Exception ex)
             {

@@ -51,7 +51,7 @@ adjustments are limited to brightness, contrast and gamma.
 ## Overview
 
 Iris allows you to define "viewports" on your screen that will be captured and exported over the network via UDP to be displayed on another machine. All of the settings are stored in the iris.xml configuration file. Both the Iris server and Iris client can share the same configuration file. This makes it possible to install Iris on a shared drive and run the executable files on different computers.
-
+**Note:** Iris is fundamentally a command line tool, and although there is a very limited user interface, creation of configuration files will certainly require changing values in the configuration file using a text editor.   
 ## The Iris-Server
 
 Iris-Server is the program responsible for capturing and sending the viewports over the network. For every viewport defined in the "iris.xml" file it will capture that viewport and send it via UDP to the corresponding host/port defined. Since host/port is defined for each viewport it is possible for a single server to send viewports to many clients running on multiple machines. Each viewport must have a unique port number which needs to be unused by another program or service.
@@ -131,6 +131,7 @@ Typically when Iris is being used, the screen areas being captured by the Iris-S
 ## The iris.xml configuration file
 
 Before starting Iris you need to create an "iris.xml" configuration file. An example is included in the install directory. All coordinates are in pixels with (0,0) being the top left corner of the Windows primary display. This is a different coordinate system to the one used by DCS.
+The default location for Iris configuration files is "My Documents", subfolder `Helios\IRIS\`.
 <details markdown="1">
 <summary markdown="span">List of the XML Elements used in the Iris Configuration</summary>
   

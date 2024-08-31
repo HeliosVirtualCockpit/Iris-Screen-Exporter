@@ -57,18 +57,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_7EE4B6F8D70DA85A959C2B9663213A2F"
-        "OwnerKey" = "8:_7674E11100774E50B508BAE911378B1F"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_7EE4B6F8D70DA85A959C2B9663213A2F"
-        "OwnerKey" = "8:_FA25ABA7A20B49D59BFC487D6F27ED57"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_B0B4507C81C64E1C9FA8967CCF40437A"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -77,6 +65,18 @@
         {
         "MsmKey" = "8:_BFBD85E4AF4840578F96E96BD0B82EDB"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_DD24880A6FA31868E3BE0C42DDD9550D"
+        "OwnerKey" = "8:_7674E11100774E50B508BAE911378B1F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_DD24880A6FA31868E3BE0C42DDD9550D"
+        "OwnerKey" = "8:_FA25ABA7A20B49D59BFC487D6F27ED57"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -112,7 +112,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_7EE4B6F8D70DA85A959C2B9663213A2F"
+        "OwnerKey" = "8:_DD24880A6FA31868E3BE0C42DDD9550D"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -192,7 +192,7 @@
                 {
                 "Name" = "8:.NET Framework"
                 "Message" = "8:[VSDNETMSG]"
-                "FrameworkVersion" = "8:v4.0            "
+                "FrameworkVersion" = "8:v4.0             "
                 "AllowLaterVersions" = "11:FALSE"
                 "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=395269"
                 }
@@ -320,37 +320,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_7EE4B6F8D70DA85A959C2B9663213A2F"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Iris-common, Version=1.6.1000.0, Culture=neutral, processorArchitecture=AMD64"
-                "ScatterAssemblies"
-                {
-                    "_7EE4B6F8D70DA85A959C2B9663213A2F"
-                    {
-                    "Name" = "8:Iris-common.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Iris-common.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_EC753408B7B74787B000C45447753F2D"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B0B4507C81C64E1C9FA8967CCF40437A"
             {
             "SourcePath" = "8:..\\..\\src\\common\\Example Configurations\\iris-Example2.xml"
@@ -389,6 +358,37 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_DD24880A6FA31868E3BE0C42DDD9550D"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Iris-common, Version=1.6.3.0, Culture=neutral, processorArchitecture=AMD64"
+                "ScatterAssemblies"
+                {
+                    "_DD24880A6FA31868E3BE0C42DDD9550D"
+                    {
+                    "Name" = "8:Iris-common.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Iris-common.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_EC753408B7B74787B000C45447753F2D"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
         }

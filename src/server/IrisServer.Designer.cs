@@ -36,6 +36,7 @@
             this.numericUpDownContrast = new System.Windows.Forms.NumericUpDown();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.buttonOpen = new System.Windows.Forms.Button();
             this.labelGamma = new System.Windows.Forms.Label();
             this.labelContrast = new System.Windows.Forms.Label();
             this.labelBrightness = new System.Windows.Forms.Label();
@@ -45,12 +46,19 @@
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.button1 = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addViewportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBrightness)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownGamma)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownContrast)).BeginInit();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.tabControl1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolTipAdjustment
@@ -74,7 +82,7 @@
             0});
             this.numericUpDownBrightness.Name = "numericUpDownBrightness";
             this.numericUpDownBrightness.Size = new System.Drawing.Size(72, 22);
-            this.numericUpDownBrightness.TabIndex = 5;
+            this.numericUpDownBrightness.TabIndex = 2;
             this.numericUpDownBrightness.Tag = "Brightness";
             this.toolTipAdjustment.SetToolTip(this.numericUpDownBrightness, resources.GetString("numericUpDownBrightness.ToolTip"));
             this.numericUpDownBrightness.Value = new decimal(new int[] {
@@ -105,7 +113,7 @@
             131072});
             this.numericUpDownGamma.Name = "numericUpDownGamma";
             this.numericUpDownGamma.Size = new System.Drawing.Size(72, 22);
-            this.numericUpDownGamma.TabIndex = 12;
+            this.numericUpDownGamma.TabIndex = 4;
             this.numericUpDownGamma.Tag = "Gamma";
             this.toolTipAdjustment.SetToolTip(this.numericUpDownGamma, resources.GetString("numericUpDownGamma.ToolTip"));
             this.numericUpDownGamma.Value = new decimal(new int[] {
@@ -131,7 +139,7 @@
             0});
             this.numericUpDownContrast.Name = "numericUpDownContrast";
             this.numericUpDownContrast.Size = new System.Drawing.Size(72, 22);
-            this.numericUpDownContrast.TabIndex = 11;
+            this.numericUpDownContrast.TabIndex = 3;
             this.numericUpDownContrast.Tag = "Contrast";
             this.toolTipAdjustment.SetToolTip(this.numericUpDownContrast, resources.GetString("numericUpDownContrast.ToolTip"));
             this.numericUpDownContrast.Value = new decimal(new int[] {
@@ -147,6 +155,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.buttonOpen);
             this.tabPage1.Controls.Add(this.numericUpDownGamma);
             this.tabPage1.Controls.Add(this.numericUpDownContrast);
             this.tabPage1.Controls.Add(this.labelGamma);
@@ -166,6 +175,18 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Config";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // buttonOpen
+            // 
+            this.buttonOpen.Location = new System.Drawing.Point(36, 699);
+            this.buttonOpen.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonOpen.Name = "buttonOpen";
+            this.buttonOpen.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.buttonOpen.Size = new System.Drawing.Size(161, 28);
+            this.buttonOpen.TabIndex = 5;
+            this.buttonOpen.Text = "Open Config";
+            this.buttonOpen.UseVisualStyleBackColor = true;
+            this.buttonOpen.Click += new System.EventHandler(this.buttonOpen_Click);
             // 
             // labelGamma
             // 
@@ -206,7 +227,7 @@
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(36, 699);
+            this.buttonSave.Location = new System.Drawing.Point(220, 699);
             this.buttonSave.Margin = new System.Windows.Forms.Padding(4);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -244,7 +265,7 @@
             this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(161, 28);
-            this.button1.TabIndex = 4;
+            this.button1.TabIndex = 1;
             this.button1.Text = "Enable Capture";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
@@ -253,12 +274,63 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Location = new System.Drawing.Point(0, 30);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(923, 779);
             this.tabControl1.TabIndex = 5;
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
+            this.editToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(923, 30);
+            this.menuStrip1.TabIndex = 6;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openToolStripMenuItem,
+            this.saveToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // openToolStripMenuItem
+            // 
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(128, 26);
+            this.openToolStripMenuItem.Text = "Open";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
+            // 
+            // saveToolStripMenuItem
+            // 
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(128, 26);
+            this.saveToolStripMenuItem.Text = "Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addViewportToolStripMenuItem});
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(49, 24);
+            this.editToolStripMenuItem.Text = "Edit";
+            this.editToolStripMenuItem.Visible = false;
+            // 
+            // addViewportToolStripMenuItem
+            // 
+            this.addViewportToolStripMenuItem.Name = "addViewportToolStripMenuItem";
+            this.addViewportToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.addViewportToolStripMenuItem.Text = "Add Viewport";
+            this.addViewportToolStripMenuItem.Click += new System.EventHandler(this.addViewportToolStripMenuItem_Click);
             // 
             // IrisServer
             // 
@@ -266,6 +338,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(923, 828);
             this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "IrisServer";
             this.Text = "Iris Screen Exporter - Server";
@@ -278,7 +352,10 @@
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.tabControl1.ResumeLayout(false);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -299,6 +376,13 @@
         private System.Windows.Forms.NumericUpDown numericUpDownGamma;
         private System.Windows.Forms.NumericUpDown numericUpDownContrast;
         private System.Windows.Forms.ToolTip toolTipAdjustment;
+        private System.Windows.Forms.Button buttonOpen;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addViewportToolStripMenuItem;
     }
 }
 

@@ -1,30 +1,37 @@
 <?xml version="1.0"?>
-<IrisConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<IrisConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <ViewPorts>
     <ViewPort>
-      <Name>Left MFCD</Name>
-      <Description>This is the Left MFCD</Description>
+      <Name>My Test View</Name>
       <Host>localhost</Host>
       <Port>12001</Port>
-      <ScreenCaptureX>0</ScreenCaptureX>
-      <ScreenCaptureY>0</ScreenCaptureY>
+      <ScreenCaptureX>1</ScreenCaptureX>
+      <ScreenCaptureY>1</ScreenCaptureY>
       <SizeX>300</SizeX>
       <SizeY>300</SizeY>
-      <ScreenPositionX>10</ScreenPositionX>
-      <ScreenPositionY>300</ScreenPositionY>
+      <ScreenPositionX>301</ScreenPositionX>
+      <ScreenPositionY>400</ScreenPositionY>
     </ViewPort>
     <ViewPort>
-      <Name>Right MFCD</Name>
-      <Description>This is the Right MFCD</Description>
+      <Name>TestView1</Name>
       <Host>localhost</Host>
       <Port>12002</Port>
-      <ScreenCaptureX>300</ScreenCaptureX>
-      <ScreenCaptureY>0</ScreenCaptureY>
+      <ScreenCaptureX>301</ScreenCaptureX>
+      <ScreenCaptureY>1</ScreenCaptureY>
       <SizeX>300</SizeX>
       <SizeY>300</SizeY>
-      <ScreenPositionX>320</ScreenPositionX>
-      <ScreenPositionY>300</ScreenPositionY>
+      <ScreenPositionX>1</ScreenPositionX>
+      <ScreenPositionY>400</ScreenPositionY>
     </ViewPort>
   </ViewPorts>
   <PollingInterval>100</PollingInterval>
+  <GlobalImageAdjustment>
+    <Brightness>1</Brightness>
+    <RedBrightness>1</RedBrightness>
+    <GreenBrightness>1</GreenBrightness>
+    <BlueBrightness>1</BlueBrightness>
+    <AlphaBrightness>1</AlphaBrightness>
+    <Gamma>2</Gamma>
+    <Contrast>2</Contrast>
+  </GlobalImageAdjustment>
 </IrisConfig>
