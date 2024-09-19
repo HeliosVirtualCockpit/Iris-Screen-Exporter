@@ -295,13 +295,7 @@ namespace Iris.Server
                     break;
                 default: break;
             }
-            _imageAdjustmentGlobal = IsReset(_imageAdjustmentGlobal);
         }
-        private ImageAdjustment IsReset(ImageAdjustment iA)
-        {
-            return (iA.Brightness != 1.0f || iA.Contrast != 1.0f || iA.Gamma != 1.0f)? iA : null;
-        }
-
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
