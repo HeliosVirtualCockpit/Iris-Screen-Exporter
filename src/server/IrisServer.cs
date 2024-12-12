@@ -146,18 +146,18 @@ namespace Iris.Server
                             switch (errorCode)
                             {
                                 case SocketErrorCodes.HostNotFound:
-                                    MessageBox.Show($"{se.Message}.  The hostname \"{vp.Host}\" you were trying to connect to was not found.  Please review your IRIS config file.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Stop, MessageBoxDefaultButton.Button1
+                                    MessageBox.Show($"{se.Message}.  The hostname \"{vp.Host}:{vp.Port}\" you were trying to connect to was not found.  Please review your IRIS config file.", "ERROR detected by IRIS Server", MessageBoxButtons.OK, MessageBoxIcon.Stop, MessageBoxDefaultButton.Button1
             , MessageBoxOptions.ServiceNotification);
                                     NetworkError = true;
                                     break;
                                 case SocketErrorCodes.MessgeTooLong:
                                     _smallestFailingSendSize = imageByteArray.Length;
                                     ///TODO log the fact that a send has failed because it was too large.
-                                    //MessageBox.Show($"Send to hostname \"{vp.Host}\" for item \"{vp.Name}\" was too large at {imageByteArray.Length} bytes.  {se.Message}.  Please review your IRIS config file.", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1
+                                    //MessageBox.Show($"Send to hostname \"{vp.Host}\" for item \"{vp.Name}\" was too large at {imageByteArray.Length} bytes.  {se.Message}.  Please review your IRIS config file.", "WARNING from IRIS Server", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1
             //, MessageBoxOptions.ServiceNotification);
                                     break;
                                 default:
-                                    MessageBox.Show($"{se.Message} - A network Error has occurred when communicatiing with \"{vp.Host}\":{se.SocketErrorCode}", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Stop, MessageBoxDefaultButton.Button1
+                                    MessageBox.Show($"{se.Message} - A network Error has occurred when communicatiing with \"{vp.Host}:{vp.Port}\":{se.SocketErrorCode}", "ERROR detected by IRIS Server", MessageBoxButtons.OK, MessageBoxIcon.Stop, MessageBoxDefaultButton.Button1
             , MessageBoxOptions.ServiceNotification);
                                     NetworkError = true;
                                     break;
