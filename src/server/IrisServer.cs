@@ -54,7 +54,7 @@ namespace Iris.Server
             }
             else
             {
-#if DEBUG
+#if !DEBUG
                 generateTestData();
                 textBox1.Text = trackBar1.Value.ToString();
                 generateViewPorts();
@@ -139,26 +139,33 @@ namespace Iris.Server
                     {
                         if (imageByteArray.Length < _smallestFailingSendSize)
                         {
-                            // do our own DNS caching to avoid excessive lookups
-                            if (_dnsResolveNeeded && IPAddress.TryParse(vp.Host, out IPAddress ipAddress))
+                            if (_dnsResolveNeeded)
                             {
-                                if(ipAddress.AddressFamily == AddressFamily.InterNetwork) {
-                                vp.Host = ipAddress.ToString();  // we do this to ensure that a partial IP V4 addess eg "3" appears as "0.0.0.3"
-                                }
-                            } else
-                            {
-                                if(_hosts.ContainsKey(vp.Host))
+                                // do our own DNS caching to avoid excessive lookups
+                                if (IPAddress.TryParse(vp.Host, out IPAddress ipAddress))
                                 {
-                                    vp.Host = _hosts[vp.Host];  
-                                } else
-                                {
-                                    IPHostEntry hostEntry = Dns.GetHostEntry(vp.Host);
-                                    foreach (var ip in hostEntry.AddressList)
+                                    if (ipAddress.AddressFamily == AddressFamily.InterNetwork)
                                     {
-                                        if (ip.AddressFamily == AddressFamily.InterNetwork)
+                                        vp.Host = ipAddress.ToString();  // we do this to ensure that a partial IP V4 addess eg "3" appears as "0.0.0.3"
+                                    }
+                                }
+                                else
+                                {
+                                    if (_hosts.ContainsKey(vp.Host))
+                                    {
+                                        vp.Host = _hosts[vp.Host];
+                                    }
+                                    else
+                                    {
+                                        IPHostEntry hostEntry = Dns.GetHostEntry(vp.Host);
+                                        foreach (var ip in hostEntry.AddressList)
                                         {
-                                            _hosts.Add(vp.Host, ip.ToString());
-                                            vp.Host = ip.ToString();
+                                            if (ip.AddressFamily == AddressFamily.InterNetwork)
+                                            {
+                                                _hosts.Add(vp.Host, ip.ToString());
+                                                vp.Host = ip.ToString();
+                                                break;
+                                            }
                                         }
                                     }
                                 }
