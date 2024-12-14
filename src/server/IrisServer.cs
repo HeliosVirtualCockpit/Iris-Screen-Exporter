@@ -54,7 +54,7 @@ namespace Iris.Server
             }
             else
             {
-#if !DEBUG
+#if DEBUG
                 generateTestData();
                 textBox1.Text = trackBar1.Value.ToString();
                 generateViewPorts();
@@ -158,14 +158,21 @@ namespace Iris.Server
                                     else
                                     {
                                         IPHostEntry hostEntry = Dns.GetHostEntry(vp.Host);
+                                        bool foundIPv4 = false;
                                         foreach (var ip in hostEntry.AddressList)
                                         {
                                             if (ip.AddressFamily == AddressFamily.InterNetwork)
                                             {
                                                 _hosts.Add(vp.Host, ip.ToString());
                                                 vp.Host = ip.ToString();
+                                                foundIPv4 = true;
                                                 break;
                                             }
+                                        }
+                                        if (!foundIPv4)
+                                        {
+                                            MessageBox.Show($"The hostname \"{vp.Host}:{vp.Port}\" could not be resolved to an IP v4 address on start-up.  Please review your IRIS config file.", "ERROR detected by IRIS Server", MessageBoxButtons.OK, MessageBoxIcon.Stop, MessageBoxDefaultButton.Button1
+                    , MessageBoxOptions.ServiceNotification);
                                         }
                                     }
                                 }
