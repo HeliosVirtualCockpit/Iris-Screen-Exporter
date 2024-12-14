@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Media;
 using System.Drawing;
 using System.IO;
+using System.Net;
 using System.Net.Sockets;
 using System.Windows.Forms;
 using Iris.Common;
@@ -22,6 +24,8 @@ namespace Iris.Server
         private string _defaultFormTitle = "Iris Screen Exporter - Server";
         private Icon icon;
         private double _smallestFailingSendSize = 69000;
+        private Dictionary<string,string> _hosts = new Dictionary<string,string>();
+        private bool _dnsResolveNeeded = true;
         public IrisServer(string[] args)
         {
             if (!Directory.Exists(heliosPath)) { Directory.CreateDirectory(heliosPath); }
@@ -160,8 +164,32 @@ namespace Iris.Server
                     imageByteArray = vp.Image.ToByteArray(System.Drawing.Imaging.ImageFormat.Jpeg);
                     try
                     {
-                        if(imageByteArray.Length < _smallestFailingSendSize)
+                        if (imageByteArray.Length < _smallestFailingSendSize)
                         {
+                            // do our own DNS caching to avoid excessive lookups
+                            if (_dnsResolveNeeded && IPAddress.TryParse(vp.Host, out IPAddress ipAddress))
+                            {
+                                if(ipAddress.AddressFamily == AddressFamily.InterNetwork) {
+                                vp.Host = ipAddress.ToString();  // we do this to ensure that a partial IP V4 addess eg "3" appears as "0.0.0.3"
+                                }
+                            } else
+                            {
+                                if(_hosts.ContainsKey(vp.Host))
+                                {
+                                    vp.Host = _hosts[vp.Host];  
+                                } else
+                                {
+                                    IPHostEntry hostEntry = Dns.GetHostEntry(vp.Host);
+                                    foreach (var ip in hostEntry.AddressList)
+                                    {
+                                        if (ip.AddressFamily == AddressFamily.InterNetwork)
+                                        {
+                                            _hosts.Add(vp.Host, ip.ToString());
+                                            vp.Host = ip.ToString();
+                                        }
+                                    }
+                                }
+                            }
                             conn.Send(imageByteArray, imageByteArray.Length, vp.Host, vp.Port);
                         }
                     }
@@ -198,6 +226,7 @@ namespace Iris.Server
                     }
                 }
             }
+            _dnsResolveNeeded = false;
         }
 
         private void button1_Click_1(object sender, EventArgs e)
