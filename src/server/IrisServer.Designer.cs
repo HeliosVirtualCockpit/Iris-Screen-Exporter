@@ -74,14 +74,15 @@
             0,
             0,
             65536});
-            this.numericUpDownBrightness.Location = new System.Drawing.Point(126, 226);
+            this.numericUpDownBrightness.Location = new System.Drawing.Point(94, 184);
+            this.numericUpDownBrightness.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.numericUpDownBrightness.Maximum = new decimal(new int[] {
             5,
             0,
             0,
             0});
             this.numericUpDownBrightness.Name = "numericUpDownBrightness";
-            this.numericUpDownBrightness.Size = new System.Drawing.Size(72, 22);
+            this.numericUpDownBrightness.Size = new System.Drawing.Size(54, 20);
             this.numericUpDownBrightness.TabIndex = 2;
             this.numericUpDownBrightness.Tag = "Brightness";
             this.toolTipAdjustment.SetToolTip(this.numericUpDownBrightness, resources.GetString("numericUpDownBrightness.ToolTip"));
@@ -100,7 +101,8 @@
             0,
             0,
             65536});
-            this.numericUpDownGamma.Location = new System.Drawing.Point(128, 306);
+            this.numericUpDownGamma.Location = new System.Drawing.Point(96, 249);
+            this.numericUpDownGamma.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.numericUpDownGamma.Maximum = new decimal(new int[] {
             5,
             0,
@@ -112,7 +114,7 @@
             0,
             131072});
             this.numericUpDownGamma.Name = "numericUpDownGamma";
-            this.numericUpDownGamma.Size = new System.Drawing.Size(72, 22);
+            this.numericUpDownGamma.Size = new System.Drawing.Size(54, 20);
             this.numericUpDownGamma.TabIndex = 4;
             this.numericUpDownGamma.Tag = "Gamma";
             this.toolTipAdjustment.SetToolTip(this.numericUpDownGamma, resources.GetString("numericUpDownGamma.ToolTip"));
@@ -131,14 +133,15 @@
             0,
             0,
             65536});
-            this.numericUpDownContrast.Location = new System.Drawing.Point(128, 266);
+            this.numericUpDownContrast.Location = new System.Drawing.Point(96, 216);
+            this.numericUpDownContrast.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.numericUpDownContrast.Maximum = new decimal(new int[] {
             5,
             0,
             0,
             0});
             this.numericUpDownContrast.Name = "numericUpDownContrast";
-            this.numericUpDownContrast.Size = new System.Drawing.Size(72, 22);
+            this.numericUpDownContrast.Size = new System.Drawing.Size(54, 20);
             this.numericUpDownContrast.TabIndex = 3;
             this.numericUpDownContrast.Tag = "Contrast";
             this.toolTipAdjustment.SetToolTip(this.numericUpDownContrast, resources.GetString("numericUpDownContrast.ToolTip"));
@@ -167,22 +170,20 @@
             this.tabPage1.Controls.Add(this.textBox1);
             this.tabPage1.Controls.Add(this.trackBar1);
             this.tabPage1.Controls.Add(this.button1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 25);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage1.Size = new System.Drawing.Size(915, 750);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage1.Size = new System.Drawing.Size(684, 607);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Config";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // buttonOpen
             // 
-            this.buttonOpen.Location = new System.Drawing.Point(36, 699);
-            this.buttonOpen.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonOpen.Location = new System.Drawing.Point(27, 568);
             this.buttonOpen.Name = "buttonOpen";
             this.buttonOpen.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.buttonOpen.Size = new System.Drawing.Size(161, 28);
+            this.buttonOpen.Size = new System.Drawing.Size(121, 23);
             this.buttonOpen.TabIndex = 5;
             this.buttonOpen.Text = "Open Config";
             this.buttonOpen.UseVisualStyleBackColor = true;
@@ -191,27 +192,30 @@
             // labelGamma
             // 
             this.labelGamma.AutoSize = true;
-            this.labelGamma.Location = new System.Drawing.Point(36, 306);
+            this.labelGamma.Location = new System.Drawing.Point(27, 249);
+            this.labelGamma.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelGamma.Name = "labelGamma";
-            this.labelGamma.Size = new System.Drawing.Size(55, 16);
+            this.labelGamma.Size = new System.Drawing.Size(43, 13);
             this.labelGamma.TabIndex = 10;
             this.labelGamma.Text = "Gamma";
             // 
             // labelContrast
             // 
             this.labelContrast.AutoSize = true;
-            this.labelContrast.Location = new System.Drawing.Point(36, 266);
+            this.labelContrast.Location = new System.Drawing.Point(27, 216);
+            this.labelContrast.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelContrast.Name = "labelContrast";
-            this.labelContrast.Size = new System.Drawing.Size(56, 16);
+            this.labelContrast.Size = new System.Drawing.Size(46, 13);
             this.labelContrast.TabIndex = 9;
             this.labelContrast.Text = "Contrast";
             // 
             // labelBrightness
             // 
             this.labelBrightness.AutoSize = true;
-            this.labelBrightness.Location = new System.Drawing.Point(36, 226);
+            this.labelBrightness.Location = new System.Drawing.Point(27, 184);
+            this.labelBrightness.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelBrightness.Name = "labelBrightness";
-            this.labelBrightness.Size = new System.Drawing.Size(70, 16);
+            this.labelBrightness.Size = new System.Drawing.Size(56, 13);
             this.labelBrightness.TabIndex = 8;
             this.labelBrightness.Text = "Brightness";
             // 
@@ -219,19 +223,19 @@
             // 
             this.labelAdjustmentTitle.AutoSize = true;
             this.labelAdjustmentTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAdjustmentTitle.Location = new System.Drawing.Point(36, 182);
+            this.labelAdjustmentTitle.Location = new System.Drawing.Point(27, 148);
+            this.labelAdjustmentTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelAdjustmentTitle.Name = "labelAdjustmentTitle";
-            this.labelAdjustmentTitle.Size = new System.Drawing.Size(180, 16);
+            this.labelAdjustmentTitle.Size = new System.Drawing.Size(147, 13);
             this.labelAdjustmentTitle.TabIndex = 7;
             this.labelAdjustmentTitle.Text = "Global Image Adjustment";
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(220, 699);
-            this.buttonSave.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonSave.Location = new System.Drawing.Point(165, 568);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.buttonSave.Size = new System.Drawing.Size(161, 28);
+            this.buttonSave.Size = new System.Drawing.Size(121, 23);
             this.buttonSave.TabIndex = 6;
             this.buttonSave.Text = "Save Config";
             this.buttonSave.UseVisualStyleBackColor = true;
@@ -240,20 +244,18 @@
             // textBox1
             // 
             this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(49, 11);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox1.Location = new System.Drawing.Point(37, 9);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(132, 22);
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
             this.textBox1.TabIndex = 3;
             // 
             // trackBar1
             // 
-            this.trackBar1.Location = new System.Drawing.Point(47, 57);
-            this.trackBar1.Margin = new System.Windows.Forms.Padding(4);
-            this.trackBar1.Maximum = 20;
+            this.trackBar1.Location = new System.Drawing.Point(35, 46);
+            this.trackBar1.Maximum = 30;
             this.trackBar1.Minimum = 1;
             this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(139, 56);
+            this.trackBar1.Size = new System.Drawing.Size(104, 45);
             this.trackBar1.TabIndex = 2;
             this.trackBar1.TickFrequency = 2;
             this.trackBar1.Value = 10;
@@ -261,10 +263,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(36, 135);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
+            this.button1.Location = new System.Drawing.Point(27, 110);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(161, 28);
+            this.button1.Size = new System.Drawing.Size(121, 23);
             this.button1.TabIndex = 1;
             this.button1.Text = "Enable Capture";
             this.button1.UseVisualStyleBackColor = true;
@@ -274,11 +275,10 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tabControl1.Location = new System.Drawing.Point(0, 30);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
+            this.tabControl1.Location = new System.Drawing.Point(0, 24);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(923, 779);
+            this.tabControl1.Size = new System.Drawing.Size(692, 633);
             this.tabControl1.TabIndex = 5;
             // 
             // menuStrip1
@@ -289,7 +289,8 @@
             this.editToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(923, 30);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(692, 24);
             this.menuStrip1.TabIndex = 6;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -299,20 +300,20 @@
             this.openToolStripMenuItem,
             this.saveToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(128, 26);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(128, 26);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
@@ -321,26 +322,25 @@
             this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addViewportToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(49, 24);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.editToolStripMenuItem.Text = "Edit";
             this.editToolStripMenuItem.Visible = false;
             // 
             // addViewportToolStripMenuItem
             // 
             this.addViewportToolStripMenuItem.Name = "addViewportToolStripMenuItem";
-            this.addViewportToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.addViewportToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.addViewportToolStripMenuItem.Text = "Add Viewport";
             this.addViewportToolStripMenuItem.Click += new System.EventHandler(this.addViewportToolStripMenuItem_Click);
             // 
             // IrisServer
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(923, 828);
+            this.ClientSize = new System.Drawing.Size(692, 673);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "IrisServer";
             this.Text = "Iris Screen Exporter - Server";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.IrisServer_FormClosing);
