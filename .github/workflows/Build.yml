@@ -94,14 +94,14 @@ jobs:
           compress-archive -Path "./Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}_32bit.msi" "./Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}_32bit.zip"
           popd
       - name: Upload x64 installer
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Iris Screen Exporter Installer
           path: "Installer/Iris Setup/Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}.msi"
           retention-days: 2
 
       - name: Upload x86 installer  
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Iris Screen Exporter Installer (32bit) Untested
           path: "Installer/Iris Setup/Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}_32bit.msi"
