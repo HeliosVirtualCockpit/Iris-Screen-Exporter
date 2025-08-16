@@ -59,7 +59,7 @@ jobs:
         uses: microsoft/setup-msbuild@v2
 
       - name: Setup VS Dev Environment
-        uses: seanmiddleditch/gha-setup-vsdevenv@v4
+        uses: seanmiddleditch/gha-setup-vsdevenv@v5
         
       - name: Navigate to Workspace
         run: cd $GITHUB_WORKSPACE
@@ -94,7 +94,7 @@ jobs:
           compress-archive -Path "./Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}_32bit.msi" "./Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}_32bit.zip"
           popd
       - name: Upload x64 installer
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4.6.2
         with:
           name: Iris Screen Exporter Installer
           path: "Installer/Iris Setup/Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}.msi"
@@ -139,11 +139,12 @@ jobs:
         if: contains(github.ref , 'release')
         id: create_release
         run: |
+          ls -lR Installer/Iris Setup/
           gh release create V${{ steps.bump_tag.outputs.new_version }} --draft --target ${{ github.ref }} |
           --title "Iris Screen Exporter V${{ steps.bump_tag.outputs.new_version }}" |
           -F readme.md |
           "Installer/Iris Setup/Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}.zip#Iris_Screen_Exporter V${{ steps.bump_tag.outputs.new_version }} Windows 64 Bit Zip" |
-          "Installer/Iris Setup/Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}_32bit.zip#Iris_Screen_Exporter V${{ steps.bump_tag.outputs.new_version }} Windows 32 Bit Zip" 
+          "Installer/Iris Setup/Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}_32bit.zip#Iris Screen Exporter V${{ steps.bump_tag.outputs.new_version }} Installer (32bit) Untested Zip" 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         shell: bash
