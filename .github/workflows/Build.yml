@@ -133,7 +133,7 @@ jobs:
       - name: Upload Release Asset 
         if: contains(github.ref , 'release')
         id: upload-release-asset-1
-        uses: actions/upload-release-asset@v1
+        uses: actions/upload-release-asset@v1.1.4
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -141,10 +141,11 @@ jobs:
           asset_path: "Installer/Iris Setup/Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}.zip"
           asset_name: Iris_Screen_Exporter V${{ steps.bump_tag.outputs.new_version }} Windows 64 Bit Zip
           asset_content_type: application/zip
+
       - name: Upload Release Asset 2
         if: contains(github.ref , 'release')
         id: upload-release-asset-2
-        uses: actions/upload-release-asset@v1
+        uses: actions/upload-release-asset@v1.1.4
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
