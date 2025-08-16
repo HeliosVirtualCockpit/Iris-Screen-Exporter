@@ -1,4 +1,4 @@
-name: Build and Create Installation Files for Iris
+2name: Build and Create Installation Files for Iris
 
 # Controls when the workflow will run
 on:
@@ -56,7 +56,7 @@ jobs:
           copy-item ".\*.md" "src\common\docs\"          
  
       - name: Setup MSBuild
-        uses: microsoft/setup-msbuild@v1.3.1
+        uses: microsoft/setup-msbuild@v2
 
       - name: Setup VS Dev Environment
         uses: seanmiddleditch/gha-setup-vsdevenv@v4
