@@ -22,7 +22,7 @@ namespace Iris.Server
         private string _defaultFormTitle = "Iris Screen Exporter - Server";
         private Icon icon;
         private double _smallestFailingSendSize = 69000;
-        private Dictionary<string,string> _hosts = new Dictionary<string,string>();
+        private Dictionary<string, string> _hosts = new Dictionary<string, string>();
         private bool _dnsResolveNeeded = true;
         public IrisServer(string[] args)
         {
@@ -178,6 +178,7 @@ namespace Iris.Server
                                 }
                             }
                             conn.Send(imageByteArray, imageByteArray.Length, vp.Host, vp.Port);
+                            vp.retries = 0;
                         }
                     }
                     catch (SocketException se)
@@ -188,9 +189,14 @@ namespace Iris.Server
                             switch (errorCode)
                             {
                                 case SocketErrorCodes.HostNotFound:
-                                    MessageBox.Show($"{se.Message}.  The hostname \"{vp.Host}:{vp.Port}\" you were trying to connect to was not found.  Please review your IRIS config file.", "ERROR detected by IRIS Server", MessageBoxButtons.OK, MessageBoxIcon.Stop, MessageBoxDefaultButton.Button1
-            , MessageBoxOptions.ServiceNotification);
-                                    NetworkError = true;
+                                    int maxRetryCount = 10;
+                                    if (vp.retries >= maxRetryCount)
+                                    {
+                                        MessageBox.Show($"{se.Message}.  The hostname \"{vp.Host}:{vp.Port}\" you were trying to connect to was still not found after {maxRetryCount} attempts.  Please review your IRIS config file.", "ERROR detected by IRIS Server", MessageBoxButtons.OK, MessageBoxIcon.Stop, MessageBoxDefaultButton.Button1
+                , MessageBoxOptions.ServiceNotification);
+                                        NetworkError = true;
+                                    }
+                                    else { vp.retries++; }
                                     break;
                                 case SocketErrorCodes.MessgeTooLong:
                                     _smallestFailingSendSize = imageByteArray.Length;
