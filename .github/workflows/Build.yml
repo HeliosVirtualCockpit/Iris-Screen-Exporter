@@ -134,7 +134,7 @@ jobs:
         if: contains(github.ref , 'release')
         id: create_release
         run: |
-          gh release create --draft ${{ github.ref }} --title "Iris Screen Exporter V${{ steps.bump_tag.outputs.new_version }}" --notes "${{ env.ABOUT }}"
+          gh release create V${{ steps.bump_tag.outputs.new_version }} --draft --target ${{ github.ref }} --title "Iris Screen Exporter V${{ steps.bump_tag.outputs.new_version }}" -F readme.md
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
