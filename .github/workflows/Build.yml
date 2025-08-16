@@ -15,11 +15,11 @@ jobs:
     runs-on: windows-latest
     
     steps:      
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v5
 
       - name: bump version and push 
         id: bump_tag
-        uses: mathieudutour/github-tag-action@v6.1
+        uses: mathieudutour/github-tag-action@v6.2
         with:
           github_token: ${{ secrets.github_token }}
           default_bump: patch
@@ -101,7 +101,7 @@ jobs:
           retention-days: 2
 
       - name: Upload x86 installer  
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4.6.2
         with:
           name: Iris Screen Exporter Installer (32bit) Untested
           path: "Installer/Iris Setup/Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}_32bit.msi"
@@ -138,7 +138,7 @@ jobs:
       - name: Upload Release Asset 
         if: contains(github.ref , 'release')
         id: upload-release-asset-1
-        uses: actions/upload-release-asset@v1
+        uses: actions/upload-release-asset@v1.1.4
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -150,7 +150,7 @@ jobs:
       - name: Upload Release Asset 2
         if: contains(github.ref , 'release')
         id: upload-release-asset-2
-        uses: actions/upload-release-asset@v1
+        uses: actions/upload-release-asset@v1.1.4
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
