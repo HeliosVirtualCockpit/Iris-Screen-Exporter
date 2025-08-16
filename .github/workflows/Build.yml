@@ -107,38 +107,21 @@ jobs:
           path: "Installer/Iris Setup/Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}_32bit.msi"
           retention-days: 2
           
-      - name: If Release Branch, then create draft release notes
-        if: contains(github.ref , 'release')
-        run: |
-          echo "Release Branch:  Creating Draft Release"
- 
-      - name: Read About file
-        if: contains(github.ref , 'release')
-        id: getAbout
-        run: |
-          echo @"
-          ABOUT<<EOF
-          $($(gc readme.md | out-string))
-          EOF
-          "@ | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
-
-#      - name: Create a release
+#      - name: Read About file
 #        if: contains(github.ref , 'release')
-#        id: create_release
-#        uses: actions/create-release@v1.1.4
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#        with:
-#          tag_name: ${{ github.ref }}
-#          release_name: Iris Screen Exporter V${{ steps.bump_tag.outputs.new_version }}
-#          body: ${{ env.ABOUT }}
-#          draft: true
-#          prerelease: false
+#        id: getAbout
+#        run: |
+#          echo @"
+#          ABOUT<<EOF
+#          $($(gc readme.md | out-string))
+#          EOF
+#          "@ | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
 
       - name: Create a release
         if: contains(github.ref , 'release')
         id: create_release
         run: |
+          echo "Release Branch:  Creating Draft Release"
           ls -lR "Installer/Iris Setup/"
           gh release create V${{ steps.bump_tag.outputs.new_version }} --draft --target ${{ github.ref }} \
           --title "Iris Screen Exporter V${{ steps.bump_tag.outputs.new_version }}" \
