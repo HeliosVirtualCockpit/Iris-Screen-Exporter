@@ -129,27 +129,21 @@ jobs:
           body: ${{ env.ABOUT }}
           draft: true
           prerelease: false
-          
-      - name: Upload Release Asset 
-        if: contains(github.ref , 'release')
-        id: upload-release-asset-1
-        uses: actions/upload-release-asset@v1.1.4
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-          asset_path: "Installer/Iris Setup/Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}.zip"
-          asset_name: Iris_Screen_Exporter V${{ steps.bump_tag.outputs.new_version }} Windows 64 Bit Zip
-          asset_content_type: application/zip
 
-      - name: Upload Release Asset 2
+      - name: Upload Iris 64bit Installers
         if: contains(github.ref , 'release')
-        id: upload-release-asset-2
-        uses: actions/upload-release-asset@v1.1.4
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        id: upload-release-asset-64-Bit-Zip
+        uses: actions/upload-artifact@v4
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-          asset_path: "Installer/Iris Setup/Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}_32bit.zip"
-          asset_name: Iris_Screen_Exporter V${{ steps.bump_tag.outputs.new_version }} Windows 32 Bit Zip
-          asset_content_type: application/zip
+          name: Iris_Screen_Exporter V${{ steps.bump_tag.outputs.new_version }} Windows 64 Bit Zip
+          path: "Installer/Iris Setup/Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}.zip"
+          retention-days: 2
+
+      - name: Upload Iris 32bit Installers
+        if: contains(github.ref , 'release')
+        id: upload-release-asset-32-Bit-Zip
+        uses: actions/upload-artifact@v4
+        with:
+          name: Iris_Screen_Exporter V${{ steps.bump_tag.outputs.new_version }} Windows 32 Bit Zip
+          path: "Installer/Iris Setup/Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}_32bit.zip"
+          retention-days: 2
