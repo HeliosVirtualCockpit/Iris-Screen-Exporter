@@ -134,7 +134,11 @@ jobs:
         if: contains(github.ref , 'release')
         id: create_release
         run: |
-          gh release create V${{ steps.bump_tag.outputs.new_version }} --draft --target ${{ github.ref }} --title "Iris Screen Exporter V${{ steps.bump_tag.outputs.new_version }}" -F readme.md "Installer/Iris Setup/Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}.zip#Iris_Screen_Exporter V${{ steps.bump_tag.outputs.new_version }} Windows 64 Bit Zip" | "Installer/Iris Setup/Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}_32bit.zip#Iris_Screen_Exporter V${{ steps.bump_tag.outputs.new_version }} Windows 32 Bit Zip" 
+          gh release create V${{ steps.bump_tag.outputs.new_version }} --draft --target ${{ github.ref }} |
+          --title "Iris Screen Exporter V${{ steps.bump_tag.outputs.new_version }}" |
+          -F readme.md |
+          "Installer/Iris Setup/Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}.zip#Iris_Screen_Exporter V${{ steps.bump_tag.outputs.new_version }} Windows 64 Bit Zip" |
+          "Installer/Iris Setup/Iris_Screen_Exporter_${{ steps.bump_tag.outputs.new_tag }}_32bit.zip#Iris_Screen_Exporter V${{ steps.bump_tag.outputs.new_version }} Windows 32 Bit Zip" 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         shell: bash
