@@ -1,4 +1,4 @@
-2name: Build and Create Installation Files for Iris
+name: Build and Create Installation Files for Iris
 
 # Controls when the workflow will run
 on:
