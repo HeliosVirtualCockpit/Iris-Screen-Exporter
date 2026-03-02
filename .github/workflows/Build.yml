@@ -76,7 +76,8 @@ jobs:
       - name: NuGet Restore
         #if: steps.cache.outputs.cache-hit != 'true'
         run: |
-          nuget restore Iris Screen Exporter.sln
+          nuget restore "src/common/Iris-common.csproj"
+          nuget restore "Iris Screen Exporter.sln"
         
       - name: Build x86 and x64 Solutions
         run: |
