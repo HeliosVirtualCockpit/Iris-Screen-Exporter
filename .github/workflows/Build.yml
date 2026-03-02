@@ -68,6 +68,16 @@ jobs:
         run: .\DisableOutOfProcBuild.exe
         working-directory: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\CommonExtensions\Microsoft\VSI\DisableOutOfProcBuild
 
+      - uses: nuget/setup-nuget@v1
+        with:
+          nuget-api-key: ${{ secrets.NuGetAPIKey }}
+          nuget-version: '5.x'
+          
+      - name: NuGet Restore
+        #if: steps.cache.outputs.cache-hit != 'true'
+        run: |
+          nuget restore Helios.sln
+        
       - name: Build x86 and x64 Solutions
         run: |
           msbuild.exe -clp:WarningsOnly -warnAsMessage:MSB4078 -p:version=${{ steps.bump_tag.outputs.new_version }} "Iris Screen Exporter.sln" /p:platform="x64" /p:configuration="NoInstallers"
