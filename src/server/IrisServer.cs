@@ -247,16 +247,24 @@ namespace Iris.Server
             if (loader != null)
             {
                 _background = loader.Background;
-                try
+                _imageAdjustmentGlobal = loader.GlobalImageAdjustment;
+                if (_imageAdjustmentGlobal == null)
                 {
-                    _imageAdjustmentGlobal = loader.GlobalImageAdjustment;
-                } catch(Exception e)
-                {
-                    _imageAdjustmentGlobal = new ImageAdjustment();
-                } 
-                numericUpDownBrightness.Value = Convert.ToDecimal(_imageAdjustmentGlobal.Brightness);
+                    _imageAdjustmentGlobal = new ImageAdjustment()
+                    {
+                        Brightness = 1,
+                        Contrast = 1,
+                        Gamma = 1,
+                        RedBrightness = 1,
+                        GreenBrightness = 1,
+                        BlueBrightness = 1
+                    };
+                }
+                
                 numericUpDownContrast.Value = Convert.ToDecimal(_imageAdjustmentGlobal.Contrast);
                 numericUpDownGamma.Value = Convert.ToDecimal(_imageAdjustmentGlobal.Gamma);
+                numericUpDownBrightness.Value = Convert.ToDecimal(_imageAdjustmentGlobal.Brightness);
+
                 timer1.Interval = loader.PollingInterval;
                 viewPorts.DataSource = (BindingList<ViewPort>)loader.ViewPorts;
             }
