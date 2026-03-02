@@ -76,7 +76,7 @@ jobs:
       - name: NuGet Restore
         #if: steps.cache.outputs.cache-hit != 'true'
         run: |
-          nuget restore Helios.sln
+          nuget restore Iris Screen Exporter.sln
         
       - name: Build x86 and x64 Solutions
         run: |
