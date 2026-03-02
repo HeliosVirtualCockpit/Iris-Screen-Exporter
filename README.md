@@ -136,33 +136,39 @@ The default location for Iris configuration files is "My Documents", subfolder `
 <summary markdown="span">List of the XML Elements used in the Iris Configuration</summary>
   
 | Element | Description |
-|-----------------------------|---------------------------------------------------------------------------------------------------------|
-|`<ViewPorts>`| Defines a list of viewports. |
-|`  <ViewPort>`| Defines an individual viewport |
-|`    <Name>`| Defines a name for this viewport to be known by.  This is shown on the tabs for the viewport in the Iris-Server and the viewport window (if border is enabled)in the Iris-Client.  Do not use special characters unless you are familiar with  escaping these characters for XML |
-|`    <Description>`| A description about this viewport.  Do not use special characters unless you are familiar with escaping these characters for XML. |
-|`    <Host>`| Defines the hostname of the client that will be rendering the viewports.  Localhost, Hostname, or IP are all valid. |
-|`    <Port>`|Defines the port that the individual viewport will listen to.  Make sure you pick an unused port and it is allowed through your firewall. |
-|`    <ScreenCaptureX/Y>`| Define the (X,Y) coordinate of the top left corner of the viewport to be captured. |
-|`    <SizeX/Y>`| Define the horizontal, vertical size of the viewport to be captured. |
-|`    <ScreenPositionX/Y>`| Define the (X,Y) coordinate of the top left corner of the position of the viewport to be rendered on the client.  This can be manually set in the configuration file or be saved at runtime by the client. See the client section for details.  |
-|`    <ImageAdjustment>`| (optional) Defines the characteristics of the adjustment to be made to the image	captured for this viewport. |
-|`      <Brightness>`| This is a multiplier value applied to all of the brightness of all of the colors (but not the alpha channel). |
-|`      <RedBrightness>`| This is a multiplier value applied to the brightness of red. |
-|`      <GreenBrightness>`| This is a multiplier value applied to the brightness of green. |
-|`      <BlueBrightness>`| This is a multiplier value applied to the brightness of blue. |
-|`      <AlphaBrightness>`| This is always 1 |
-|`      <Contrast>`| This is a multiplier value applied to the contrast of all colors.. |
-|`      <Gamma>`| This is a multiplier value applied to the gamma of the image. |
-|`<PollingInterval>`| Defines the frequency that the viewports are captured and sent to the client |
-|`<GlobalImageAdjustment>`| (optional) Defines the characteristics of the adjust to be made to viewports which do not have their own adjustments specified |
-|`      <Brightness>`| This is a multiplier value applied to all of the brightness of all of the colors (but not the alpha channel). |
-|`      <RedBrightness>`| This is a multiplier value applied to the brightness of red. |
-|`      <GreenBrightness>`| This is a multiplier value applied to the brightness of green. |
-|`      <BlueBrightness>`| This is a multiplier value applied to the brightness of blue. |
-|`      <AlphaBrightness>`| This is always 1 |
-|`      <Contrast>`| This is a multiplier value applied to the contrast of all colors.. |
-|`      <Gamma>`| This is a multiplier value applied to the gamma of the image. |
+| ----------------------------- | --------------------------------------------------------------------------------------------------------- |
+| `<ViewPorts>` | Defines a list of viewports. |
+| `  <ViewPort>` | Defines an individual viewport |
+| `    <Name>`| Defines a name for this viewport to be known by.  This is shown on the tabs for the viewport in the Iris-Server and the viewport window (if border is enabled)in the Iris-Client.  Do not use special characters unless you are familiar with  escaping these characters for XML |
+| `    <Description>`| A description about this viewport.  Do not use special characters unless you are familiar with escaping these characters for XML. |
+| `    <Host>`| Defines the hostname of the client that will be rendering the viewports.  Localhost, Hostname, or IP are all valid. |
+| `    <Port>`|Defines the port that the individual viewport will listen to.  Make sure you pick an unused port and it is allowed through your firewall. |
+| `    <ScreenCaptureX/Y>`| Define the (X,Y) coordinate of the top left corner of the viewport to be captured. |
+| `    <SizeX/Y>`| Define the horizontal, vertical size of the viewport to be captured. |
+| `    <ScreenPositionX/Y>`| Define the (X,Y) coordinate of the top left corner of the position of the viewport to be rendered on the client.  This can be manually set in the configuration file or be saved at runtime by the client. See the client section for details.  |
+| `    <ImageAdjustment>`| (optional) Defines the characteristics of the adjustment to be made to the image	captured for this viewport. |
+| `      <Brightness>`| This is a multiplier value applied to all of the brightness of all of the colors (but not the alpha channel). |
+| `      <RedBrightness>`| This is a multiplier value applied to the brightness of red. |
+| `      <GreenBrightness>`| This is a multiplier value applied to the brightness of green. |
+| `      <BlueBrightness>`| This is a multiplier value applied to the brightness of blue. |
+| `      <AlphaBrightness>`| This is always 1 |
+| `      <Contrast>`| This is a multiplier value applied to the contrast of all colors.. |
+| `      <Gamma>`| This is a multiplier value applied to the gamma of the image. |
+| `<Background>` | Defines infomation about a barckground to appear behind the viewports. |
+| `  <Color>` | Color of the background |
+| `  <Visible>` | boolean indicating whether the background appears or not |
+| `  <SizeX>` | Width of the background |
+| `  <SizeY>` | Height of the background |
+| `  <ScreenCaptureX/Y>`| Define the (X,Y) coordinate of the top left corner of the background |
+| `<PollingInterval>`| Defines the frequency that the viewports are captured and sent to the client |
+| `<GlobalImageAdjustment>`| (optional) Defines the characteristics of the adjust to be made to viewports which do not have their own adjustments specified |
+| `      <Brightness>`| This is a multiplier value applied to all of the brightness of all of the colors (but not the alpha channel). |
+| `      <RedBrightness>`| This is a multiplier value applied to the brightness of red. |
+| `      <GreenBrightness>`| This is a multiplier value applied to the brightness of green. |
+| `      <BlueBrightness>`| This is a multiplier value applied to the brightness of blue. |
+| `      <AlphaBrightness>`| This is always 1 |
+| `      <Contrast>`| This is a multiplier value applied to the contrast of all colors.. |
+| `      <Gamma>`| This is a multiplier value applied to the gamma of the image. |
 </details>
 
 ### Example Configurations
@@ -407,6 +413,9 @@ _**Example 3:** Complete XML for iris.xml configuration file showing three recta
 
 In this example, there is a single viewport which the Iris-Server captures and an Iris-Client displays, however there are two ViewPorts defined in the XML. The ViewPort named "Background" is only processed by the Iris-Client, and it creates a background single color rectangle of the size and location specified. The background is ordered behind the viewports which are displaying data from the Iris-Server.
 
+** Note ** This mechanism has been deprecated in favour of a `<Background>` XML element.  This new element can be created in
+the IRIS Client.
+
 This configuration can be found in your program files folder under _"\Helios Virtual Cockpit\Iris Screen Exporter\Example Configurations\iris-Example4.xml"_
 
 ``` xml
@@ -453,6 +462,20 @@ The issues for Iris Screen Exporters can be viewed at [https://github.com/Helios
 
 <details>
 <summary>Change Log</summary>
+
+#### 1.6.4
+
+1. Implement UI elements to allow the Iris Client to define a background
+
+#### 1.6.3
+
+1. Minor changes 
+
+#### 1.6.2
+
+1. If a send fails because the viewport data was too large for the network, Iris-Server will not close. Instead future large sends will not be attempted with the result that the viewport will appear to freeze, or in some situations the image will become sporadic if the image size is typically very close to the maximum value.
+
+2. The Global Image Adjustment values were not properly restored to the Iris-Server panel when the configuration was loaded.
 
 #### 1.6.1
 
