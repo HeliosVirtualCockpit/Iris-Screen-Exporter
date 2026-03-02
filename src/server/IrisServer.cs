@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Windows.Media;
 using System.Drawing;
 using System.IO;
 using System.Net.Sockets;
@@ -11,6 +12,7 @@ namespace Iris.Server
     public partial class IrisServer : Form
     {
         private BindingSource viewPorts;
+        private Background _background;
         private UdpClient conn;
         private string configFile = "iris.xml";
         private static readonly string heliosPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Helios");
@@ -64,6 +66,7 @@ namespace Iris.Server
 
         private void generateViewPorts()
         {
+            ViewPort tempVp = null;
             foreach (ViewPort vp in viewPorts)
             {
                 if (vp.Name != "Background")
@@ -79,7 +82,30 @@ namespace Iris.Server
                     TabPage tPage = new TabPage(vp.Name);
                     tPage.Controls.Add(pBox);
                     tabControl1.TabPages.Add(tPage);
+                } else
+                {
+                    /// This is for the older "dummy Viewport" Background which we
+                    /// will convert to a Background element and remove the Background
+                    /// viewport so that it is not resaved.
+                    if(_background == null)
+                    {
+                        _background = new Background()
+                        {
+                            Color = Colors.Black,
+                            Visible = true,
+                            ScreenPositionX = vp.ScreenPositionX,
+                            ScreenPositionY = vp.ScreenPositionY,
+                            SizeX = vp.SizeX,
+                            SizeY = vp.SizeY
+                        };
+                    }
+                    tempVp = vp;
                 }
+            }
+            if (tempVp != null)
+            {
+                viewPorts.Remove(tempVp);
+                tempVp = null;
             }
             // Make sure that we start up and send data as the default
             timer1.Enabled = false;
@@ -113,6 +139,7 @@ namespace Iris.Server
             };
             viewPorts.Add(testView);
             viewPorts.Add(testView1);
+            Background background = new Background() {SizeX = 1920, SizeY = 1080, ScreenPositionX = 0,ScreenPositionY = 0, Color = System.Windows.Media.Color.FromArgb(0xff,0x00,0x00,0x00) };
         }
 
         private void trackBar1_Scroll(object sender, EventArgs e)
@@ -219,6 +246,7 @@ namespace Iris.Server
             IrisConfig loader = Helpers.LoadConfig(fileName);
             if (loader != null)
             {
+                _background = loader.Background;
                 try
                 {
                     _imageAdjustmentGlobal = loader.GlobalImageAdjustment;
@@ -250,6 +278,7 @@ namespace Iris.Server
                 IrisConfig saver = new IrisConfig();
                 saver.PollingInterval = timer1.Interval;
                 saver.ViewPorts = (BindingList<ViewPort>)viewPorts.List;
+                saver.Background = _background;
                 saver.GlobalImageAdjustment = _imageAdjustmentGlobal;
 
                 if (Helpers.SaveConfig(saver, fileName))

@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Reflection;
 using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using System.Windows.Media;
 using Iris.Common;
 using System.Collections.Generic;
 
@@ -11,10 +11,13 @@ namespace Iris.Client
 {
     public partial class IrisClient : Form
     {
-        private BindingSource viewPorts;
-        private BindingSource windows;
-        private IrisConfig loadedCfg;
-        private string configFile = "iris.xml";
+        private BindingSource _backgroundSource;
+        private Form _backgroundForm;
+        private Background _background;
+        private BindingSource _viewPorts;
+        private BindingSource _windows;
+        private IrisConfig _loadedCfg;
+        private string _configFile = "iris.xml";
         private static readonly string heliosPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Helios");
         private static readonly string irisPath = Path.Combine(heliosPath, "IRIS");
         private string _defaultFormTitle = "IRIS Screen Exporter - Client";
@@ -23,25 +26,28 @@ namespace Iris.Client
         {
             if (!Directory.Exists(heliosPath)) { Directory.CreateDirectory(heliosPath); }
             if (!Directory.Exists(irisPath)) { Directory.CreateDirectory(irisPath); }
-            if (!File.Exists(Path.Combine(irisPath, configFile)))
+            if (!File.Exists(Path.Combine(irisPath, _configFile)))
             {
-                File.Copy("iris.xml", Path.Combine(irisPath, configFile), false);
+                File.Copy("iris.xml", Path.Combine(irisPath, _configFile), false);
             }
-            configFile = Path.Combine(irisPath, configFile);
+            _configFile = Path.Combine(irisPath, _configFile);
 
-            if (args.Length > 0 && args[0] != null) configFile = args[0];
+            if (args.Length > 0 && args[0] != null) _configFile = args[0];
             InitializeComponent();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            viewPorts = new BindingSource();
-            windows = new BindingSource();
-            viewPorts.DataSource = typeof(ViewPort);
-            windows.DataSource = typeof(ViewPortForm);
+            _backgroundSource = new BindingSource();
+            _viewPorts = new BindingSource();
+            _windows = new BindingSource();
+            _backgroundSource.DataSource = typeof(Background);
+            _viewPorts.DataSource = typeof(ViewPort);
+            _windows.DataSource = typeof(ViewPortForm);
             this.Icon = Common.Properties.Resources.iris;
 
-            ProcessLoadedConfig(Helpers.LoadConfig(configFile));
+            _loadedCfg = Helpers.LoadConfig(_configFile);
+            ProcessLoadedConfig(_loadedCfg);
             // Minimize the parent form.
             this.WindowState = FormWindowState.Minimized;
         }
@@ -49,41 +55,97 @@ namespace Iris.Client
         {
             if (loadedCfg != null)
             {
-                this.Text = $"{_defaultFormTitle} - {Path.GetFileNameWithoutExtension(configFile)}";
+                this.Text = $"{_defaultFormTitle} - {Path.GetFileNameWithoutExtension(_configFile)}";
 
-                viewPorts.DataSource = (BindingList<ViewPort>)loadedCfg.ViewPorts;
+                _viewPorts.DataSource = _loadedCfg.ViewPorts;
+                if(loadedCfg.Background != null)
+                {
+                    _background = loadedCfg.Background;
+                    checkBox1.Checked = _background.Visible;
+                    AddBackground();
+                    butColor.BackColor = _backgroundForm.BackColor;
+                    tBLeft.Text = _background.ScreenPositionX.ToString();
+                    tBTop.Text = _background.ScreenPositionY.ToString();
+                    tBWidth.Text = _background.SizeX.ToString();
+                    tBHeight.Text = _background.SizeY.ToString();
+
+                } else
+                {
+                    tBTop.Text = tBLeft.Text = "0";
+                    tBHeight.Text = "1080";
+                    tBWidth.Text = "1920";
+                    butColor.BackColor = System.Drawing.Color.FromArgb(0xff, 0x00, 0x00, 0x00);
+                }
             }
             else
             {
                 this.Close();
             }
-            AddViewports(viewPorts);
+            AddViewports(_viewPorts);
+            if (_background != null) AddBackground();
         }
-        private void AddViewports( BindingSource viewPorts)
+        private void AddViewports( BindingSource _viewPorts)
         {
-            foreach (ViewPort vp in viewPorts)
+            foreach (ViewPort vp in _viewPorts)
             {
-                ViewPortForm vpWindow = new ViewPortForm(vp);
-                vpWindow.Icon = Common.Properties.Resources.iris;
-                vpWindow.MinimumSize = new Size(16, 16);
-                vpWindow.Size = new Size(vp.SizeX, vp.SizeY);
-                vpWindow.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-                vpWindow.Text = vp.Name;
-                vpWindow.Show();
-                vpWindow.DesktopLocation = new Point(vp.ScreenPositionX, vp.ScreenPositionY);
-                if (vp.Name == "Background")
+                if (vp.Name == "Background" && _background == null)
                 {
-                    // This is the special case viewport used for the background to avoid us 
-                    // having to set a desktop background and remove all of the icons
-                    vpWindow.SendToBack();
-                    vpWindow.BackColor = System.Drawing.Color.FromArgb(0x5b, 0x7e, 0x96);
+                    // The Background Viewport has been logically replaced by the Background Element 
+                    // so we convert the viewport to a Background if one was not in the Iris Config.
+                     _background = new Background() { 
+                        Color = Colors.Black,
+                        ScreenPositionX = vp.ScreenPositionX,
+                        ScreenPositionY = vp.ScreenPositionY,
+                        SizeX = vp.SizeX,
+                        SizeY = vp.SizeY,
+                        Visible = true
+                     };
                 }
-                windows.Add(vpWindow);
+                else
+                {
+                    ViewPortForm vpWindow = new ViewPortForm(vp);
+                    vpWindow.Icon = Common.Properties.Resources.iris;
+                    vpWindow.MinimumSize = new Size(16, 16);
+                    vpWindow.Size = new Size(vp.SizeX, vp.SizeY);
+                    vpWindow.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                    vpWindow.Text = vp.Name;
+                    vpWindow.Show();
+                    vpWindow.DesktopLocation = new Point(vp.ScreenPositionX, vp.ScreenPositionY);
+                    _windows.Add(vpWindow);
+                }
+            }
+        }
+        private void AddBackground()
+        {
+            if (_backgroundForm == null || _backgroundForm.IsDisposed)
+            {
+                _backgroundForm = new Form()
+                {
+                    Icon = Common.Properties.Resources.iris,
+                    MinimumSize = new Size(16, 16),
+                    Size = new Size(_background.SizeX, _background.SizeY),
+                    DesktopLocation = new Point(_background.ScreenPositionX, _background.ScreenPositionY),
+                    StartPosition = FormStartPosition.Manual,
+                    Location = new Point(_background.ScreenPositionX, _background.ScreenPositionY),
+                    BackColor = System.Drawing.Color.FromArgb(_background.Color.A, _background.Color.R, _background.Color.G, _background.Color.B),
+                    FormBorderStyle = FormBorderStyle.None,
+                    Text = "Background",
+                    Name = "Background"
+                };
+            }
+            if (_background.Visible)
+            {
+                _backgroundForm.Visible = true;
+                _backgroundForm.Show();
+                _backgroundForm.SendToBack();
+            } else
+            {
+                _backgroundForm.Visible = false;
             }
         }
         private void IrisClient_FormClosing(object sender, FormClosingEventArgs e)
         {
-            foreach (ViewPortForm vpf in windows)
+            foreach (ViewPortForm vpf in _windows)
             {
                 vpf.StopListening();
             }
@@ -91,7 +153,12 @@ namespace Iris.Client
         private void OpenConfig()
         {
             List<ViewPortForm> vpRemoval = new List<ViewPortForm>();
-            foreach (ViewPortForm vpf in windows)
+            if(_backgroundForm != null)
+            {
+                _backgroundForm.Close();
+                _backgroundForm.Dispose();
+            }
+            foreach (ViewPortForm vpf in _windows)
             {
                 vpf.StopListening();
                 vpRemoval.Add(vpf);
@@ -99,7 +166,7 @@ namespace Iris.Client
             foreach(ViewPortForm vpf in vpRemoval)
             {
                 vpf.Dispose();
-                windows.Remove(vpf);
+                _windows.Remove(vpf);
             }
             vpRemoval.Clear();  
             OpenFileDialog openFileDialog = new OpenFileDialog
@@ -109,9 +176,9 @@ namespace Iris.Client
             };
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                configFile = openFileDialog.FileName;
+                _configFile = openFileDialog.FileName;
             }
-            ProcessLoadedConfig(Helpers.LoadConfig(configFile));
+            ProcessLoadedConfig(Helpers.LoadConfig(_configFile));
         }
         private void SaveConfig()
         {
@@ -119,28 +186,29 @@ namespace Iris.Client
             {
                 Filter = "Iris XML files (*.xml)|*.xml|Iris files (*.iris)|*.iris",
                 InitialDirectory = irisPath,
-                FileName = configFile
+                FileName = _configFile
             };
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                configFile = saveFileDialog.FileName;
+                _configFile = saveFileDialog.FileName;
                 IrisConfig saveConfig = new IrisConfig();
-                saveConfig.ViewPorts = (BindingList<ViewPort>)viewPorts.List;
-                saveConfig.PollingInterval = loadedCfg.PollingInterval;
-                saveConfig.GlobalImageAdjustment = loadedCfg.GlobalImageAdjustment;
-                if (Helpers.SaveConfig(saveConfig, configFile))
+                saveConfig.Background = _background;
+                saveConfig.ViewPorts = (BindingList<ViewPort>)_viewPorts.List;
+                saveConfig.PollingInterval = _loadedCfg.PollingInterval;
+                saveConfig.GlobalImageAdjustment = _loadedCfg.GlobalImageAdjustment;
+                if (Helpers.SaveConfig(saveConfig, _configFile))
                 {
-                    MessageBox.Show($"{viewPorts.Count} viewports Saved in {configFile}");
-                    this.Text = $"{_defaultFormTitle} - {Path.GetFileNameWithoutExtension(configFile)}";
+                    System.Windows.Forms.MessageBox.Show($"{_viewPorts.Count} viewports Saved in {_configFile}");
+                    this.Text = $"{_defaultFormTitle} - {Path.GetFileNameWithoutExtension(_configFile)}";
                 }
                 else
                 {
-                    MessageBox.Show($"Zero viewports Saved to File: {configFile}");
+                    System.Windows.Forms.MessageBox.Show($"Zero viewports Saved to File: {_configFile}");
                 }
             }
             else
             {
-                MessageBox.Show($"Zero viewports Saved to File: {configFile}");
+                System.Windows.Forms.MessageBox.Show($"Zero viewports Saved to File: {_configFile}");
             }
         }
         private void button1_Click(object sender, EventArgs e)
@@ -162,5 +230,166 @@ namespace Iris.Client
             SaveConfig();
         }
 
+        private void button3_Click(object sender, EventArgs e)
+        {
+            var dialog = new ColorPickerDialog(_background != null ? _background.Color : Colors.SteelBlue)
+            {
+                //Owner = this
+            };
+
+            if (dialog.ShowDialog() == true)
+            {
+                System.Windows.Media.Color selected = dialog.SelectedColor;
+                _background.Color = selected;
+                butColor.BackColor = System.Drawing.Color.FromArgb(_background.Color.A, _background.Color.R, _background.Color.G, _background.Color.B);
+                if (_backgroundForm != null)
+                {
+                    _backgroundForm.BackColor = butColor.BackColor;
+                    if (_background.Visible)
+                    {
+                        _backgroundForm.Show();
+                        _backgroundForm.SendToBack();
+                    }
+                    else
+                    {
+                        _backgroundForm.Visible = _background.Visible;
+                    }
+                }
+            }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if(sender is CheckBox cB) {
+                if (cB.Checked == true)
+                {
+                    if (_background == null) newBackground();
+                    tBLeft.Text = _background.ScreenPositionX.ToString();
+                    tBTop.Text = _background.ScreenPositionY.ToString();
+                    tBWidth.Text = _background.SizeX.ToString();
+                    tBHeight.Text = _background.SizeY.ToString();
+                    butColor.BackColor = System.Drawing.Color.FromArgb(_background.Color.A, _background.Color.R, _background.Color.G, _background.Color.B);
+                    if (_backgroundForm != null)
+                    {
+                        _backgroundForm.BackColor = butColor.BackColor;
+                        _backgroundForm.Show();
+                        _backgroundForm.SendToBack();
+                    }
+
+                    foreach (Control c in this.Controls)
+                    {
+                        switch (c.Tag)
+                        {
+                            case "SelectColor":
+                            case "labelTop":
+                            case "labelLeft":
+                            case "labelWidth":
+                            case "labelHeight":
+                            case "tBTop":
+                            case "tBLeft":
+                            case "tBWidth":
+                            case "tBHeight":
+                                c.Visible = true;
+                                break;
+                        }
+                    }
+                } else
+                {
+                    if(_backgroundForm  != null) _backgroundForm.Visible = false;
+                    if(_background != null) _background.Visible = false;
+                    foreach (Control c in this.Controls)
+                    {
+                        switch (c.Tag)
+                        {
+                            case "SelectColor":
+                            case "labelTop":
+                            case "labelLeft":
+                            case "labelWidth":
+                            case "labelHeight":
+                            case "tBTop":
+                            case "tBLeft":
+                            case "tBWidth":
+                            case "tBHeight":
+                                c.Visible = false;
+                                break;
+                        }
+                    }
+
+                }
+            }
+        }
+
+        private void tBLeft_TextChanged(object sender, EventArgs e)
+        {
+            if (_background == null) newBackground();
+
+            Control c = sender as Control;
+            if(Int32.TryParse(c.Text, out int x))
+            {
+                _background.ScreenPositionX = x;
+                if (_backgroundForm != null) _backgroundForm.Location = new Point(_background.ScreenPositionX, _background.ScreenPositionY);
+            }
+            else
+            {
+                c.Text = "0";
+            }
+        }
+
+        private void tBTop_TextChanged(object sender, EventArgs e)
+        {
+            if (_background == null) newBackground();
+            Control c = sender as Control;
+            if (Int32.TryParse(c.Text, out int y))
+            {
+                _background.ScreenPositionY = y;
+                if (_backgroundForm != null) _backgroundForm.Location = new Point(_background.ScreenPositionX, _background.ScreenPositionY);
+            }
+            else
+            {
+                c.Text = "0";
+            }
+
+        }
+
+        private void tBWidth_TextChanged(object sender, EventArgs e)
+        {
+            if (_background == null) newBackground();
+            Control c = sender as Control;
+            if (Int32.TryParse(c.Text, out int w))
+            {
+                _background.SizeX = w;
+                if (_backgroundForm != null) _backgroundForm.Width = _background.SizeX;
+            }
+            else
+            {
+                c.Text = "1920";
+            }
+        }
+
+        private void tBHeight_TextChanged(object sender, EventArgs e)
+        {
+            if (_background == null) newBackground();
+            Control c = sender as Control;
+            if (Int32.TryParse(c.Text, out int h))
+            {
+                _background.SizeY = h;
+                if (_backgroundForm != null) _backgroundForm.Height = _background.SizeY;
+            }
+            else
+            {
+                c.Text = "1080";
+            }
+        }
+        private void newBackground() {
+            _background = new Background()
+            {
+                Color = Colors.Black,
+                ScreenPositionX = 0,
+                ScreenPositionY = 0,
+                SizeX = 1920,
+                SizeY = 1080,
+                Visible = false
+            };
+        }
     }
 }

@@ -8,6 +8,9 @@ namespace Iris.Common
     {
         public BindingList<ViewPort> ViewPorts { get; set; }
 
+        [XmlElement(IsNullable = false)]
+        public Background Background { get; set; }
+
         public int PollingInterval { get; set; }
 
         [XmlElement(IsNullable = false)]
