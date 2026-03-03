@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Media;
 using System.Drawing;
 using System.IO;
+using System.Net;
 using System.Net.Sockets;
 using System.Windows.Forms;
 using Iris.Common;
@@ -22,6 +24,8 @@ namespace Iris.Server
         private string _defaultFormTitle = "Iris Screen Exporter - Server";
         private Icon icon;
         private double _smallestFailingSendSize = 69000;
+        private Dictionary<string, string> _hosts = new Dictionary<string, string>();
+        private bool _dnsResolveNeeded = true;
         public IrisServer(string[] args)
         {
             if (!Directory.Exists(heliosPath)) { Directory.CreateDirectory(heliosPath); }
@@ -160,9 +164,48 @@ namespace Iris.Server
                     imageByteArray = vp.Image.ToByteArray(System.Drawing.Imaging.ImageFormat.Jpeg);
                     try
                     {
-                        if(imageByteArray.Length < _smallestFailingSendSize)
+                        if (imageByteArray.Length < _smallestFailingSendSize)
                         {
+                            if (_dnsResolveNeeded)
+                            {
+                                // do our own DNS caching to avoid excessive lookups
+                                if (IPAddress.TryParse(vp.Host, out IPAddress ipAddress))
+                                {
+                                    if (ipAddress.AddressFamily == AddressFamily.InterNetwork)
+                                    {
+                                        vp.Host = ipAddress.ToString();  // we do this to ensure that a partial IP V4 addess eg "3" appears as "0.0.0.3"
+                                    }
+                                }
+                                else
+                                {
+                                    if (_hosts.ContainsKey(vp.Host))
+                                    {
+                                        vp.Host = _hosts[vp.Host];
+                                    }
+                                    else
+                                    {
+                                        IPHostEntry hostEntry = Dns.GetHostEntry(vp.Host);
+                                        bool foundIPv4 = false;
+                                        foreach (var ip in hostEntry.AddressList)
+                                        {
+                                            if (ip.AddressFamily == AddressFamily.InterNetwork)
+                                            {
+                                                _hosts.Add(vp.Host, ip.ToString());
+                                                vp.Host = ip.ToString();
+                                                foundIPv4 = true;
+                                                break;
+                                            }
+                                        }
+                                        if (!foundIPv4)
+                                        {
+                                            MessageBox.Show($"The hostname \"{vp.Host}:{vp.Port}\" could not be resolved to an IP v4 address on start-up.  Please review your IRIS config file.", "ERROR detected by IRIS Server", MessageBoxButtons.OK, MessageBoxIcon.Stop, MessageBoxDefaultButton.Button1
+                    , MessageBoxOptions.ServiceNotification);
+                                        }
+                                    }
+                                }
+                            }
                             conn.Send(imageByteArray, imageByteArray.Length, vp.Host, vp.Port);
+                            vp.retries = 0;
                         }
                     }
                     catch (SocketException se)
@@ -173,18 +216,23 @@ namespace Iris.Server
                             switch (errorCode)
                             {
                                 case SocketErrorCodes.HostNotFound:
-                                    MessageBox.Show($"{se.Message}.  The hostname \"{vp.Host}\" you were trying to connect to was not found.  Please review your IRIS config file.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Stop, MessageBoxDefaultButton.Button1
-            , MessageBoxOptions.ServiceNotification);
-                                    NetworkError = true;
+                                    int maxRetryCount = 10;
+                                    if (vp.retries >= maxRetryCount)
+                                    {
+                                        MessageBox.Show($"{se.Message}.  The hostname \"{vp.Host}:{vp.Port}\" you were trying to connect to was still not found after {maxRetryCount} attempts.  Please review your IRIS config file.", "ERROR detected by IRIS Server", MessageBoxButtons.OK, MessageBoxIcon.Stop, MessageBoxDefaultButton.Button1
+                , MessageBoxOptions.ServiceNotification);
+                                        NetworkError = true;
+                                    }
+                                    else { vp.retries++; }
                                     break;
                                 case SocketErrorCodes.MessgeTooLong:
                                     _smallestFailingSendSize = imageByteArray.Length;
                                     ///TODO log the fact that a send has failed because it was too large.
-                                    //MessageBox.Show($"Send to hostname \"{vp.Host}\" for item \"{vp.Name}\" was too large at {imageByteArray.Length} bytes.  {se.Message}.  Please review your IRIS config file.", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1
+                                    //MessageBox.Show($"Send to hostname \"{vp.Host}\" for item \"{vp.Name}\" was too large at {imageByteArray.Length} bytes.  {se.Message}.  Please review your IRIS config file.", "WARNING from IRIS Server", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1
             //, MessageBoxOptions.ServiceNotification);
                                     break;
                                 default:
-                                    MessageBox.Show($"{se.Message} - A network Error has occurred when communicatiing with \"{vp.Host}\":{se.SocketErrorCode}", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Stop, MessageBoxDefaultButton.Button1
+                                    MessageBox.Show($"{se.Message} - A network Error has occurred when communicatiing with \"{vp.Host}:{vp.Port}\":{se.SocketErrorCode}", "ERROR detected by IRIS Server", MessageBoxButtons.OK, MessageBoxIcon.Stop, MessageBoxDefaultButton.Button1
             , MessageBoxOptions.ServiceNotification);
                                     NetworkError = true;
                                     break;
@@ -198,6 +246,7 @@ namespace Iris.Server
                     }
                 }
             }
+            _dnsResolveNeeded = false;
         }
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -247,16 +296,24 @@ namespace Iris.Server
             if (loader != null)
             {
                 _background = loader.Background;
-                try
+                _imageAdjustmentGlobal = loader.GlobalImageAdjustment;
+                if (_imageAdjustmentGlobal == null)
                 {
-                    _imageAdjustmentGlobal = loader.GlobalImageAdjustment;
-                } catch(Exception e)
-                {
-                    _imageAdjustmentGlobal = new ImageAdjustment();
-                } 
-                numericUpDownBrightness.Value = Convert.ToDecimal(_imageAdjustmentGlobal.Brightness);
+                    _imageAdjustmentGlobal = new ImageAdjustment()
+                    {
+                        Brightness = 1,
+                        Contrast = 1,
+                        Gamma = 1,
+                        RedBrightness = 1,
+                        GreenBrightness = 1,
+                        BlueBrightness = 1
+                    };
+                }
+                
                 numericUpDownContrast.Value = Convert.ToDecimal(_imageAdjustmentGlobal.Contrast);
                 numericUpDownGamma.Value = Convert.ToDecimal(_imageAdjustmentGlobal.Gamma);
+                numericUpDownBrightness.Value = Convert.ToDecimal(_imageAdjustmentGlobal.Brightness);
+
                 timer1.Interval = loader.PollingInterval;
                 viewPorts.DataSource = (BindingList<ViewPort>)loader.ViewPorts;
             }
@@ -329,13 +386,7 @@ namespace Iris.Server
                     break;
                 default: break;
             }
-            _imageAdjustmentGlobal = IsReset(_imageAdjustmentGlobal);
         }
-        private ImageAdjustment IsReset(ImageAdjustment iA)
-        {
-            return (iA.Brightness != 1.0f || iA.Contrast != 1.0f || iA.Gamma != 1.0f)? iA : null;
-        }
-
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 

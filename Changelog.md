@@ -1,4 +1,9 @@
 # IRIS Screen Exporter Change Log
+## 1.6.5
+1. Bug fixes to force the background to the back every second.
+1. Bug fices to correctly process new viewports when a load is performed.
+## 1.6.4
+1. Implement UI elements to allow the Iris Client to define a background
 ## 1.6.3
 1. Mulitple changes to the server and client to allow loading of configuration files from the user interface.
 1. Fix for exception thrown in the server when the server is started by double clicking without a configuration file being specified. #13

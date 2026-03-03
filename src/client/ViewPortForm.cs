@@ -54,11 +54,11 @@ namespace Iris.Client
                         {
 
                             case SocketErrorCodes.HostNotFound:
-                                MessageBox.Show(se.Message + ".  The hostname \"" + endPoint.ToString() + "\" you were trying to connect to was not found.  Please review your IRIS config file.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Stop, MessageBoxDefaultButton.Button1
+                                MessageBox.Show($"{se.Message}.  The hostname \"{endPoint}:{viewPort.Port}\" you were trying to connect to was not found.  Please review your IRIS config file.", "ERROR Detected by IRIS Client", MessageBoxButtons.OK, MessageBoxIcon.Stop, MessageBoxDefaultButton.Button1
         , MessageBoxOptions.ServiceNotification);
                                 break;
                             default:
-                                MessageBox.Show(se.Message + " - A network Error has occurred communicating with \"" + endPoint.ToString() + "\":" + se.SocketErrorCode, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Stop, MessageBoxDefaultButton.Button1
+                                MessageBox.Show($"{se.Message} - A network Error has occurred communicating with \"{endPoint}:{viewPort.Port}\" - {se.SocketErrorCode}", "ERROR Detected by IRIS Client", MessageBoxButtons.OK, MessageBoxIcon.Stop, MessageBoxDefaultButton.Button1
         , MessageBoxOptions.ServiceNotification);
                                 break;
                         }

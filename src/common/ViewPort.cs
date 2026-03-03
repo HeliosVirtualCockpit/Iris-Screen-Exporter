@@ -11,6 +11,7 @@ namespace Iris.Common
         private string name, description, host;
         private int port, screenX, sizeX, screenY, sizeY, posX, posY;
         private ImageAdjustment _imageAdjustment = null;
+        private int _retries = 0;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -53,7 +54,11 @@ namespace Iris.Common
                 NotifyPropertyChanged("Port");
             }
         }
-
+        public int retries
+        {
+            get => _retries;
+            set => _retries = value;
+        }
         public int ScreenCaptureX
         {
             get { return screenX; }
