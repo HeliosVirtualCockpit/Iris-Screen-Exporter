@@ -32,7 +32,7 @@ namespace Iris.Common
         public static IrisConfig LoadConfig(string fileName)
         {
             IrisConfig loader;
-            XmlSerializer ser = new XmlSerializer(typeof(IrisConfig), new Type[] { typeof(ViewPort) });
+            XmlSerializer ser = new XmlSerializer(typeof(IrisConfig), new Type[] { typeof(ViewPort), typeof(Background) });
             try
             {
                 if (File.Exists(fileName))
@@ -57,7 +57,7 @@ namespace Iris.Common
 
         public static bool SaveConfig(IrisConfig config, string fileName)
         {
-            XmlSerializer ser = new XmlSerializer(typeof(IrisConfig), new Type[] { typeof(ViewPort) });
+            XmlSerializer ser = new XmlSerializer(typeof(IrisConfig), new Type[] { typeof(ViewPort), typeof(Background) });
             try
             {
                 using (var stream = File.Create(fileName))

@@ -57,7 +57,7 @@ namespace Iris.Client
             {
                 this.Text = $"{_defaultFormTitle} - {Path.GetFileNameWithoutExtension(_configFile)}";
 
-                _viewPorts.DataSource = _loadedCfg.ViewPorts;
+                _viewPorts.DataSource = loadedCfg.ViewPorts;
                 if(loadedCfg.Background != null)
                 {
                     _background = loadedCfg.Background;
@@ -86,20 +86,26 @@ namespace Iris.Client
         }
         private void AddViewports( BindingSource _viewPorts)
         {
+            ViewPort tempVP = null;
             foreach (ViewPort vp in _viewPorts)
             {
-                if (vp.Name == "Background" && _background == null)
+                if (vp.Name == "Background")
                 {
-                    // The Background Viewport has been logically replaced by the Background Element 
-                    // so we convert the viewport to a Background if one was not in the Iris Config.
-                     _background = new Background() { 
-                        Color = Colors.Black,
-                        ScreenPositionX = vp.ScreenPositionX,
-                        ScreenPositionY = vp.ScreenPositionY,
-                        SizeX = vp.SizeX,
-                        SizeY = vp.SizeY,
-                        Visible = true
-                     };
+                    tempVP = vp;
+                    if (_background == null)
+                    {
+                        // The Background Viewport has been logically replaced by the Background Element 
+                        // so we convert the viewport to a Background if one was not in the Iris Config.
+                        _background = new Background()
+                        {
+                            Color = Colors.Black,
+                            ScreenPositionX = vp.ScreenPositionX,
+                            ScreenPositionY = vp.ScreenPositionY,
+                            SizeX = vp.SizeX,
+                            SizeY = vp.SizeY,
+                            Visible = true
+                        };
+                    }
                 }
                 else
                 {
@@ -114,6 +120,8 @@ namespace Iris.Client
                     _windows.Add(vpWindow);
                 }
             }
+            if(tempVP != null) _viewPorts.Remove(tempVP);
+            tempVP = null;
         }
         private void AddBackground()
         {
@@ -138,9 +146,12 @@ namespace Iris.Client
                 _backgroundForm.Visible = true;
                 _backgroundForm.Show();
                 _backgroundForm.SendToBack();
-            } else
+                timerBackground.Enabled = true;
+            }
+            else
             {
                 _backgroundForm.Visible = false;
+                timerBackground.Enabled = false;
             }
         }
         private void IrisClient_FormClosing(object sender, FormClosingEventArgs e)
@@ -149,9 +160,18 @@ namespace Iris.Client
             {
                 vpf.StopListening();
             }
+            _backgroundForm?.Close();
         }
         private void OpenConfig()
         {
+            bool timerEnabled = false;
+            if (_backgroundForm != null)
+            {
+                _backgroundForm.Visible = false;
+                timerEnabled = timerBackground.Enabled;
+                timerBackground.Enabled = false;
+            }
+
             List<ViewPortForm> vpRemoval = new List<ViewPortForm>();
             if(_backgroundForm != null)
             {
@@ -179,9 +199,22 @@ namespace Iris.Client
                 _configFile = openFileDialog.FileName;
             }
             ProcessLoadedConfig(Helpers.LoadConfig(_configFile));
+            if (_backgroundForm != null && _background != null)
+            {
+                _backgroundForm.Visible = _background.Visible;
+                timerBackground.Enabled = timerEnabled;
+            }
+
         }
         private void SaveConfig()
         {
+            bool timerEnabled = false;
+            if (_backgroundForm != null)
+            {
+                _backgroundForm.Visible = false;
+                timerEnabled = timerBackground.Enabled;
+                timerBackground.Enabled = false;
+            }
             SaveFileDialog saveFileDialog = new SaveFileDialog
             {
                 Filter = "Iris XML files (*.xml)|*.xml|Iris files (*.iris)|*.iris",
@@ -209,6 +242,11 @@ namespace Iris.Client
             else
             {
                 System.Windows.Forms.MessageBox.Show($"Zero viewports Saved to File: {_configFile}");
+            }
+            if (_backgroundForm != null && _background != null)
+            {
+                _backgroundForm.Visible = _background.Visible;
+                timerBackground.Enabled = timerEnabled;
             }
         }
         private void button1_Click(object sender, EventArgs e)
@@ -264,6 +302,7 @@ namespace Iris.Client
                 if (cB.Checked == true)
                 {
                     if (_background == null) newBackground();
+                    _background.Visible = true;
                     tBLeft.Text = _background.ScreenPositionX.ToString();
                     tBTop.Text = _background.ScreenPositionY.ToString();
                     tBWidth.Text = _background.SizeX.ToString();
@@ -271,9 +310,11 @@ namespace Iris.Client
                     butColor.BackColor = System.Drawing.Color.FromArgb(_background.Color.A, _background.Color.R, _background.Color.G, _background.Color.B);
                     if (_backgroundForm != null)
                     {
+                        
                         _backgroundForm.BackColor = butColor.BackColor;
                         _backgroundForm.Show();
                         _backgroundForm.SendToBack();
+                        timerBackground.Enabled = true;
                     }
 
                     foreach (Control c in this.Controls)
@@ -295,8 +336,13 @@ namespace Iris.Client
                     }
                 } else
                 {
-                    if(_backgroundForm  != null) _backgroundForm.Visible = false;
-                    if(_background != null) _background.Visible = false;
+                    if (_backgroundForm != null)
+                    {
+                        _backgroundForm.Visible = false;
+                        timerBackground.Enabled = false;
+                    }
+
+                    if (_background != null) _background.Visible = false;
                     foreach (Control c in this.Controls)
                     {
                         switch (c.Tag)
@@ -390,6 +436,11 @@ namespace Iris.Client
                 SizeY = 1080,
                 Visible = false
             };
+        }
+
+        private void timerBackground_Tick(object sender, EventArgs e)
+        {
+            _backgroundForm?.SendToBack();
         }
     }
 }

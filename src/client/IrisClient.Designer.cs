@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -44,15 +45,15 @@
             this.labelHeight = new System.Windows.Forms.Label();
             this.tBWidth = new System.Windows.Forms.TextBox();
             this.labelWidth = new System.Windows.Forms.Label();
+            this.timerBackground = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(180, 190);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
+            this.button1.Location = new System.Drawing.Point(135, 154);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 28);
+            this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
             this.button1.Text = "Save Config";
             this.button1.UseVisualStyleBackColor = true;
@@ -60,10 +61,9 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(26, 190);
-            this.button2.Margin = new System.Windows.Forms.Padding(4);
+            this.button2.Location = new System.Drawing.Point(20, 154);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(100, 28);
+            this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 1;
             this.button2.Text = "Load Config";
             this.button2.UseVisualStyleBackColor = true;
@@ -76,7 +76,8 @@
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(562, 28);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(422, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -86,31 +87,32 @@
             this.openToolStripMenuItem,
             this.saveToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(128, 26);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(128, 26);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // butColor
             // 
             this.butColor.BackColor = System.Drawing.Color.Black;
-            this.butColor.Location = new System.Drawing.Point(309, 72);
-            this.butColor.MaximumSize = new System.Drawing.Size(48, 48);
-            this.butColor.MinimumSize = new System.Drawing.Size(48, 48);
+            this.butColor.Location = new System.Drawing.Point(232, 58);
+            this.butColor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.butColor.MaximumSize = new System.Drawing.Size(36, 39);
+            this.butColor.MinimumSize = new System.Drawing.Size(36, 39);
             this.butColor.Name = "butColor";
-            this.butColor.Size = new System.Drawing.Size(48, 48);
+            this.butColor.Size = new System.Drawing.Size(36, 39);
             this.butColor.TabIndex = 3;
             this.butColor.Tag = "SelectColor";
             this.butColor.UseVisualStyleBackColor = false;
@@ -120,9 +122,10 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(26, 44);
+            this.checkBox1.Location = new System.Drawing.Point(20, 36);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(102, 20);
+            this.checkBox1.Size = new System.Drawing.Size(84, 17);
             this.checkBox1.TabIndex = 4;
             this.checkBox1.Text = "Background";
             this.checkBox1.UseVisualStyleBackColor = true;
@@ -131,9 +134,10 @@
             // labelLeft
             // 
             this.labelLeft.AutoSize = true;
-            this.labelLeft.Location = new System.Drawing.Point(26, 71);
+            this.labelLeft.Location = new System.Drawing.Point(20, 58);
+            this.labelLeft.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelLeft.Name = "labelLeft";
-            this.labelLeft.Size = new System.Drawing.Size(28, 16);
+            this.labelLeft.Size = new System.Drawing.Size(25, 13);
             this.labelLeft.TabIndex = 5;
             this.labelLeft.Tag = "labelLeft";
             this.labelLeft.Text = "Left";
@@ -141,9 +145,10 @@
             // 
             // tBLeft
             // 
-            this.tBLeft.Location = new System.Drawing.Point(81, 68);
+            this.tBLeft.Location = new System.Drawing.Point(61, 55);
+            this.tBLeft.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tBLeft.Name = "tBLeft";
-            this.tBLeft.Size = new System.Drawing.Size(68, 22);
+            this.tBLeft.Size = new System.Drawing.Size(52, 20);
             this.tBLeft.TabIndex = 6;
             this.tBLeft.Tag = "tBLeft";
             this.tBLeft.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -153,9 +158,10 @@
             // 
             // tBTop
             // 
-            this.tBTop.Location = new System.Drawing.Point(207, 69);
+            this.tBTop.Location = new System.Drawing.Point(155, 56);
+            this.tBTop.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tBTop.Name = "tBTop";
-            this.tBTop.Size = new System.Drawing.Size(68, 22);
+            this.tBTop.Size = new System.Drawing.Size(52, 20);
             this.tBTop.TabIndex = 8;
             this.tBTop.Tag = "tBTop";
             this.tBTop.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -166,9 +172,10 @@
             // labelTop
             // 
             this.labelTop.AutoSize = true;
-            this.labelTop.Location = new System.Drawing.Point(155, 72);
+            this.labelTop.Location = new System.Drawing.Point(116, 58);
+            this.labelTop.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelTop.Name = "labelTop";
-            this.labelTop.Size = new System.Drawing.Size(32, 16);
+            this.labelTop.Size = new System.Drawing.Size(26, 13);
             this.labelTop.TabIndex = 7;
             this.labelTop.Tag = "labelTop";
             this.labelTop.Text = "Top";
@@ -176,9 +183,10 @@
             // 
             // tBHeight
             // 
-            this.tBHeight.Location = new System.Drawing.Point(207, 97);
+            this.tBHeight.Location = new System.Drawing.Point(155, 79);
+            this.tBHeight.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tBHeight.Name = "tBHeight";
-            this.tBHeight.Size = new System.Drawing.Size(68, 22);
+            this.tBHeight.Size = new System.Drawing.Size(52, 20);
             this.tBHeight.TabIndex = 12;
             this.tBHeight.Tag = "tBHeight";
             this.tBHeight.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -189,9 +197,10 @@
             // labelHeight
             // 
             this.labelHeight.AutoSize = true;
-            this.labelHeight.Location = new System.Drawing.Point(155, 100);
+            this.labelHeight.Location = new System.Drawing.Point(116, 81);
+            this.labelHeight.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelHeight.Name = "labelHeight";
-            this.labelHeight.Size = new System.Drawing.Size(46, 16);
+            this.labelHeight.Size = new System.Drawing.Size(38, 13);
             this.labelHeight.TabIndex = 11;
             this.labelHeight.Tag = "labelHeight";
             this.labelHeight.Text = "Height";
@@ -199,9 +208,10 @@
             // 
             // tBWidth
             // 
-            this.tBWidth.Location = new System.Drawing.Point(81, 96);
+            this.tBWidth.Location = new System.Drawing.Point(61, 78);
+            this.tBWidth.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tBWidth.Name = "tBWidth";
-            this.tBWidth.Size = new System.Drawing.Size(68, 22);
+            this.tBWidth.Size = new System.Drawing.Size(52, 20);
             this.tBWidth.TabIndex = 10;
             this.tBWidth.Tag = "tBWidth";
             this.tBWidth.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -212,19 +222,26 @@
             // labelWidth
             // 
             this.labelWidth.AutoSize = true;
-            this.labelWidth.Location = new System.Drawing.Point(26, 99);
+            this.labelWidth.Location = new System.Drawing.Point(20, 80);
+            this.labelWidth.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelWidth.Name = "labelWidth";
-            this.labelWidth.Size = new System.Drawing.Size(41, 16);
+            this.labelWidth.Size = new System.Drawing.Size(35, 13);
             this.labelWidth.TabIndex = 9;
             this.labelWidth.Tag = "labelWidth";
             this.labelWidth.Text = "Width";
             this.labelWidth.Visible = false;
             // 
+            // timerBackground
+            // 
+            this.timerBackground.Enabled = false;
+            this.timerBackground.Interval = 1000;
+            this.timerBackground.Tick += new System.EventHandler(this.timerBackground_Tick);
+            // 
             // IrisClient
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(562, 233);
+            this.ClientSize = new System.Drawing.Size(422, 189);
             this.Controls.Add(this.tBHeight);
             this.Controls.Add(this.labelHeight);
             this.Controls.Add(this.tBWidth);
@@ -239,7 +256,6 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "IrisClient";
             this.Tag = "s";
             this.Text = "Iris Screen Exporter - Client";
@@ -270,6 +286,7 @@
         private System.Windows.Forms.Label labelHeight;
         private System.Windows.Forms.TextBox tBWidth;
         private System.Windows.Forms.Label labelWidth;
+        private System.Windows.Forms.Timer timerBackground;
     }
 }
 
