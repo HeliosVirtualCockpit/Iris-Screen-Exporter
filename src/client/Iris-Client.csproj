@@ -205,6 +205,10 @@
       <Project>{C921C6D8-0CF2-48BB-915E-5E6BF4D0898F}</Project>
       <Name>Iris-common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Version\Version.csproj">
+      <Project>{b69cac60-1d4d-464b-97f4-56ffad8e05cc}</Project>
+      <Name>Version</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
