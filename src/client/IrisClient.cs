@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using System.Windows.Media;
 using Iris.Common;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace Iris.Client
 {
@@ -34,6 +35,7 @@ namespace Iris.Client
 
             if (args.Length > 0 && args[0] != null) _configFile = args[0];
             InitializeComponent();
+            _defaultFormTitle += " " + AssemblyName.GetAssemblyName(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Version.dll")).Version.ToString();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -45,6 +47,7 @@ namespace Iris.Client
             _viewPorts.DataSource = typeof(ViewPort);
             _windows.DataSource = typeof(ViewPortForm);
             this.Icon = Common.Properties.Resources.iris;
+
 
             _loadedCfg = Helpers.LoadConfig(_configFile);
             ProcessLoadedConfig(_loadedCfg);
