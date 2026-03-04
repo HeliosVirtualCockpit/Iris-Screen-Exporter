@@ -1,13 +1,14 @@
-﻿using System;
+﻿using Iris.Common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Windows.Media;
 using System.Drawing;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
+using System.Reflection;
 using System.Windows.Forms;
-using Iris.Common;
+using System.Windows.Media;
 
 namespace Iris.Server
 {
@@ -37,6 +38,7 @@ namespace Iris.Server
             configFile = Path.Combine(irisPath, configFile);
 
             if (args.Length > 0 && args[0] != null) configFile = args[0];
+            _defaultFormTitle += " " + AssemblyName.GetAssemblyName(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Version.dll")).Version.ToString();
             InitializeComponent();
         }
         private void Form1_Load(object sender, EventArgs e)
@@ -46,6 +48,8 @@ namespace Iris.Server
             viewPorts = new BindingSource();
             conn = new UdpClient();
             viewPorts.DataSource = typeof(ViewPort);
+
+            this.Text = _defaultFormTitle;
 
             if (!string.IsNullOrEmpty(configFile) && File.Exists(configFile))
             {
