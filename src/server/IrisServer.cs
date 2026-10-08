@@ -75,6 +75,13 @@ namespace Iris.Server
         private void generateViewPorts()
         {
             ViewPort tempVp = null;
+            foreach (TabPage tp in tabControl1.TabPages)
+            {
+                if(tp.Text != "Config")
+                {
+                    tabControl1.TabPages.Remove(tp);
+                }
+            }
             foreach (ViewPort vp in viewPorts)
             {
                 if (vp.Name != "Background")
@@ -320,6 +327,7 @@ namespace Iris.Server
 
                 timer1.Interval = loader.PollingInterval;
                 viewPorts.DataSource = (BindingList<ViewPort>)loader.ViewPorts;
+                generateViewPorts();
             }
             else
             {
