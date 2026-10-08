@@ -22,10 +22,10 @@ namespace Iris.Server
         private static readonly string irisPath = Path.Combine(heliosPath, "IRIS");
         private ImageAdjustment _imageAdjustmentGlobal;
         private Boolean _networkErrorAlreadyReported = false;
-        private string _defaultFormTitle = "Iris Screen Exporter - Server";
+        private readonly string _defaultFormTitle = "Iris Screen Exporter - Server";
         private Icon icon;
         private double _smallestFailingSendSize = 69000;
-        private Dictionary<string, string> _hosts = new Dictionary<string, string>();
+        private readonly Dictionary<string, string> _hosts = new Dictionary<string, string>();
         private bool _dnsResolveNeeded = true;
         public IrisServer(string[] args)
         {
@@ -75,11 +75,11 @@ namespace Iris.Server
         private void generateViewPorts()
         {
             ViewPort tempVp = null;
-            foreach (TabPage tp in tabControl1.TabPages)
+            foreach (TabPage tp in tabPageControl.TabPages)
             {
-                if(tp.Text != "Config")
+                if(tp.Name != "ConfigTabPage")
                 {
-                    tabControl1.TabPages.Remove(tp);
+                    tabPageControl.TabPages.Remove(tp);
                 }
             }
             foreach (ViewPort vp in viewPorts)
@@ -91,12 +91,13 @@ namespace Iris.Server
                     PictureBox pBox = new PictureBox()
                     {
                         MaximumSize = new Size(600, 600),
-                        SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize,
+                        SizeMode = PictureBoxSizeMode.AutoSize,
                     };
                     pBox.DataBindings.Add("Image", vp, "Image");
                     TabPage tPage = new TabPage(vp.Name);
                     tPage.Controls.Add(pBox);
-                    tabControl1.TabPages.Add(tPage);
+                    // tPage.Controls.Add(new Label() { Text = $"Host: {vp.Host}:{vp.Port}", Location = new Point(10, 10+600+20), AutoSize = true, Size = new Size(43, 13), Margin = new Padding(2, 0, 2, 0) });
+                    tabPageControl.TabPages.Add(tPage);
                 } else
                 {
                     /// This is for the older "dummy Viewport" Background which we
@@ -399,14 +400,7 @@ namespace Iris.Server
                 default: break;
             }
         }
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
 
-        }
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
-
-        }
         private void buttonOpen_Click(object sender, EventArgs e)
         {
             LoadConfig(null);
@@ -420,11 +414,6 @@ namespace Iris.Server
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveConfig(configFile);
-        }
-
-        private void addViewportToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

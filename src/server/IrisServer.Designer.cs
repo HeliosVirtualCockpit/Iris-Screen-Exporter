@@ -35,7 +35,7 @@
             this.numericUpDownGamma = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownContrast = new System.Windows.Forms.NumericUpDown();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.ConfigTabPage = new System.Windows.Forms.TabPage();
             this.buttonOpen = new System.Windows.Forms.Button();
             this.labelGamma = new System.Windows.Forms.Label();
             this.labelContrast = new System.Windows.Forms.Label();
@@ -45,7 +45,7 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.button1 = new System.Windows.Forms.Button();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPageControl = new System.Windows.Forms.TabControl();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,9 +55,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBrightness)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownGamma)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownContrast)).BeginInit();
-            this.tabPage1.SuspendLayout();
+            this.ConfigTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
-            this.tabControl1.SuspendLayout();
+            this.tabPageControl.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -75,7 +75,7 @@
             0,
             65536});
             this.numericUpDownBrightness.Location = new System.Drawing.Point(94, 184);
-            this.numericUpDownBrightness.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.numericUpDownBrightness.Margin = new System.Windows.Forms.Padding(2);
             this.numericUpDownBrightness.Maximum = new decimal(new int[] {
             5,
             0,
@@ -102,7 +102,7 @@
             0,
             65536});
             this.numericUpDownGamma.Location = new System.Drawing.Point(96, 249);
-            this.numericUpDownGamma.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.numericUpDownGamma.Margin = new System.Windows.Forms.Padding(2);
             this.numericUpDownGamma.Maximum = new decimal(new int[] {
             5,
             0,
@@ -134,7 +134,7 @@
             0,
             65536});
             this.numericUpDownContrast.Location = new System.Drawing.Point(96, 216);
-            this.numericUpDownContrast.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.numericUpDownContrast.Margin = new System.Windows.Forms.Padding(2);
             this.numericUpDownContrast.Maximum = new decimal(new int[] {
             5,
             0,
@@ -156,27 +156,26 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // tabPage1
+            // ConfigTabPage
             // 
-            this.tabPage1.Controls.Add(this.buttonOpen);
-            this.tabPage1.Controls.Add(this.numericUpDownGamma);
-            this.tabPage1.Controls.Add(this.numericUpDownContrast);
-            this.tabPage1.Controls.Add(this.labelGamma);
-            this.tabPage1.Controls.Add(this.labelContrast);
-            this.tabPage1.Controls.Add(this.labelBrightness);
-            this.tabPage1.Controls.Add(this.labelAdjustmentTitle);
-            this.tabPage1.Controls.Add(this.buttonSave);
-            this.tabPage1.Controls.Add(this.numericUpDownBrightness);
-            this.tabPage1.Controls.Add(this.textBox1);
-            this.tabPage1.Controls.Add(this.trackBar1);
-            this.tabPage1.Controls.Add(this.button1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabPage1.Size = new System.Drawing.Size(684, 607);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Config";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.ConfigTabPage.Controls.Add(this.buttonOpen);
+            this.ConfigTabPage.Controls.Add(this.numericUpDownGamma);
+            this.ConfigTabPage.Controls.Add(this.numericUpDownContrast);
+            this.ConfigTabPage.Controls.Add(this.labelGamma);
+            this.ConfigTabPage.Controls.Add(this.labelContrast);
+            this.ConfigTabPage.Controls.Add(this.labelBrightness);
+            this.ConfigTabPage.Controls.Add(this.labelAdjustmentTitle);
+            this.ConfigTabPage.Controls.Add(this.buttonSave);
+            this.ConfigTabPage.Controls.Add(this.numericUpDownBrightness);
+            this.ConfigTabPage.Controls.Add(this.textBox1);
+            this.ConfigTabPage.Controls.Add(this.trackBar1);
+            this.ConfigTabPage.Controls.Add(this.button1);
+            this.ConfigTabPage.Location = new System.Drawing.Point(4, 22);
+            this.ConfigTabPage.Name = "ConfigTabPage";
+            this.ConfigTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.ConfigTabPage.Size = new System.Drawing.Size(684, 607);
+            this.ConfigTabPage.TabIndex = 0;
+            this.ConfigTabPage.Text = "Config";
             // 
             // buttonOpen
             // 
@@ -223,6 +222,8 @@
             // 
             this.labelAdjustmentTitle.AutoSize = true;
             this.labelAdjustmentTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAdjustmentTitle.ForeColor = System.Drawing.Color.Black;
+            this.labelAdjustmentTitle.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
             this.labelAdjustmentTitle.Location = new System.Drawing.Point(27, 148);
             this.labelAdjustmentTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelAdjustmentTitle.Name = "labelAdjustmentTitle";
@@ -271,15 +272,15 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
-            // tabControl1
+            // tabPageControl
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tabControl1.Location = new System.Drawing.Point(0, 24);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(692, 633);
-            this.tabControl1.TabIndex = 5;
+            this.tabPageControl.Controls.Add(this.ConfigTabPage);
+            this.tabPageControl.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tabPageControl.Location = new System.Drawing.Point(0, 24);
+            this.tabPageControl.Name = "tabPageControl";
+            this.tabPageControl.SelectedIndex = 0;
+            this.tabPageControl.Size = new System.Drawing.Size(692, 633);
+            this.tabPageControl.TabIndex = 5;
             // 
             // menuStrip1
             // 
@@ -331,15 +332,15 @@
             this.addViewportToolStripMenuItem.Name = "addViewportToolStripMenuItem";
             this.addViewportToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.addViewportToolStripMenuItem.Text = "Add Viewport";
-            this.addViewportToolStripMenuItem.Click += new System.EventHandler(this.addViewportToolStripMenuItem_Click);
             // 
             // IrisServer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(692, 673);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.tabPageControl);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "IrisServer";
             this.Text = "Iris Screen Exporter - Server";
@@ -348,10 +349,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBrightness)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownGamma)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownContrast)).EndInit();
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
+            this.ConfigTabPage.ResumeLayout(false);
+            this.ConfigTabPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
-            this.tabControl1.ResumeLayout(false);
+            this.tabPageControl.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -362,11 +363,11 @@
         #endregion
 
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage ConfigTabPage;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TrackBar trackBar1;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl tabPageControl;
         private System.Windows.Forms.NumericUpDown numericUpDownBrightness;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Label labelAdjustmentTitle;

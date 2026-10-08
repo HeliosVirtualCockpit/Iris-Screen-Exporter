@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IrisClient));
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -45,7 +45,7 @@
             this.labelHeight = new System.Windows.Forms.Label();
             this.tBWidth = new System.Windows.Forms.TextBox();
             this.labelWidth = new System.Windows.Forms.Label();
-            this.timerBackground = new System.Windows.Forms.Timer(this.components);
+            this.timerBackground = new System.Windows.Forms.Timer();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -108,7 +108,7 @@
             // 
             this.butColor.BackColor = System.Drawing.Color.Black;
             this.butColor.Location = new System.Drawing.Point(232, 58);
-            this.butColor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.butColor.Margin = new System.Windows.Forms.Padding(2);
             this.butColor.MaximumSize = new System.Drawing.Size(36, 39);
             this.butColor.MinimumSize = new System.Drawing.Size(36, 39);
             this.butColor.Name = "butColor";
@@ -123,7 +123,7 @@
             // 
             this.checkBox1.AutoSize = true;
             this.checkBox1.Location = new System.Drawing.Point(20, 36);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(84, 17);
             this.checkBox1.TabIndex = 4;
@@ -146,7 +146,7 @@
             // tBLeft
             // 
             this.tBLeft.Location = new System.Drawing.Point(61, 55);
-            this.tBLeft.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tBLeft.Margin = new System.Windows.Forms.Padding(2);
             this.tBLeft.Name = "tBLeft";
             this.tBLeft.Size = new System.Drawing.Size(52, 20);
             this.tBLeft.TabIndex = 6;
@@ -159,7 +159,7 @@
             // tBTop
             // 
             this.tBTop.Location = new System.Drawing.Point(155, 56);
-            this.tBTop.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tBTop.Margin = new System.Windows.Forms.Padding(2);
             this.tBTop.Name = "tBTop";
             this.tBTop.Size = new System.Drawing.Size(52, 20);
             this.tBTop.TabIndex = 8;
@@ -184,7 +184,7 @@
             // tBHeight
             // 
             this.tBHeight.Location = new System.Drawing.Point(155, 79);
-            this.tBHeight.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tBHeight.Margin = new System.Windows.Forms.Padding(2);
             this.tBHeight.Name = "tBHeight";
             this.tBHeight.Size = new System.Drawing.Size(52, 20);
             this.tBHeight.TabIndex = 12;
@@ -209,7 +209,7 @@
             // tBWidth
             // 
             this.tBWidth.Location = new System.Drawing.Point(61, 78);
-            this.tBWidth.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tBWidth.Margin = new System.Windows.Forms.Padding(2);
             this.tBWidth.Name = "tBWidth";
             this.tBWidth.Size = new System.Drawing.Size(52, 20);
             this.tBWidth.TabIndex = 10;
@@ -233,7 +233,6 @@
             // 
             // timerBackground
             // 
-            this.timerBackground.Enabled = false;
             this.timerBackground.Interval = 1000;
             this.timerBackground.Tick += new System.EventHandler(this.timerBackground_Tick);
             // 
@@ -255,6 +254,7 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "IrisClient";
             this.Tag = "s";
